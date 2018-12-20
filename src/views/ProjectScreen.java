@@ -3,11 +3,11 @@ package views;
 
 import javafx.stage.Stage;
 
-public class ProjektScreen {
+public class ProjectScreen {
 
     private Stage _mainStage;
 
-    public ProjektScreen (Stage stage){
+    public ProjectScreen(Stage stage){
         _mainStage = stage;
     }
 }
