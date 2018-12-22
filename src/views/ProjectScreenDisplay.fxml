@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
 
+<BorderPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProjectScreenController" stylesheets="@Styles.css">
+      <top>
+        <HBox>
+            <Label>Agile Board Light</Label>
+            <Button fx:id="btnAddProject">+</Button>
+        </HBox>
+      </top>
 
-<Pane prefHeight="387.0" prefWidth="551.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProjectScreenController">
-   <children>
-      <HBox prefHeight="50.0" />
-      <HBox prefHeight="100.0" prefWidth="200.0" />
+      <center>
+          <ScrollPane>
 
-   </children>
-</Pane>
+          </ScrollPane>
+      </center>
+</BorderPane>
+
