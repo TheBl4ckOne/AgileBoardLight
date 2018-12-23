@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<BorderPane fx:id="bpProjectCreateDisplay" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProjectScreenController">
+
+    <top>
+        <Label id="lblCreateProject" textAlignment="CENTER" text="Projekt erstellen">
+        </Label>
+    </top>
+
+    <center>
+        <GridPane>
+            <GridPane>
+                <!-- 4 Labels, 4 Textfelder rechts, Projektname, projektbeschreibung, Projektteam, Zieltermin-->
+            </GridPane>
+        </GridPane>
+    </center>
+
+    <bottom>
+        <HBox>
+            <!--Abbrechen und Speichern Button-->
+        </HBox>
+
+    </bottom>
+
+
+
+</BorderPane>
