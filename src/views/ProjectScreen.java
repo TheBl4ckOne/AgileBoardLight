@@ -5,6 +5,7 @@ import controller.ProjectScreenController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -30,6 +31,7 @@ public class ProjectScreen {
         }
     }
 
+
     public void initForm(){
         _scene = new Scene(_parent, 1200,600);
         _mainStage.setScene(_scene);
@@ -38,4 +40,18 @@ public class ProjectScreen {
     public void showProjectScreen(){
         _mainStage.show();
     }
-}
+
+    }
+
+    public void createProjectElement(){
+        VBox vbProjectBox = new VBox(10);
+        //vbProjectBox.getChildren().addAll(new hbox, txtProjectDescription);
+        //hbox.getChildren().addAll(lblProjectName, btnProjectOptions);
+
+        //grid.add (vbProjectBox, intZeile, intSpalte)
+
+        _parent.lookup(gpProjectscreen);
+
+    }
+
+

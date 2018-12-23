@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -15,12 +14,12 @@
 
 <BorderPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProjectScreenController">
     <top>
-        <HBox>
-            <Label id="lblHeadline" alignment="TOP_CENTER" opacity="0.46" prefHeight="40.0" prefWidth="635.0" text="Agile Board Light" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0">
+        <HBox style="-fx-border-color: BLACK;">
+            <Label id="lblHeadline" alignment="TOP_CENTER" opacity="0.46" prefHeight="40.0" prefWidth="665.0" text="Agile Board Light" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0">
             <font>
                <Font name="System Bold" size="28.0" />
             </font></Label>
-            <Button id="btnSaveProject" alignment="CENTER_RIGHT" onAction="#handleSaveProject" prefHeight="42.0" prefWidth="72.0" text="Speichern">
+            <Button id="btnCreateProject" alignment="CENTER_RIGHT" onAction="#handleCreateProject" prefHeight="42.0" prefWidth="37.0" style="-fx-alignment: RIGHT;" text="+">
             </Button>
 
 
@@ -28,39 +27,17 @@
     </top>
 
     <center>
-        <VBox>
-            <ScrollPane>
-                <content>
-                    <HBox spacing="10">
-                        <GridPane> <!--beinhaltet Projetknamen & Projektbeschreibungen -->
-                            <VBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="1"> <!--TODO: Zeilen und Spalten variablenabhängig machen-->
-                                <HBox>
-                                    <Label id="lblProject" alignment="TOP_LEFT" text="Projektname">
-                                    </Label>
-                                    <Button id="btnProjectOptions" alignment="CENTER_RIGHT" onAction="#handleProjectOptions" text="...">
-                                    </Button>
-                                </HBox>
 
-                                <Text id="txtProjectDescription" text="Projektbeschreibung" textAlignment="left">
-                                </Text>
-                            </VBox>
-                     <columnConstraints>
-                        <ColumnConstraints />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints />
-                        <RowConstraints />
-                     </rowConstraints>
-                     
-                        </GridPane>
-                    </HBox>
-                </content>
-            </ScrollPane>
-        </VBox>
+        <ScrollPane>
+            <content>
+                <GridPane fx:id="gpProjectscreen"> <!--beinhaltet Projetknamen & Projektbeschreibungen -->
+                    <!--Hier müssen die Projektkästchen eingefügt werden-->
+                </GridPane>
+            </content>
+        </ScrollPane>
+
     </center>
 
-    <right>
-        <ScrollBar id="scb" orientation="VERTICAL" prefHeight="441.0" prefWidth="14.0" />
-    </right>
+
 
 </BorderPane>
