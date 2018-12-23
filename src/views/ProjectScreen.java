@@ -30,7 +30,7 @@ public class ProjectScreen {
         }
     }
 
-    public void initform(){
+    public void initForm(){
         _scene = new Scene(_parent, 1200,600);
         _mainStage.setScene(_scene);
     }

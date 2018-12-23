@@ -10,14 +10,17 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <BorderPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProjectScreenController">
     <top>
         <HBox>
-            <Label alignment="TOP_CENTER" text="Agile Board Light" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0"> <!-- Label Über 2 Columns hinweg-->
-            </Label>
-            <Button onAction="#handleSaveProject" text="Speichern" alignment="CENTER_RIGHT">
+            <Label id="lblHeadline" alignment="TOP_CENTER" opacity="0.46" prefHeight="40.0" prefWidth="635.0" text="Agile Board Light" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0">
+            <font>
+               <Font name="System Bold" size="28.0" />
+            </font></Label>
+            <Button id="btnSaveProject" alignment="CENTER_RIGHT" onAction="#handleSaveProject" prefHeight="42.0" prefWidth="72.0" text="Speichern">
             </Button>
 
 
@@ -28,19 +31,27 @@
         <VBox>
             <ScrollPane>
                 <content>
-                    <HBox>
+                    <HBox spacing="10">
                         <GridPane> <!--beinhaltet Projetknamen & Projektbeschreibungen -->
                             <VBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="1"> <!--TODO: Zeilen und Spalten variablenabhängig machen-->
                                 <HBox>
-                                    <Label alignment="TOP_LEFT" text="Projektname">
+                                    <Label id="lblProject" alignment="TOP_LEFT" text="Projektname">
                                     </Label>
-                                    <Button onAction="#handleProjectOptions" text="..." alignment="CENTER_RIGHT">
+                                    <Button id="btnProjectOptions" alignment="CENTER_RIGHT" onAction="#handleProjectOptions" text="...">
                                     </Button>
                                 </HBox>
 
-                                <Text text="Projektbeschreibung" textAlignment="left">
+                                <Text id="txtProjectDescription" text="Projektbeschreibung" textAlignment="left">
                                 </Text>
                             </VBox>
+                     <columnConstraints>
+                        <ColumnConstraints />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                     </rowConstraints>
+                     
                         </GridPane>
                     </HBox>
                 </content>
@@ -49,7 +60,7 @@
     </center>
 
     <right>
-        <ScrollBar orientation="VERTICAL" prefHeight="441.0" prefWidth="14.0" />
+        <ScrollBar id="scb" orientation="VERTICAL" prefHeight="441.0" prefWidth="14.0" />
     </right>
 
 </BorderPane>

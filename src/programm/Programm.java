@@ -15,7 +15,7 @@ public class Programm extends Application {
     @Override
     public void start(Stage primaryStage){
         ProjectScreen projectScreen = new ProjectScreen(primaryStage);
-        projectScreen.initform();
+        projectScreen.initForm();
         projectScreen.showProjectScreen();
     }
 }
