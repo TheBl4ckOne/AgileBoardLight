@@ -10,6 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import programm.Programm;
 import views.ProjectCreate;
 
 
@@ -18,17 +19,11 @@ public class ProjectScreenController extends ActionEvent {
 
     public void handleCreateProject(ActionEvent actionEvent) {
 
-        Node source = (Node) actionEvent.getSource(); //TODO: Verfügbarmachen der Stage an dieser Stelle
-        Window theStage = source.getScene().getWindow();
 
-        /*Stage primaryStage = (Stage) .//.getScene().getWindow();
-
-        ProjectCreate pc = new ProjectCreate(primaryStage);
-
-
+        ProjectCreate pc = new ProjectCreate(Programm.mainStage);
         pc.initForm();
         pc.showProjectCreate();
-        */
+
 
         ProjectCreate.createProject();
 
