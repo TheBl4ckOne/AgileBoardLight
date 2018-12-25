@@ -11,6 +11,7 @@ private Variablen mit Unterstrich bsp: int _zahl
 
 alle Variablennamen enthalten ein Kürzel aus dem der Datetyp hervor geht 
   bsp: private int _intZahl
+       
        Button btnButtonAdd
        HBox hb
        VBox vb
@@ -18,4 +19,6 @@ alle Variablennamen enthalten ein Kürzel aus dem der Datetyp hervor geht
        Text txt
        Float  fl
        String str
-       
+       Date dt
+       ArrayList al
+  
