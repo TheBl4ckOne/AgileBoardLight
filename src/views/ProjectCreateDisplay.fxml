@@ -4,6 +4,8 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ScrollPane?>
 <BorderPane fx:id="bpProjectCreateDisplay" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProjectScreenController">
 
     <top>
@@ -12,16 +14,35 @@
     </top>
 
     <center>
-        <GridPane>
+        <ScrollPane>
             <GridPane>
-                <!-- 4 Labels, 4 Textfelder rechts, Projektname, projektbeschreibung, Projektteam, Zieltermin-->
+                <Label GridPane.columnIndex="0" GridPane.rowIndex="0" text="Projektname">
+                </Label>
+                <Label GridPane.columnIndex="0" GridPane.rowIndex="1" text="Projektbeschreibung">
+                </Label>
+                <Label GridPane.columnIndex="0" GridPane.rowIndex="2" text="Projektteam">
+                </Label>
+                <Label GridPane.columnIndex="0" GridPane.rowIndex="3" text="Zieltermin">
+                </Label>
+
+                <TextField GridPane.columnIndex="1" GridPane.rowIndex="0">
+                </TextField>
+                <TextField GridPane.columnIndex="1" GridPane.rowIndex="1">
+                </TextField>
+                <TextField GridPane.columnIndex="1" GridPane.rowIndex="2">
+                </TextField>
+                <TextField GridPane.columnIndex="1" GridPane.rowIndex="3">
+                </TextField>
             </GridPane>
-        </GridPane>
+        </ScrollPane>
     </center>
 
     <bottom>
         <HBox>
-            <!--Abbrechen und Speichern Button-->
+            <Button fx:id="btnAbortProject" text="Abbrechen">
+            </Button>
+            <Button fx:id="btnSaveProject" text="Speichern">
+            </Button>
         </HBox>
 
     </bottom>
