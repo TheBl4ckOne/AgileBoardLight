@@ -40,8 +40,8 @@ public class Programm extends Application{
                 closeWindowAlert.setHeaderText("Möchten Sie das Programm wirklich schließen? Alle nicht gespeicherten Änderungen gehen verloren.");
                 closeWindowAlert.setContentText("Sind Sie damit einverstanden?");
 
-                ButtonType btnJa = new ButtonType("JA", ButtonBar.ButtonData.CANCEL_CLOSE);
-                ButtonType btnNein = new ButtonType("NEIN");
+                ButtonType btnJa = new ButtonType("JA");
+                ButtonType btnNein = new ButtonType("NEIN", ButtonBar.ButtonData.CANCEL_CLOSE);
 
                 closeWindowAlert.getButtonTypes().setAll(btnJa,btnNein);
 
