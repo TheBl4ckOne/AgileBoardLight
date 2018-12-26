@@ -18,15 +18,9 @@ public class ProjectScreenController extends ActionEvent {
 
 
     public void handleCreateProject(ActionEvent actionEvent) {
-
-
         ProjectCreate pc = new ProjectCreate(Programm.mainStage);
         pc.initForm();
         pc.showProjectCreate();
-
-
-        ProjectCreate.createProject();
-
     }
 
     public void handleProjectOptions(ActionEvent actionEvent) {

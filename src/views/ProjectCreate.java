@@ -38,8 +38,9 @@ public class ProjectCreate {
         _mainStage.show();
     }
 
-    public static void createProject(){
+    public static void createProject(){ //TODO: Projekterstellung & Datenbankspeicherung auf Model-Ebene
 
     }
+
 
 }
