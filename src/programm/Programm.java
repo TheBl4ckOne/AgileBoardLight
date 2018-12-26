@@ -1,10 +1,12 @@
 package programm;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import views.ProjectScreen;
 import java.awt.event.ActionEvent;
 import java.util.Optional;
@@ -24,38 +26,46 @@ public class Programm extends Application{
         mainStage = primaryStage;
         ProjectScreen ps = new ProjectScreen(mainStage);
         ps.initForm();
-        ps.showProjectScreen();
-
-        mainStage.getScene().getWindow().setOnCloseRequest();
 
 
         //TODO: Problem lösen, dass beim Drücken auf Nein trotzdem die Stage geschlossen wird, Vermutung: wenn es einmal auf closeRequest gesetzt ist, wird es auch geschlossen
-        Alert closeWindowAlert = new Alert(Alert.AlertType.WARNING);
-        closeWindowAlert.setTitle("Programm schließen?");
-        closeWindowAlert.setHeaderText("Möchten Sie das Programm wirklich schließen? Alle nicht gespeicherten Änderungen gehen verloren.");
-        closeWindowAlert.setContentText("Sind Sie damit einverstanden?");
 
-        ButtonType btnJa = new ButtonType("JA", ButtonBar.ButtonData.CANCEL_CLOSE);
-        ButtonType btnNein = new ButtonType("NEIN");
+        mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
 
-        closeWindowAlert.getButtonTypes().setAll(btnJa,btnNein);
 
-        mainStage.setOnCloseRequest(b -> {
-            Optional<ButtonType> result = closeWindowAlert.showAndWait();
-            if (result.get() == btnJa) {
-                System.out.println("Ich habs hierher geschafft");
-                mainStage.close();
+                Alert closeWindowAlert = new Alert(Alert.AlertType.WARNING);
+                closeWindowAlert.setTitle("Programm schließen?");
+                closeWindowAlert.setHeaderText("Möchten Sie das Programm wirklich schließen? Alle nicht gespeicherten Änderungen gehen verloren.");
+                closeWindowAlert.setContentText("Sind Sie damit einverstanden?");
+
+                ButtonType btnJa = new ButtonType("JA", ButtonBar.ButtonData.CANCEL_CLOSE);
+                ButtonType btnNein = new ButtonType("NEIN");
+
+                closeWindowAlert.getButtonTypes().setAll(btnJa,btnNein);
+
+
+                Optional<ButtonType> result = closeWindowAlert.showAndWait();
+                if (result.get() == btnJa) {
+                    System.out.println("Ich habs hierher geschafft");
+                    mainStage.close();
+                }
+
+                else {
+                    event.consume();
+                }
+
             }
 
-            else {
-
-            }
 
         });
 
     //public void handleCloseRequest(ActionEvent actionEvent){
 
     //}
+
+        ps.showProjectScreen();
 
     }
 }
