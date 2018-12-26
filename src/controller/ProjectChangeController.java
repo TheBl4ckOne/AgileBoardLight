@@ -1,8 +1,6 @@
 package controller;
 
-
 import javafx.event.ActionEvent;
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
@@ -11,9 +9,9 @@ import views.ProjectScreen;
 
 import java.util.Optional;
 
-public class ProjectCreateController extends ActionEvent{
+public class ProjectChangeController {
 
-    public void handleAbortProject(ActionEvent actionEvent){ //siehe ProjectChangeController
+    public void handleAbortProject(ActionEvent actionEvent){ //siehe ProjectCreateController
 
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Projekt erstellen Abbrechen?");
@@ -45,4 +43,5 @@ public class ProjectCreateController extends ActionEvent{
         ProjectScreen.createProjectElement();
 
     }
+
 }

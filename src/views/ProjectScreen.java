@@ -47,7 +47,7 @@ public class ProjectScreen {
     }
 
 
-    public static void createProjectElement() { //TODO: sichtbar machen der Startseite (ProjectScreen) und Hinzufügen eines Dummy-Projektes (unbefüllt)
+    public static void createProjectElement() { //TODO: sichtbar machen der Startseite (ProjectScreen) und Hinzufügen eines Dummy-Projektes (unbefüllt) + EventHandler auf vbProjectBox setzen
 
         VBox vbProjectBox = new VBox(10);
         Label lblProjectName = new Label("Projektname"); //TODO: mit der Eingabe verknüpfen

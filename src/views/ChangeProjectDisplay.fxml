@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="bpProjectChangeDisplay" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProjectChangeController">
+    <top>
+        <Label id="lblChangeProject" textAlignment="CENTER" text="Projekt ändern">
+        </Label>
+    </top>
+
+    <center>
+        <ScrollPane>
+            <GridPane>
+                <Label GridPane.columnIndex="0" GridPane.rowIndex="0" text="Projektname">
+                </Label>
+                <Label GridPane.columnIndex="0" GridPane.rowIndex="1" text="Projektbeschreibung">
+                </Label>
+                <Label GridPane.columnIndex="0" GridPane.rowIndex="2" text="Projektteam">
+                </Label>
+                <Label GridPane.columnIndex="0" GridPane.rowIndex="3" text="Zieltermin">
+                </Label>
+
+                <TextField GridPane.columnIndex="1" GridPane.rowIndex="0">
+                </TextField>
+                <TextField GridPane.columnIndex="1" GridPane.rowIndex="1">
+                </TextField>
+                <TextField GridPane.columnIndex="1" GridPane.rowIndex="2">
+                </TextField>
+                <TextField GridPane.columnIndex="1" GridPane.rowIndex="3">
+                </TextField>
+            </GridPane>
+        </ScrollPane>
+    </center>
+
+    <bottom>
+        <HBox>
+            <Button fx:id="btnAbortProject" text="Abbrechen" onAction="#handleAbortProject">
+            </Button>
+            <Button fx:id="btnSaveProject" text="Speichern" onAction="#handleSaveProject">
+            </Button>
+        </HBox>
+
+    </bottom>
+
+
+
+</BorderPane>
