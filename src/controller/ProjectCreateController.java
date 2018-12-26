@@ -2,7 +2,9 @@ package controller;
 
 
 import javafx.event.ActionEvent;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import programm.Programm;
 import views.ProjectScreen;
@@ -19,7 +21,7 @@ public class ProjectCreateController extends ActionEvent{
         alert.setContentText("Sind Sie damit einverstanden?");
 
         ButtonType btnJa = new ButtonType("JA");
-        ButtonType btnNein= new ButtonType("NEIN");
+        ButtonType btnNein = new ButtonType("NEIN", ButtonBar.ButtonData.CANCEL_CLOSE);
 
         alert.getButtonTypes().setAll(btnJa,btnNein);
 
@@ -34,9 +36,6 @@ public class ProjectCreateController extends ActionEvent{
         else {
             alert.close();
         }
-
-        //TODO: Schließen-Kreuz zum Laufen bringen 
-
     }
 
     public void handleSaveProject(ActionEvent actionEvent) {
