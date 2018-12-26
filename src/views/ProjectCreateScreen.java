@@ -9,14 +9,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ProjectCreate {
+public class ProjectCreateScreen {
 
     private Parent _parent;
     private Stage _mainStage;
     private Scene _scene;
     private FXMLLoader _loader;
 
-    public ProjectCreate(Stage stage) {
+    public ProjectCreateScreen(Stage stage) {
         _mainStage = stage;
 
         try {

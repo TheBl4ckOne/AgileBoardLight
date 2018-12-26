@@ -6,46 +6,46 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="bpProjectCreateDisplay" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProjectScreenController">
+<BorderPane fx:id="bpProjectCreateDisplay" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TaskScreenController">
 
     <top>
-        <Label id="lblCreateProject" textAlignment="CENTER" text="y<Projekt erstellen">
-        </Label>
+        <HBox>
+            <Button fx:id="btnHome" text="Home">
+            </Button>
+            <Label fx:id="lblProjectname" textAlignment="CENTER" text="Projektname"> <!--text=Projectname > TODO: Verknüpfen-->
+            </Label>
+            <Button fx:id="btnSaveTasks" text="Speichern">
+            </Button>
+        </HBox>
     </top>
 
     <center>
         <ScrollPane>
-            <GridPane>
-                <Label GridPane.columnIndex="0" GridPane.rowIndex="0" text="Projektname">
-                </Label>
-                <Label GridPane.columnIndex="0" GridPane.rowIndex="1" text="Projektbeschreibung">
-                </Label>
-                <Label GridPane.columnIndex="0" GridPane.rowIndex="2" text="Projektteam">
-                </Label>
-                <Label GridPane.columnIndex="0" GridPane.rowIndex="3" text="Zieltermin">
-                </Label>
+            <HBox>
+                <VBox>
+                    <Label text="Noch zu machen">
+                    </Label>
 
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="0">
-                </TextField>
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="1">
-                </TextField>
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="2">
-                </TextField>
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="3">
-                </TextField>
-            </GridPane>
+                    <!--Tasks-->
+
+                    <Button text="+">
+                    </Button>
+                </VBox>
+
+                <VBox>
+                    <Label text="in Arbeit">
+                    </Label>
+                </VBox>
+
+                <VBox>
+                    <Label text="Fertig">
+                    </Label>
+                </VBox>
+            </HBox>
         </ScrollPane>
     </center>
 
-    <bottom>
-        <HBox>
-            <Button fx:id="btnAbortProject" text="Abbrechen">
-            </Button>
-            <Button fx:id="btnSaveProject" text="Speichern">
-            </Button>
-        </HBox>
 
-    </bottom>
 
 
 

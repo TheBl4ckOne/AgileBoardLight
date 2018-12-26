@@ -26,6 +26,8 @@ public class Programm extends Application{
         ps.initForm();
         ps.showProjectScreen();
 
+        mainStage.getScene().getWindow().setOnCloseRequest();
+
 
         //TODO: Problem lösen, dass beim Drücken auf Nein trotzdem die Stage geschlossen wird, Vermutung: wenn es einmal auf closeRequest gesetzt ist, wird es auch geschlossen
         Alert closeWindowAlert = new Alert(Alert.AlertType.WARNING);
@@ -41,6 +43,7 @@ public class Programm extends Application{
         mainStage.setOnCloseRequest(b -> {
             Optional<ButtonType> result = closeWindowAlert.showAndWait();
             if (result.get() == btnJa) {
+                System.out.println("Ich habs hierher geschafft");
                 mainStage.close();
             }
 

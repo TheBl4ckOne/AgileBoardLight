@@ -61,7 +61,7 @@ public class ProjectScreen {
 
         _parent.lookup("gpProjectscreen");
 
-        ProjectCreate pc = new ProjectCreate(Programm.mainStage);
+        ProjectCreateScreen pc = new ProjectCreateScreen(Programm.mainStage);
         pc.initForm();
         pc.showProjectCreate();
 
