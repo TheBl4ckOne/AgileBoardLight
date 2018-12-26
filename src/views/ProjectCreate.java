@@ -1,5 +1,6 @@
 package views;
 
+import controller.ProjectCreateController;
 import controller.ProjectScreenController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,7 +22,7 @@ public class ProjectCreate {
         try {
             _loader = new FXMLLoader(getClass().getResource("ProjectCreateDisplay.fxml"));
             _parent = _loader.load();
-            ProjectScreenController psc = _loader.getController();
+            ProjectCreateController pcc = _loader.getController();
 
 
         } catch (IOException e) {

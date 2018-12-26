@@ -23,7 +23,7 @@ public class ProjectScreenController extends ActionEvent {
         pc.showProjectCreate();
     }
 
-    public void handleProjectOptions(ActionEvent actionEvent) {
+    public static void handleProjectOptions(ActionEvent actionEvent) {
         ListView<String> lvProjectOptions  = new ListView<String>();
         ObservableList<String> items = FXCollections.observableArrayList (
                 "löschen", "ändern");

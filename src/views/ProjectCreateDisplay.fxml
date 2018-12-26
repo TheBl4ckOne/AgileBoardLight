@@ -6,7 +6,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ScrollPane?>
-<BorderPane fx:id="bpProjectCreateDisplay" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProjectScreenController">
+<BorderPane fx:id="bpProjectCreateDisplay" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProjectCreateController">
 
     <top>
         <Label id="lblCreateProject" textAlignment="CENTER" text="Projekt erstellen">
@@ -41,7 +41,7 @@
         <HBox>
             <Button fx:id="btnAbortProject" text="Abbrechen" onAction="#handleAbortProject">
             </Button>
-            <Button fx:id="btnSaveProject" text="Speichern">
+            <Button fx:id="btnSaveProject" text="Speichern" onAction="#handleSaveProject">
             </Button>
         </HBox>
 

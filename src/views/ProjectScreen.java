@@ -5,14 +5,19 @@ import controller.ProjectScreenController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import programm.Programm;
 
 import java.io.IOException;
 
 public class ProjectScreen {
 
-    private Parent _parent;
+    private static Parent _parent;
     private Stage _mainStage;
     private Scene _scene;
     private FXMLLoader _loader;
@@ -42,14 +47,23 @@ public class ProjectScreen {
     }
 
 
-    public void createProjectElement() {
-        VBox vbProjectBox = new VBox(10);
-        //vbProjectBox.getChildren().addAll(new hbox, txtProjectDescription);
-        //hbox.getChildren().addAll(lblProjectName, btnProjectOptions);
+    public static void createProjectElement() { //TODO: sichtbar machen der Startseite (ProjectScreen) und Hinzufügen eines Dummy-Projektes (unbefüllt)
 
-        //grid.add (vbProjectBox, intZeile, intSpalte)
+        VBox vbProjectBox = new VBox(10);
+        Label lblProjectName = new Label("Projektname"); //TODO: mit der Eingabe verknüpfen
+        Button btnProjectOptions = new Button("...");
+        btnProjectOptions.setOnAction(ProjectScreenController::handleProjectOptions);
+        Text txtProjectDescription = new Text();
+        HBox hbProjectHead = new HBox();
+
+        hbProjectHead.getChildren().addAll(lblProjectName, btnProjectOptions);
+        vbProjectBox.getChildren().addAll(hbProjectHead, txtProjectDescription);
 
         _parent.lookup("gpProjectscreen");
+
+        ProjectCreate pc = new ProjectCreate(Programm.mainStage);
+        pc.initForm();
+        pc.showProjectCreate();
 
     }
 
