@@ -6,4 +6,43 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<BorderPane fx:id="bpProjectCreateDisplay" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TaskCreateController">
 
+    <top>
+        <Label id="lblCreateProject" textAlignment="CENTER" text="Aufgabe erstellen">
+        </Label>
+    </top>
+
+    <center>
+        <ScrollPane>
+            <GridPane>
+                <Label GridPane.columnIndex="0" GridPane.rowIndex="0" text="Name">
+                </Label>
+                <Label GridPane.columnIndex="0" GridPane.rowIndex="1" text="Beschreibung">
+                </Label>
+                <Label GridPane.columnIndex="0" GridPane.rowIndex="2" text="Mitarbeiter">
+                </Label>
+
+                <TextField fx:id="txtfTaskname" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                </TextField>
+                <TextField fx:id="txtfTaskDescription" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                </TextField>
+                <TextField fx:id="txtfTaskEmployee" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                </TextField>
+            </GridPane>
+        </ScrollPane>
+    </center>
+
+    <bottom>
+        <HBox>
+            <Button fx:id="btnAbortTask" text="Abbrechen" onAction="#handleAbortTask">
+            </Button>
+            <Button fx:id="btnSaveProject" text="Speichern" onAction="#handleSaveTask">
+            </Button>
+        </HBox>
+
+    </bottom>
+
+
+
+</BorderPane>

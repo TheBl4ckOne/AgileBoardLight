@@ -6,7 +6,9 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextField;
 import programm.Programm;
+import views.ProjectCreateScreen;
 import views.ProjectScreen;
 
 import java.util.Optional;
@@ -42,7 +44,22 @@ public class ProjectCreateController extends ActionEvent{
 
         //TODO Datenbankverbindung herstellen und eingegebenen Daten speichern
 
+        TextField txtfProjectname = new TextField();
+        String strProjectname = txtfProjectname.getText();
+        TextField txtfProjectDescription = new TextField();
+        String strProjectDescription = txtfProjectDescription.getText();
+        TextField txtfProjectTeam = new TextField();
+        String strProjectTeam = txtfProjectTeam.getText();
+        TextField txtfDeadline = new TextField(); //TODO: Datumsauswahl aus Kalender möglich?
+        String strDeadline = txtfDeadline.getText();
+
+        //TODO: Daten zwischen ProjectCreateController und ProjectScreenController über das Model verbinden
+
         ProjectScreen.createProjectElement();
+
+        ProjectScreen ps = new ProjectScreen(Programm.mainStage);
+        ps.initForm();
+        ps.showProjectScreen();
 
     }
 }

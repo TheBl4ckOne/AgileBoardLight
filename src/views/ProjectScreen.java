@@ -11,7 +11,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import programm.Programm;
 
 import java.io.IOException;
 
@@ -36,10 +35,10 @@ public class ProjectScreen {
         }
     }
 
-
     public void initForm() {
         _scene = new Scene(_parent, 1200, 600);
         _mainStage.setScene(_scene);
+        createProjectElement(); //Nur zum Debuggen
     }
 
     public void showProjectScreen() {
@@ -47,24 +46,19 @@ public class ProjectScreen {
     }
 
 
-    public static void createProjectElement() { //TODO: sichtbar machen der Startseite (ProjectScreen) und Hinzufügen eines Dummy-Projektes (unbefüllt) + EventHandler auf vbProjectBox setzen
+    public static void createProjectElement() { // angezeigte Projektboxen auf der Startseite
 
         VBox vbProjectBox = new VBox(10);
-        Label lblProjectName = new Label("Projektname"); //TODO: mit der Eingabe verknüpfen
+        Label lblProjectname = new Label(ProjectCreateScreen.strProjectname);
         Button btnProjectOptions = new Button("...");
         btnProjectOptions.setOnAction(ProjectScreenController::handleProjectOptions);
         Text txtProjectDescription = new Text();
         HBox hbProjectHead = new HBox();
 
-        hbProjectHead.getChildren().addAll(lblProjectName, btnProjectOptions);
+        hbProjectHead.getChildren().addAll(lblProjectname, btnProjectOptions);
         vbProjectBox.getChildren().addAll(hbProjectHead, txtProjectDescription);
 
         _parent.lookup("gpProjectscreen");
-
-        ProjectCreateScreen pc = new ProjectCreateScreen(Programm.mainStage);
-        pc.initForm();
-        pc.showProjectCreate();
-
     }
 
 }

@@ -3,13 +3,21 @@ package views;
 import controller.ProjectCreateController;
 import controller.ProjectScreenController;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.HPos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class ProjectCreateScreen {
+
+    public static String strProjectname;
+    public static String strProjectDescription;
+    public static String strProjectTeam;
+    public static String strDeadline;
 
     private Parent _parent;
     private Stage _mainStage;
@@ -38,10 +46,5 @@ public class ProjectCreateScreen {
     public void showProjectCreate() {
         _mainStage.show();
     }
-
-    public static void createProject(){ //TODO: Projekterstellung & Datenbankspeicherung auf Model-Ebene
-
-    }
-
 
 }

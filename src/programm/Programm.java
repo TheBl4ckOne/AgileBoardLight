@@ -27,45 +27,32 @@ public class Programm extends Application{
         ProjectScreen ps = new ProjectScreen(mainStage);
         ps.initForm();
 
-
-        //TODO: Problem lösen, dass beim Drücken auf Nein trotzdem die Stage geschlossen wird, Vermutung: wenn es einmal auf closeRequest gesetzt ist, wird es auch geschlossen
-
         mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
-
 
                 Alert closeWindowAlert = new Alert(Alert.AlertType.WARNING);
                 closeWindowAlert.setTitle("Programm schließen?");
                 closeWindowAlert.setHeaderText("Möchten Sie das Programm wirklich schließen? Alle nicht gespeicherten Änderungen gehen verloren.");
                 closeWindowAlert.setContentText("Sind Sie damit einverstanden?");
 
-                ButtonType btnJa = new ButtonType("JA");
+                //TODO: Button Nein auf die linke Seite
                 ButtonType btnNein = new ButtonType("NEIN", ButtonBar.ButtonData.CANCEL_CLOSE);
+                ButtonType btnJa = new ButtonType("JA");
 
-                closeWindowAlert.getButtonTypes().setAll(btnJa,btnNein);
-
+                closeWindowAlert.getButtonTypes().setAll(btnNein, btnJa);
 
                 Optional<ButtonType> result = closeWindowAlert.showAndWait();
                 if (result.get() == btnJa) {
-                    System.out.println("Ich habs hierher geschafft");
                     mainStage.close();
                 }
 
                 else {
                     event.consume();
                 }
-
             }
-
-
         });
 
-    //public void handleCloseRequest(ActionEvent actionEvent){
-
-    //}
-
         ps.showProjectScreen();
-
     }
 }

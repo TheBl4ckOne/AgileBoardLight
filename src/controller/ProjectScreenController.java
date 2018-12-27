@@ -23,7 +23,8 @@ public class ProjectScreenController extends ActionEvent {
         ObservableList<String> items = FXCollections.observableArrayList (
                 "löschen", "ändern");
         lvProjectOptions.setItems(items);
-
     }
+
+
 }
 
