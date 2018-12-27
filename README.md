@@ -21,4 +21,5 @@ alle Variablennamen enthalten ein Kürzel aus dem der Datetyp hervor geht
        String str
        Date dt
        ArrayList al
+       TextField txtf
   
