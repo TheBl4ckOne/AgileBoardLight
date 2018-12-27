@@ -1,5 +1,7 @@
 package models;
 
+import controller.ProjectCreateController;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -12,6 +14,6 @@ public class Project {
     private ArrayList<Employee> _employees;
 
     public Project() {
-
+        //TODO: strProjectname hierher übergeben???
     }
 }

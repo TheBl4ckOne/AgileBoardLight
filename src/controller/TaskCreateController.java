@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.event.ActionEvent;
+import models.Task;
 import programm.Programm;
 import views.ProjectScreen;
 import views.TaskScreen;
@@ -10,15 +12,17 @@ import static programm.Programm.mainStage;
 
 public class TaskCreateController {
 
-    public static void handleAbortTask(EventHandler actionEvent){
+    public void handleSaveTask(ActionEvent actionEvent) {
+        //Speichern und zurück zur Projektseite
+        Task t = new Task();
+    }
+
+    public void handleAbortTask(ActionEvent actionEvent) {
         TaskScreen ts = new TaskScreen(mainStage);
         ts.initForm();
         ts.showProjectScreen();
 
         //zurück zur Projektseite
-    }
 
-    public static void handleSaveTask(EventHandler actionEvent){
-        //Speichern und zurück zur Projektseite
     }
 }
