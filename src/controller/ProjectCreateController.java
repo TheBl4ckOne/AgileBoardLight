@@ -2,18 +2,32 @@ package controller;
 
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import programm.Programm;
 import views.ProjectCreateScreen;
 import views.ProjectScreen;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.Optional;
 
 public class ProjectCreateController extends ActionEvent{
+
+
+    //Lädt das Element mit der Entsprechenden ID aus dem FXML
+    @FXML
+    private TextField txtfProjectname, txtfProjectDescription, txtfProjectTeam;
+    @FXML
+    private DatePicker dtpiDeadline;
+    @FXML
+    private Button btnAbortProject, btnSaveProject;
+    @FXML
+    private BorderPane bpProjectCreateDisplay;
 
     public void handleAbortProject(ActionEvent actionEvent){ //siehe ProjectChangeController
 
@@ -39,19 +53,25 @@ public class ProjectCreateController extends ActionEvent{
             alert.close();
         }
     }
-
-    public void handleSaveProject(ActionEvent actionEvent) {
+    @FXML //Ermöglicht den aufruf der private Methode aus der FXML heraus
+    private void handleSaveProject(ActionEvent actionEvent) {
 
         //TODO Datenbankverbindung herstellen und eingegebenen Daten speichern
 
-        TextField txtfProjectname = new TextField();
+        //CHANGE Im alten Stand würden neue Textfelder im Code generiert und deren Text abgefragt
+        //  Die im Code generierten Textfelder sind nicht die selben wie die angezeigten Textfelder, deren Text wiederum nicht abgefragt wurde
+        //  --> Die Elemente werden nun aus der FXML geladen, siehe Oben
+
         String strProjectname = txtfProjectname.getText();
-        TextField txtfProjectDescription = new TextField();
         String strProjectDescription = txtfProjectDescription.getText();
-        TextField txtfProjectTeam = new TextField();
         String strProjectTeam = txtfProjectTeam.getText();
-        TextField txtfDeadline = new TextField(); //TODO: Datumsauswahl aus Kalender möglich?
-        String strDeadline = txtfDeadline.getText();
+         //TODO: Datumsauswahl aus Kalender möglich?
+        //Change: Textfeld durch einen DatePicker ersetzt
+        //Achtung getValue() gibt ein LocaleDate zurück. Dieses enthält keine Uhrzeit un keine Zeitzone beides wird für Date benötigt
+        LocalDate ldtDeadline =  dtpiDeadline.getValue();
+        //Mit instant werden die aktuelle Zeit und die Zeitzone des PC geholt und im folgenden Umgewandelt
+        Instant instant = Instant.from(ldtDeadline.atStartOfDay(ZoneId.systemDefault()));
+        Date dtdeadline = Date.from(instant);
 
         //TODO: Daten zwischen ProjectCreateController und ProjectScreenController über das Model verbinden
 
