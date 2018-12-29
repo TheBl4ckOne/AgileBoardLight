@@ -59,6 +59,8 @@ public class ProjectScreen {
         _scene = new Scene(_parent, width, height);
         _mainStage.setScene(_scene);
 
+        _scene.getStylesheets().add(getClass().getResource("Styles.css").toExternalForm());
+
         for (Project p: Programm.projects) {
             createProjectElement(p);
         }

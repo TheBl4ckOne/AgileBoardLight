@@ -27,8 +27,6 @@ public class Programm extends Application{
         ProjectScreen ps = new ProjectScreen(mainStage);
         ps.initForm();
 
-        //TODO: scene.getStylesheets().add(getClass().getResource("demo.css").toExternalForm()); > Ein CSS für alle?
-
         mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
