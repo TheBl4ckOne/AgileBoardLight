@@ -2,6 +2,9 @@ package programm;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
@@ -11,10 +14,8 @@ import views.ProjectScreen;
 import java.awt.event.ActionEvent;
 import java.util.Optional;
 
-import static javafx.scene.control.ButtonBar.ButtonData.CANCEL_CLOSE;
 
 public class Programm extends Application{
-    //Stage global verfügbar machen um die angeziegt Scene wechseln zu können
     public static Stage mainStage;
 
     public static void main(String[] args) {
@@ -26,6 +27,8 @@ public class Programm extends Application{
         mainStage = primaryStage;
         ProjectScreen ps = new ProjectScreen(mainStage);
         ps.initForm();
+
+        //TODO: scene.getStylesheets().add(getClass().getResource("demo.css").toExternalForm()); > Ein CSS für alle?
 
         mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
