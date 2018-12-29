@@ -71,7 +71,7 @@ public class ProjectScreen {
     }
 
 
-    public  void createProjectElement(Project project) { // angezeigte Projektboxen auf der Startseite
+    public  void createProjectElement(Project project) { // angezeigte Projektelemente auf der Startseite
 
         VBox vbProjectBox = new VBox(10);
         Label lblProjectname = new Label(project.get_strProjectName());

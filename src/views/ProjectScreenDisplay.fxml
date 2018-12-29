@@ -32,9 +32,7 @@
         <ScrollPane>
             <content>
                 <GridPane fx:id="gpProjectScreen">
-                    <!--beinhaltet Projetknamen & Projektbeschreibungen -->
-                    <!--Hier müssen die Projektboxen eingefügt werden-->
-
+                    <!--Hier müssen die Projektelemente eingefügt werden-->
                 </GridPane>
             </content>
         </ScrollPane>

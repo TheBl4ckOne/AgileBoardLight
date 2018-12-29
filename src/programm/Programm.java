@@ -25,6 +25,7 @@ public class Programm extends Application{
     public void start(Stage primaryStage){
         mainStage = primaryStage;
         ProjectScreen ps = new ProjectScreen(mainStage);
+        primaryStage.setTitle("Agile Board Light");
         ps.initForm();
 
         mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
