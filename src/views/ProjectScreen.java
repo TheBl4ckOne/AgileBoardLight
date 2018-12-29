@@ -3,20 +3,26 @@ package views;
 
 import controller.ProjectScreenController;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import models.Project;
 import programm.Programm;
 
 import java.io.IOException;
+
+import static programm.Programm.mainStage;
 
 public class ProjectScreen {
 
@@ -24,6 +30,8 @@ public class ProjectScreen {
     private Stage _mainStage;
     private Scene _scene;
     private FXMLLoader _loader;
+
+    private Rectangle2D bounds = Screen.getPrimary().getBounds(); //Untere Windowstaskleiste wird dadurch sichtbar
 
     public ProjectScreen(Stage stage) {
         _mainStage = stage;
@@ -37,11 +45,20 @@ public class ProjectScreen {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     public void initForm() {
-        _scene = new Scene(_parent, 1200, 600);
+
+        mainStage.setX(bounds.getMinX());
+        mainStage.setY(bounds.getMinY());
+
+       int width = (int) Screen.getPrimary().getBounds().getWidth();
+       int height = (int) Screen.getPrimary().getBounds().getHeight();
+
+        _scene = new Scene(_parent, width, height);
         _mainStage.setScene(_scene);
+
         for (Project p: Programm.projects) {
             createProjectElement(p);
         }
@@ -58,11 +75,11 @@ public class ProjectScreen {
         Label lblProjectname = new Label(project.get_strProjectName());
         Button btnProjectOptions = new Button("...");
         btnProjectOptions.setOnAction(ProjectScreenController::handleProjectOptions);
-        Text txtProjectDescription = new Text(project.get_strProjectDescription());
+        TextArea txtaProjectDescription = new TextArea(project.get_strProjectDescription());
         HBox hbProjectHead = new HBox();
 
         hbProjectHead.getChildren().addAll(lblProjectname, btnProjectOptions);
-        vbProjectBox.getChildren().addAll(hbProjectHead, txtProjectDescription);
+        vbProjectBox.getChildren().addAll(hbProjectHead, txtaProjectDescription);
 
         GridPane gp = (GridPane) _parent.lookup("#gpProjectScreen");
         gp.add(vbProjectBox,0,0);

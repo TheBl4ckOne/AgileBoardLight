@@ -14,10 +14,6 @@ public class Project {
     private LocalDate _ldtDeadline;
     private ArrayList<Employee> _employees;
 
-    public Project() {
-        //TODO: strProjectname hierher übergeben???
-    }
-
     public  Project(String strProjectName, String strProjectDescription, LocalDate ldtDeadline, ArrayList<Employee> alEmployees){
         _strProjectName = strProjectName;
         _strProjectDescription = strProjectDescription;

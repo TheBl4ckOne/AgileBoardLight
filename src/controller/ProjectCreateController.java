@@ -24,7 +24,9 @@ public class ProjectCreateController extends ActionEvent{
 
     //Lädt das Element mit der Entsprechenden ID aus dem FXML
     @FXML
-    private TextField txtfProjectname, txtfProjectDescription, txtfProjectTeam;
+    private TextField txtfProjectname, txtfProjectTeam;
+    @FXML
+    private TextArea txtaProjectDescription;
     @FXML
     private DatePicker dtpiDeadline;
     @FXML
@@ -66,7 +68,7 @@ public class ProjectCreateController extends ActionEvent{
         //  --> Die Elemente werden nun aus der FXML geladen, siehe Oben
 
         String strProjectname = txtfProjectname.getText();
-        String strProjectDescription = txtfProjectDescription.getText();
+        String strProjectDescription = txtaProjectDescription.getText();
         String[] strProjectTeam = txtfProjectTeam.getText().split(",");
         LocalDate ldtDeadline =  dtpiDeadline.getValue();
 

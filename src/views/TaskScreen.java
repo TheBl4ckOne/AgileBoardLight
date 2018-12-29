@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static programm.Programm.mainStage;
+
 public class TaskScreen {
 
     private Parent _parent;
@@ -27,6 +29,9 @@ public class TaskScreen {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        mainStage.setFullScreen(true);
+
     }
 
     public void initForm() {

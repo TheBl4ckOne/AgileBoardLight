@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextArea?>
 <BorderPane fx:id="bpProjectCreateDisplay" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProjectCreateController">
 
     <top>
@@ -28,8 +29,8 @@
 
                 <TextField fx:id="txtfProjectname" GridPane.columnIndex="1" GridPane.rowIndex="0">
                 </TextField>
-                <TextField fx:id="txtfProjectDescription" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                </TextField>
+                <TextArea fx:id="txtaProjectDescription" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                </TextArea>
                 <TextField fx:id="txtfProjectTeam" GridPane.columnIndex="1" GridPane.rowIndex="2">
                 </TextField>
                 <DatePicker fx:id="dtpiDeadline" GridPane.columnIndex="1" GridPane.rowIndex="3">
