@@ -7,10 +7,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import models.Project;
+import programm.Programm;
 
 import java.io.IOException;
 
@@ -38,7 +42,9 @@ public class ProjectScreen {
     public void initForm() {
         _scene = new Scene(_parent, 1200, 600);
         _mainStage.setScene(_scene);
-        createProjectElement(); //Nur zum Debuggen
+        for (Project p: Programm.projects) {
+            createProjectElement(p);
+        }
     }
 
     public void showProjectScreen() {
@@ -46,19 +52,19 @@ public class ProjectScreen {
     }
 
 
-    public static void createProjectElement() { // angezeigte Projektboxen auf der Startseite
+    public  void createProjectElement(Project project) { // angezeigte Projektboxen auf der Startseite
 
         VBox vbProjectBox = new VBox(10);
-        Label lblProjectname = new Label(ProjectCreateScreen.strProjectname);
+        Label lblProjectname = new Label(project.get_strProjectName());
         Button btnProjectOptions = new Button("...");
         btnProjectOptions.setOnAction(ProjectScreenController::handleProjectOptions);
-        Text txtProjectDescription = new Text();
+        Text txtProjectDescription = new Text(project.get_strProjectDescription());
         HBox hbProjectHead = new HBox();
 
         hbProjectHead.getChildren().addAll(lblProjectname, btnProjectOptions);
         vbProjectBox.getChildren().addAll(hbProjectHead, txtProjectDescription);
 
-        _parent.lookup("gpProjectscreen");
+        GridPane gp = (GridPane) _parent.lookup("#gpProjectScreen");
+        gp.add(vbProjectBox,0,0);
     }
-
 }

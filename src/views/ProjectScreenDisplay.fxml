@@ -4,13 +4,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
+
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+
+
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+
 
 <BorderPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProjectScreenController">
     <top>
@@ -31,8 +31,10 @@
 
         <ScrollPane>
             <content>
-                <GridPane fx:id="gpProjectScreen"> <!--beinhaltet Projetknamen & Projektbeschreibungen -->
+                <GridPane fx:id="gpProjectScreen">
+                    <!--beinhaltet Projetknamen & Projektbeschreibungen -->
                     <!--Hier müssen die Projektboxen eingefügt werden-->
+
                 </GridPane>
             </content>
         </ScrollPane>

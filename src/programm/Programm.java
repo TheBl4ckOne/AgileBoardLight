@@ -2,21 +2,20 @@ package programm;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import models.Project;
 import views.ProjectScreen;
-import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.Optional;
 
 
 public class Programm extends Application{
     public static Stage mainStage;
+    public static ArrayList<Project> projects = new ArrayList<Project>();
 
     public static void main(String[] args) {
         launch(args);

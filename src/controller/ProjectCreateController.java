@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import models.Employee;
+import models.Project;
 import programm.Programm;
 import views.ProjectCreateScreen;
 import views.ProjectScreen;
@@ -13,6 +15,7 @@ import views.ProjectScreen;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
 
@@ -64,22 +67,24 @@ public class ProjectCreateController extends ActionEvent{
 
         String strProjectname = txtfProjectname.getText();
         String strProjectDescription = txtfProjectDescription.getText();
-        String strProjectTeam = txtfProjectTeam.getText();
-         //TODO: Datumsauswahl aus Kalender möglich?
-        //Change: Textfeld durch einen DatePicker ersetzt
-        //Achtung getValue() gibt ein LocaleDate zurück. Dieses enthält keine Uhrzeit un keine Zeitzone beides wird für Date benötigt
+        String[] strProjectTeam = txtfProjectTeam.getText().split(",");
         LocalDate ldtDeadline =  dtpiDeadline.getValue();
-        //Mit instant werden die aktuelle Zeit und die Zeitzone des PC geholt und im folgenden Umgewandelt
-        Instant instant = Instant.from(ldtDeadline.atStartOfDay(ZoneId.systemDefault()));
-        Date dtdeadline = Date.from(instant);
 
-        //TODO: Daten zwischen ProjectCreateController und ProjectScreenController über das Model verbinden
+        ArrayList<Employee> alEmployees =  new ArrayList<Employee>();
+        //For-Each Schleife: kürzere Methode zum durchlaufen von Arrays als for-Schleife
+        //Die Laufvariable ist vom Datentyp der Elemente des zu durchlaufenden Arrays(hier String)
+        //In den Klammern nach dem For steht zunächst die Dekleration der Laufvariable gefolg von einem Doppelpunkt danach kommt der Name des ARrays das durchlaufen werden soll
+        //Mit jedem Durchlauf nimmt die Laufwariable nun den Wert des Arrays an der aktuellen Stelle an
+        for (String s: strProjectTeam) {
+            alEmployees.add(new Employee(s));
+        }
+        
 
-        ProjectScreen.createProjectElement();
+        Project project = new Project(strProjectname,strProjectDescription,ldtDeadline,alEmployees);
+        Programm.projects.add(project);
 
         ProjectScreen ps = new ProjectScreen(Programm.mainStage);
         ps.initForm();
         ps.showProjectScreen();
-
     }
 }

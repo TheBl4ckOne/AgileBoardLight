@@ -40,7 +40,7 @@ public class ProjectChangeController {
 
         //TODO Datenbankverbindung herstellen und eingegebenen Daten speichern
 
-        ProjectScreen.createProjectElement();
+        //ProjectScreen.createProjectElement();
 
     }
 
