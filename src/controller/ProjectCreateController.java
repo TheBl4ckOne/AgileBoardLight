@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import models.Project;
 import programm.Programm;
 import views.ProjectCreateScreen;
 import views.ProjectScreen;
@@ -65,13 +66,10 @@ public class ProjectCreateController extends ActionEvent{
         String strProjectname = txtfProjectname.getText();
         String strProjectDescription = txtfProjectDescription.getText();
         String strProjectTeam = txtfProjectTeam.getText();
-         //TODO: Datumsauswahl aus Kalender möglich?
-        //Change: Textfeld durch einen DatePicker ersetzt
-        //Achtung getValue() gibt ein LocaleDate zurück. Dieses enthält keine Uhrzeit un keine Zeitzone beides wird für Date benötigt
+
+        Project project = new Project(strProjectname, strProjectDescription,);
+
         LocalDate ldtDeadline =  dtpiDeadline.getValue();
-        //Mit instant werden die aktuelle Zeit und die Zeitzone des PC geholt und im folgenden Umgewandelt
-        Instant instant = Instant.from(ldtDeadline.atStartOfDay(ZoneId.systemDefault()));
-        Date dtdeadline = Date.from(instant);
 
         //TODO: Daten zwischen ProjectCreateController und ProjectScreenController über das Model verbinden
 
