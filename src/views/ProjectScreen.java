@@ -31,8 +31,6 @@ public class ProjectScreen {
     private Scene _scene;
     private FXMLLoader _loader;
 
-    private Rectangle2D bounds = Screen.getPrimary().getBounds(); //Untere Windowstaskleiste wird dadurch sichtbar
-
     public ProjectScreen(Stage stage) {
         _mainStage = stage;
 
@@ -50,13 +48,7 @@ public class ProjectScreen {
 
     public void initForm() {
 
-        mainStage.setX(bounds.getMinX());
-        mainStage.setY(bounds.getMinY());
-
-       int width = (int) Screen.getPrimary().getBounds().getWidth();
-       int height = (int) Screen.getPrimary().getBounds().getHeight();
-
-        _scene = new Scene(_parent, width, height);
+        _scene = new Scene(_parent, Programm.width, Programm.height);
         _mainStage.setScene(_scene);
 
         _scene.getStylesheets().add(getClass().getResource("Styles.css").toExternalForm());

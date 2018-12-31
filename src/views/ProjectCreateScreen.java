@@ -15,6 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import programm.Programm;
 
 import java.io.IOException;
 
@@ -31,8 +32,6 @@ public class ProjectCreateScreen {
     private Stage _mainStage;
     private Scene _scene;
     private FXMLLoader _loader;
-
-    private Rectangle2D bounds = Screen.getPrimary().getBounds(); //Untere Windowstaskleiste wird dadurch sichtbar
 
     public ProjectCreateScreen(Stage stage) {
         _mainStage = stage;
@@ -51,13 +50,7 @@ public class ProjectCreateScreen {
 
     public void initForm() {
 
-        mainStage.setX(bounds.getMinX());
-        mainStage.setY(bounds.getMinY());
-
-        int width = (int) Screen.getPrimary().getBounds().getWidth();
-        int height = (int) Screen.getPrimary().getBounds().getHeight();
-
-        _scene = new Scene(_parent, width, height);
+        _scene = new Scene(_parent, Programm.width, Programm.height);
         _mainStage.setScene(_scene);
 
         _scene.getStylesheets().add(getClass().getResource("Styles.css").toExternalForm());

@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import models.Project;
@@ -16,6 +17,8 @@ import java.util.Optional;
 public class Programm extends Application{
     public static Stage mainStage;
     public static ArrayList<Project> projects = new ArrayList<Project>();
+    public static int width;
+    public static int height;
 
     public static void main(String[] args) {
         launch(args);
@@ -27,6 +30,10 @@ public class Programm extends Application{
         ProjectScreen ps = new ProjectScreen(mainStage);
         primaryStage.setTitle("Agile Board Light");
         ps.initForm();
+        primaryStage.setMaximized(true);
+
+        width = (int) Screen.getPrimary().getVisualBounds().getWidth();
+        height = (int) Screen.getPrimary().getVisualBounds().getHeight();
 
         mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
