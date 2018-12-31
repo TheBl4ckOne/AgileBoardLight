@@ -1,4 +1,7 @@
 
+    #hbSpacer{
+
+    }
 
     .root{
          -fx-font-size: 16pt;
@@ -17,14 +20,16 @@
     .button{
         -fx-text-fill: rgb(49, 89, 23);
         -fx-border-color: rgb(49, 89, 23);
-        -fx-border-radius: 5;
         -fx-padding: 3 6 6 6;
-        -fx-column-halignment: RIGHT;
     }
 
-    .button1{
-        -fx-background-radius: 20;
-
+    .header-section.button{
+        -fx-row-valignment: END;
+        -fx-spacing: 5%;
+        -fx-min-width: 1.5em;
+        -fx-max-width: 1.5em;
+        -fx-min-height: 1.5em;
+        -fx-max-height: 1.5em;
     }
 
     .button:hover {
@@ -37,7 +42,7 @@
 
 /*Label*/
 
-    label.header-section{
+    .header-section.label{
         -fx-background-color: rgb(155, 175, 181);
         -fx-text-fill: black;
         -fx-font-weight: bold;
@@ -45,38 +50,23 @@
 
         -fx-row-valignment: START;
         -fx-border-color: rgb(113,128,132);
+
+        -fx-spacing: 95%;
+
+        -fx-min-height: 1.5em;
+        -fx-max-height: 1.5em;
     }
 
-
-    .header-section.button{
-        -fx-row-valignment: END;
-    }
-
-
-/*Sections*/
-
-    .top-section{
-        -fx-text-fill: #ffffff;
-        -fx-padding: 10px;
-    }
-
-    .center-section{
-
-    }
-
-    .bottom-section{
-
-    }
 
 
 /*Scrollpane*/
 
     .scroll-pane {
-        -fx-background-color: black;
+        -fx-background-color: black; /*Äußere Farbe*/
     }
 
     .scroll-bar:horizontal, .scroll-bar:vertical{
-        -fx-background-color:transparent;
+        -fx-background-color: transparent;
     }
 
     .increment-button, .decrement-button {
@@ -93,52 +83,10 @@
 
     .scroll-bar:horizontal .thumb,
     .scroll-bar:vertical .thumb {
-        -fx-background-color: white;
+        -fx-background-color: rgb(220, 230, 210); /*Innere Farbe*/
         -fx-background-radius: 5em;
     }
 
     .scroll-pane > .corner { /*Färbt Corner unten rechts schwarz*/
         -fx-background-color: black;
     }
-
-
-    /*Alert-Window > Funktioniert noch nicht*/
-
-    root.dialog-pane > .button-bar > .container {
-        -fx-background-color:black;
-    }
-
-    root.dialog-pane > .content.label {
-        -fx-padding: 0.5em 0.5em 0.5em 0.5em;
-        -fx-background-color: yellow;
-        -fx-text-fill:black;
-        -fx-font-size:15.0px;
-    }
-
-    .dialog-pane .button{
-        -fx-background-color:black;
-        -fx-text-fill:white;
-        -fx-wrap-text: true;
-        -fx-effect: dropshadow( three-pass-box, yellow, 10.0, 0.0, 0.0, 0.0);
-        -fx-cursor:hand;
-    }
-
-    .dialog-pane .button:hover{
-        -fx-background-color:white;
-        -fx-text-fill:black;
-        -fx-font-weight: bold;
-    }
-
-    .dialog-pane.Title{
-        -fx-background-color:white;
-        -fx-text-fill:black;
-        -fx-font-weight:bold;
-    }
-
-    .dialog-pane.Header{
-        -fx-background-color:white;
-        -fx-text-fill:black;
-        -fx-font-weight:bold;
-    }
-
-
