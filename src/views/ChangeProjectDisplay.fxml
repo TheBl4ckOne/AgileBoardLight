@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="bpProjectChangeDisplay" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProjectChangeController">
-    <top>
-        <Label id="lblChangeProject" textAlignment="CENTER" text="Projekt ändern">
-        </Label>
-    </top>
+<BorderPane fx:id="bpProjectChangeDisplay" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" stylesheets="Styles.css" fx:controller="controller.ProjectChangeController">
+
+        <top>
+            <Label styleClass="header-section" id="lblChangeProject" text="Projekt ändern">
+            </Label>
+        </top>
 
     <center>
         <ScrollPane>

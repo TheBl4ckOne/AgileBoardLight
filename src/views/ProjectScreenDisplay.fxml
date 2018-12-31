@@ -12,13 +12,10 @@
 <?import javafx.scene.text.Font?>
 
 
-<BorderPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProjectScreenController">
+<BorderPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" stylesheets="Styles.css" fx:controller="controller.ProjectScreenController">
     <top>
-        <HBox style="-fx-border-color: BLACK;">
-            <Label id="lblHeadline" alignment="TOP_CENTER" opacity="0.46" prefHeight="40.0" prefWidth="665.0" text="Agile Board Light" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0">
-                <font>
-                   <Font name="System Bold" size="28.0" />
-                </font>
+        <HBox fx:id="hbHeaderProjectScreen">
+            <Label id="lblHeadline" opacity="0.46" text="Agile Board Light" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0">
             </Label>
             <Button id="btnCreateProject" onAction="#handleCreateProject" prefHeight="42.0" prefWidth="37.0" text="+">
             </Button>

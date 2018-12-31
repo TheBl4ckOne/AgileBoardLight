@@ -3,12 +3,13 @@
     .root{
          -fx-font-size: 16pt;
          -fx-font-family: "Courier New";
-         -fx-base: rgb(132, 145, 47);
-         -fx-background: rgb(225, 228, 203);
+         /*-fx-base: rgb(132, 145, 47);*/
+         -fx-background: rgb(220, 230, 210);
          -fx-padding: 10 10 10 10;
          -fx-border-width: 1;
          -fx-border-color: #E8E8E8 transparent transparent transparent;
      }
+
 
 
 /*Button*/
@@ -18,6 +19,7 @@
         -fx-border-color: rgb(49, 89, 23);
         -fx-border-radius: 5;
         -fx-padding: 3 6 6 6;
+        -fx-column-halignment: RIGHT;
     }
 
     .button1{
@@ -35,10 +37,19 @@
 
 /*Label*/
 
-    .label {
-        -fx-background-color: red;
-        -fx-text-fill: white;
-        -fx-alignment: CENTER;
+    label.header-section{
+        -fx-background-color: rgb(155, 175, 181);
+        -fx-text-fill: black;
+        -fx-font-weight: bold;
+        -fx-text-alignment: CENTER;
+
+        -fx-row-valignment: START;
+        -fx-border-color: rgb(113,128,132);
+    }
+
+
+    .header-section.button{
+        -fx-row-valignment: END;
     }
 
 
@@ -90,6 +101,44 @@
         -fx-background-color: black;
     }
 
-    /*<!-- Adding style class in FXML -->
-    <BorderPane styleClass="header-section">
-    */
+
+    /*Alert-Window > Funktioniert noch nicht*/
+
+    root.dialog-pane > .button-bar > .container {
+        -fx-background-color:black;
+    }
+
+    root.dialog-pane > .content.label {
+        -fx-padding: 0.5em 0.5em 0.5em 0.5em;
+        -fx-background-color: yellow;
+        -fx-text-fill:black;
+        -fx-font-size:15.0px;
+    }
+
+    .dialog-pane .button{
+        -fx-background-color:black;
+        -fx-text-fill:white;
+        -fx-wrap-text: true;
+        -fx-effect: dropshadow( three-pass-box, yellow, 10.0, 0.0, 0.0, 0.0);
+        -fx-cursor:hand;
+    }
+
+    .dialog-pane .button:hover{
+        -fx-background-color:white;
+        -fx-text-fill:black;
+        -fx-font-weight: bold;
+    }
+
+    .dialog-pane.Title{
+        -fx-background-color:white;
+        -fx-text-fill:black;
+        -fx-font-weight:bold;
+    }
+
+    .dialog-pane.Header{
+        -fx-background-color:white;
+        -fx-text-fill:black;
+        -fx-font-weight:bold;
+    }
+
+
