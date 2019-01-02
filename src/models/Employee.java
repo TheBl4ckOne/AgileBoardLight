@@ -13,6 +13,11 @@ public class Employee {
         _strEmployeeName = strEmployeeName;
     }
 
+    public Employee(String strEmployeeId, String strEmployeeName) {
+        this._strEmployeeId = strEmployeeId;
+        this._strEmployeeName = strEmployeeName;
+    }
+
     //Get-Methoden
 
     public String get_strEmployeeId() {

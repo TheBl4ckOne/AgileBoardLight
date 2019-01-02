@@ -20,6 +20,15 @@ public class Project {
         _ldtDeadline = ldtDeadline;
         _employees = alEmployees;
     }
+
+    public Project(String strProjectId, String strProjectName, String strProjectDescription, LocalDate ldtDeadline, ArrayList<Employee> employees) {
+        this._strProjectId = strProjectId;
+        this._strProjectName = strProjectName;
+        this._strProjectDescription = strProjectDescription;
+        this._ldtDeadline = ldtDeadline;
+        this._employees = employees;
+    }
+
     //Get Methoden
     public String get_strProjectId() {
         return _strProjectId;

@@ -8,7 +8,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextArea?>
-<BorderPane fx:id="bpProjectCreateDisplay" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" stylesheets="Styles.css" fx:controller="controller.ProjectCreateController">
+<BorderPane fx:id="bpProjectCreateDisplay" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@Styles.css" fx:controller="controller.ProjectCreateController">
 
     <top>
         <Label id="lblCreateProject" styleClass="header-section" text="Projekt erstellen">
