@@ -25,11 +25,21 @@
 
     .header-section.button{
         -fx-row-valignment: END;
-        -fx-spacing: 5%;
         -fx-min-width: 1.5em;
         -fx-max-width: 1.5em;
         -fx-min-height: 1.5em;
         -fx-max-height: 1.5em;
+    }
+
+
+    #hbProjectCreateBottom{
+        -fx-spacing: 0.5em;
+    }
+
+    #btnSaveProject{
+        -fx-spacing: 10em;
+        -fx-alignment: top-center;
+        -fx-text-fill: red;
     }
 
     .button:hover {
@@ -51,11 +61,14 @@
         -fx-row-valignment: START;
         -fx-border-color: rgb(113,128,132);
 
-        -fx-spacing: 95%;
-
         -fx-min-height: 1.5em;
         -fx-max-height: 1.5em;
     }
+
+    #lblHeadline{
+
+    }
+
 
 
 

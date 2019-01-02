@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import programm.Programm;
 
 import java.io.IOException;
 
@@ -35,12 +36,14 @@ public class TaskScreen {
     }
 
     public void initForm() {
-        _scene = new Scene(_parent, 1200, 600);
+        _scene = new Scene(_parent, Programm.width, Programm.height);
         _mainStage.setScene(_scene);
+
+        _scene.getStylesheets().add(getClass().getResource("Styles.css").toExternalForm());
 
     }
 
-    public void showProjectScreen() {
+    public void showTaskScreen() {
         _mainStage.show();
     }
 }

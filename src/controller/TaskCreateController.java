@@ -20,7 +20,7 @@ public class TaskCreateController {
     public void handleAbortTask(ActionEvent actionEvent) {
         TaskScreen ts = new TaskScreen(mainStage);
         ts.initForm();
-        ts.showProjectScreen();
+        ts.showTaskScreen();
 
         //zurück zur Projektseite
 

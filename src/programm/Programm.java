@@ -44,7 +44,6 @@ public class Programm extends Application{
                 closeWindowAlert.setHeaderText("Möchten Sie das Programm wirklich schließen? Alle nicht gespeicherten Änderungen gehen verloren.");
                 closeWindowAlert.setContentText("Sind Sie damit einverstanden?");
 
-                //TODO: Button Nein auf die linke Seite
                 ButtonType btnNein = new ButtonType("NEIN", ButtonBar.ButtonData.CANCEL_CLOSE);
                 ButtonType btnJa = new ButtonType("JA");
 
