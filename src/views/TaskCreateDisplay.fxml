@@ -9,7 +9,7 @@
 <BorderPane fx:id="bpProjectCreateDisplay" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@Styles.css" fx:controller="controller.TaskCreateController">
 
     <top>
-        <Label id="lblCreateProject" textAlignment="CENTER" text="Aufgabe erstellen">
+        <Label id="lblCreateProject" styleClass="header-section" textAlignment="CENTER" text="Aufgabe erstellen">
         </Label>
     </top>
 

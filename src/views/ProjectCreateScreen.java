@@ -1,25 +1,16 @@
 package views;
 
 import controller.ProjectCreateController;
-import controller.ProjectScreenController;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Bounds;
-import javafx.geometry.HPos;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
-import javafx.stage.Screen;
+import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import programm.Programm;
 
 import java.io.IOException;
-
-import static programm.Programm.mainStage;
 
 public class ProjectCreateScreen {
 
@@ -32,6 +23,15 @@ public class ProjectCreateScreen {
     private Stage _mainStage;
     private Scene _scene;
     private FXMLLoader _loader;
+
+    @FXML
+    BorderPane bpProjectCreateDisplay;
+
+    @FXML
+    Button btnAbortProject;
+
+    @FXML
+    Button btnSaveProject;
 
     public ProjectCreateScreen(Stage stage) {
         _mainStage = stage;
@@ -49,11 +49,12 @@ public class ProjectCreateScreen {
     }
 
     public void initForm() {
-
         _scene = new Scene(_parent, Programm.width, Programm.height);
+
         _mainStage.setScene(_scene);
 
         _scene.getStylesheets().add(getClass().getResource("Styles.css").toExternalForm());
+
     }
 
     public void showProjectCreate() {

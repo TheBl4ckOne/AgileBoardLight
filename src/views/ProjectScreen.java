@@ -31,6 +31,8 @@ public class ProjectScreen {
     private Scene _scene;
     private FXMLLoader _loader;
 
+    public static Button btnProjectOptions;
+
     public ProjectScreen(Stage stage) {
         _mainStage = stage;
 
@@ -63,11 +65,13 @@ public class ProjectScreen {
     }
 
 
-    public  void createProjectElement(Project project) { // angezeigte Projektelemente auf der Startseite
+    public void createProjectElement(Project project) { // angezeigte Projektelemente auf der Startseite
 
         VBox vbProjectBox = new VBox(10);
+        vbProjectBox.setOnMouseClicked(ProjectScreenController::handleProject);
+
         Label lblProjectname = new Label(project.get_strProjectName());
-        Button btnProjectOptions = new Button("...");
+        btnProjectOptions = new Button("...");
         btnProjectOptions.setOnAction(ProjectScreenController::handleProjectOptions);
         TextArea txtaProjectDescription = new TextArea(project.get_strProjectDescription());
         HBox hbProjectHead = new HBox();

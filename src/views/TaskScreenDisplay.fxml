@@ -10,11 +10,11 @@
 
     <top>
         <HBox>
-            <Button fx:id="btnHome" text="Home">
+            <Button fx:id="btnHome" styleClass="header-section" text="Home" onAction="#handleHome">
             </Button>
-            <Label fx:id="lblProjectname" textAlignment="CENTER" text="Projektname"> <!--text=Projectname > TODO: Verknüpfen-->
+            <Label fx:id="lblProjectname" styleClass="header-section" textAlignment="CENTER" text="Projektname">
             </Label>
-            <Button fx:id="btnSaveTasks" text="Speichern">
+            <Button fx:id="btnSaveTasks" styleClass="header-section" text="Speichern" onAction="#handleSaveTasks">
             </Button>
         </HBox>
     </top>
@@ -28,7 +28,7 @@
 
                     <!--Tasks-->
 
-                    <Button text="+">
+                    <Button fx:id="btnTaskCreate" text="+" onAction="#handleTaskCreate">
                     </Button>
                 </VBox>
 
