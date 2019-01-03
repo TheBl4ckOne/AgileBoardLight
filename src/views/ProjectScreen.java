@@ -71,45 +71,51 @@ public class ProjectScreen {
         int col = 0;
         int row = 0;
 
-        while (bCellFilled = true) {
+        //while (bCellFilled = true) {
 
-            Node result = null;
+            /*Node result = null;
             ObservableList<Node> childrens = gp.getChildren();
 
-            for (Node node : childrens) {
+            for (Node node : childrens) { //TODO: Die Bedingungen müssen richtig gewählt werden
                 if (gp.getRowIndex(node) == row && gp.getColumnIndex(node) == col) {
                     result = node;
 
-                    VBox vbProjectBox = new VBox(10);
-                    vbProjectBox.setOnMouseClicked(ProjectScreenController::handleProject);
+            */
 
-                    Label lblProjectname = new Label(project.get_strProjectName());
-                    btnProjectOptions = new Button("...");
-                    btnProjectOptions.setOnAction(ProjectScreenController::handleProjectOptions);
-                    TextArea txtaProjectDescription = new TextArea(project.get_strProjectDescription());
-                    HBox hbProjectHead = new HBox();
+            if (gp.getChildren() == null) {
 
-                    hbProjectHead.getChildren().addAll(lblProjectname, btnProjectOptions);
-                    vbProjectBox.getChildren().addAll(hbProjectHead, txtaProjectDescription);
+                System.out.println(gp.getChildren());
 
-                    gp.add(vbProjectBox, col, row);
+                VBox vbProjectBox = new VBox(10);
+                vbProjectBox.setOnMouseClicked(ProjectScreenController::handleProject);
 
-                    break;
+                Label lblProjectname = new Label(project.get_strProjectName());
+                btnProjectOptions = new Button("...");
+                btnProjectOptions.setOnAction(ProjectScreenController::handleProjectOptions);
+                TextArea txtaProjectDescription = new TextArea(project.get_strProjectDescription());
+                HBox hbProjectHead = new HBox();
+
+                hbProjectHead.getChildren().addAll(lblProjectname, btnProjectOptions);
+                vbProjectBox.getChildren().addAll(hbProjectHead, txtaProjectDescription);
+
+                gp = (GridPane) _parent.lookup("#gpTaskCategories");
+                gp.add(vbProjectBox, 0, 0); //TODO: col, row einfügen wenn es oben läuft
+
+                System.out.println(gp.getChildren());
+
+                //break;
 
 
+            } else {
+
+                if (colrow == false) {
+                    col = col + 1;
                 } else {
-
-                    if (colrow == false) {
-                        col = col + 1;
-                    } else {
-                        row = row + 1;
-                    }
-
+                    row = row + 1;
                 }
+                System.out.println(gp.getChildren());
             }
-        }
 
 
     }
-
 }

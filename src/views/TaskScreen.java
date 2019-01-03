@@ -62,6 +62,7 @@ public class TaskScreen {
 
         for (int i = 0 ; i < 3 ; i++) {
             ColumnConstraints cc = new ColumnConstraints();
+
             cc.setPercentWidth(100.0/3.0); //TODO: jede Spalte soll ein drittel der gesamten Seitenbreite einnehmen
             cc.setHgrow(Priority.ALWAYS);
             gp.getColumnConstraints().add(cc);
@@ -72,6 +73,9 @@ public class TaskScreen {
         gp.getRowConstraints().add(rc);
 
         //TODO: neue Tasks werden der gp hinzugefügt mit column und row-Index
+
+
+
     }
 
     public void showTaskScreen() {
