@@ -21,27 +21,10 @@
 
     <center>
         <ScrollPane>
-            <HBox>
-                <VBox>
-                    <Label text="Noch zu machen">
-                    </Label>
+            <GridPane fx:id="gpTaskCategories">
 
-                    <!--Tasks-->
 
-                    <Button fx:id="btnTaskCreate" text="+" onAction="#handleTaskCreate">
-                    </Button>
-                </VBox>
-
-                <VBox>
-                    <Label text="in Arbeit">
-                    </Label>
-                </VBox>
-
-                <VBox>
-                    <Label text="Fertig">
-                    </Label>
-                </VBox>
-            </HBox>
+            </GridPane>
         </ScrollPane>
     </center>
 
