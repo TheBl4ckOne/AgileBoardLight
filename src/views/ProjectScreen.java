@@ -2,27 +2,22 @@ package views;
 
 
 import controller.ProjectScreenController;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import models.Project;
 import programm.Programm;
 
 import java.io.IOException;
-
-import static programm.Programm.mainStage;
 
 public class ProjectScreen {
 
@@ -55,7 +50,7 @@ public class ProjectScreen {
 
         _scene.getStylesheets().add(getClass().getResource("Styles.css").toExternalForm());
 
-        for (Project p: Programm.projects) {
+        for (Project p : Programm.projects) {
             createProjectElement(p);
         }
     }
@@ -67,19 +62,54 @@ public class ProjectScreen {
 
     public void createProjectElement(Project project) { // angezeigte Projektelemente auf der Startseite
 
-        VBox vbProjectBox = new VBox(10);
-        vbProjectBox.setOnMouseClicked(ProjectScreenController::handleProject);
-
-        Label lblProjectname = new Label(project.get_strProjectName());
-        btnProjectOptions = new Button("...");
-        btnProjectOptions.setOnAction(ProjectScreenController::handleProjectOptions);
-        TextArea txtaProjectDescription = new TextArea(project.get_strProjectDescription());
-        HBox hbProjectHead = new HBox();
-
-        hbProjectHead.getChildren().addAll(lblProjectname, btnProjectOptions);
-        vbProjectBox.getChildren().addAll(hbProjectHead, txtaProjectDescription);
+        //TODO: Abfragen ob bereits Content vorhanden ist in den anderen Zellen?
 
         GridPane gp = (GridPane) _parent.lookup("#gpProjectScreen");
-        gp.add(vbProjectBox,0,0);
+
+        boolean bCellFilled = true; //false für leer, true für voll
+        boolean colrow = false; //false für col erhöhen, true für row erhöhen
+        int col = 0;
+        int row = 0;
+
+        while (bCellFilled = true) {
+
+            Node result = null;
+            ObservableList<Node> childrens = gp.getChildren();
+
+            for (Node node : childrens) {
+                if (gp.getRowIndex(node) == row && gp.getColumnIndex(node) == col) {
+                    result = node;
+
+                    VBox vbProjectBox = new VBox(10);
+                    vbProjectBox.setOnMouseClicked(ProjectScreenController::handleProject);
+
+                    Label lblProjectname = new Label(project.get_strProjectName());
+                    btnProjectOptions = new Button("...");
+                    btnProjectOptions.setOnAction(ProjectScreenController::handleProjectOptions);
+                    TextArea txtaProjectDescription = new TextArea(project.get_strProjectDescription());
+                    HBox hbProjectHead = new HBox();
+
+                    hbProjectHead.getChildren().addAll(lblProjectname, btnProjectOptions);
+                    vbProjectBox.getChildren().addAll(hbProjectHead, txtaProjectDescription);
+
+                    gp.add(vbProjectBox, col, row);
+
+                    break;
+
+
+                } else {
+
+                    if (colrow == false) {
+                        col = col + 1;
+                    } else {
+                        row = row + 1;
+                    }
+
+                }
+            }
+        }
+
+
     }
+
 }
