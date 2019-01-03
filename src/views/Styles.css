@@ -26,9 +26,9 @@
     .header-section.button{
         -fx-row-valignment: END;
         -fx-min-width: 1.5em;
-        -fx-max-width: 1.5em;
+        -fx-pref-width: 1.5em;
         -fx-min-height: 1.5em;
-        -fx-max-height: 1.5em;
+        -fx-pref-height: 1.5em;
     }
 
 
@@ -40,6 +40,14 @@
         -fx-spacing: 10em;
         -fx-alignment: top-center;
         -fx-text-fill: red;
+    }
+
+    #btnHome{
+        -fx-min-width: 4em;
+    }
+
+    #btnSaveTasks{
+        -fx-min-width: 7em;
     }
 
     .button:hover {
@@ -58,11 +66,9 @@
         -fx-font-weight: bold;
         -fx-text-alignment: CENTER;
 
-        -fx-row-valignment: START;
         -fx-border-color: rgb(113,128,132);
 
         -fx-min-height: 1.5em;
-        -fx-max-height: 1.5em;
     }
 
     #lblHeadline{
