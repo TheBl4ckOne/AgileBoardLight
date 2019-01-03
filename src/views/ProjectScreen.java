@@ -51,7 +51,7 @@ public class ProjectScreen {
         _scene.getStylesheets().add(getClass().getResource("Styles.css").toExternalForm());
 
         for (Project p : Programm.projects) {
-            createProjectElement(p);
+            createProjectElement(p,Programm.projects.indexOf(p));
         }
     }
 
@@ -60,62 +60,33 @@ public class ProjectScreen {
     }
 
 
-    public void createProjectElement(Project project) { // angezeigte Projektelemente auf der Startseite
+    private void createProjectElement(Project project, int index) { // angezeigte Projektelemente auf der Startseite
 
         //TODO: Abfragen ob bereits Content vorhanden ist in den anderen Zellen?
 
         GridPane gp = (GridPane) _parent.lookup("#gpProjectScreen");
 
-        boolean bCellFilled = true; //false für leer, true für voll
-        boolean colrow = false; //false für col erhöhen, true für row erhöhen
-        int col = 0;
-        int row = 0;
 
-        //while (bCellFilled = true) {
+        VBox vbProjectBox = new VBox(10);
+        vbProjectBox.setOnMouseClicked(ProjectScreenController::handleProject);
 
-            /*Node result = null;
-            ObservableList<Node> childrens = gp.getChildren();
+        Label lblProjectname = new Label(project.get_strProjectName());
+        btnProjectOptions = new Button("...");
+        btnProjectOptions.setOnAction(ProjectScreenController::handleProjectOptions);
+        TextArea txtaProjectDescription = new TextArea(project.get_strProjectDescription());
+        HBox hbProjectHead = new HBox();
 
-            for (Node node : childrens) { //TODO: Die Bedingungen müssen richtig gewählt werden
-                if (gp.getRowIndex(node) == row && gp.getColumnIndex(node) == col) {
-                    result = node;
+        hbProjectHead.getChildren().addAll(lblProjectname, btnProjectOptions);
+        vbProjectBox.getChildren().addAll(hbProjectHead, txtaProjectDescription);
 
-            */
+        gp.add(vbProjectBox, calcColIndex(index), calcRowIndex(index));
+    }
 
-            if (gp.getChildren() == null) {
+    private int calcColIndex(int index){
+        return index%2;
+    }
 
-                System.out.println(gp.getChildren());
-
-                VBox vbProjectBox = new VBox(10);
-                vbProjectBox.setOnMouseClicked(ProjectScreenController::handleProject);
-
-                Label lblProjectname = new Label(project.get_strProjectName());
-                btnProjectOptions = new Button("...");
-                btnProjectOptions.setOnAction(ProjectScreenController::handleProjectOptions);
-                TextArea txtaProjectDescription = new TextArea(project.get_strProjectDescription());
-                HBox hbProjectHead = new HBox();
-
-                hbProjectHead.getChildren().addAll(lblProjectname, btnProjectOptions);
-                vbProjectBox.getChildren().addAll(hbProjectHead, txtaProjectDescription);
-
-                gp = (GridPane) _parent.lookup("#gpTaskCategories");
-                gp.add(vbProjectBox, 0, 0); //TODO: col, row einfügen wenn es oben läuft
-
-                System.out.println(gp.getChildren());
-
-                //break;
-
-
-            } else {
-
-                if (colrow == false) {
-                    col = col + 1;
-                } else {
-                    row = row + 1;
-                }
-                System.out.println(gp.getChildren());
-            }
-
-
+    private int calcRowIndex(int index){
+       return index/2;
     }
 }

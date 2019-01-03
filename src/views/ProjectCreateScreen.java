@@ -57,6 +57,10 @@ public class ProjectCreateScreen {
 
     }
 
+    public  void  AddTfNewEmployee(){
+
+    }
+
     public void showProjectCreate() {
         _mainStage.show();
     }

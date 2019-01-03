@@ -34,6 +34,8 @@ public class ProjectCreateController extends ActionEvent{
     @FXML
     private BorderPane bpProjectCreateDisplay;
 
+
+
     public void handleAbortProject(ActionEvent actionEvent){ //siehe ProjectChangeController
 
         Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -88,5 +90,9 @@ public class ProjectCreateController extends ActionEvent{
         ProjectScreen ps = new ProjectScreen(Programm.mainStage);
         ps.initForm();
         ps.showProjectScreen();
+    }
+
+    public void handleNewEmployee(ActionEvent actionEvent) {
+        actionEvent.getSource();
     }
 }
