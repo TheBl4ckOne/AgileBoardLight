@@ -23,6 +23,7 @@ public class ProjectScreen {
     private Stage _mainStage;
     private Scene _scene;
     private FXMLLoader _loader;
+    private ProjectScreenController psc;
 
     public static Button btnProjectOptions;
 
@@ -32,7 +33,7 @@ public class ProjectScreen {
         try {
             _loader = new FXMLLoader(getClass().getResource("ProjectScreenDisplay.fxml"));
             _parent = _loader.load();
-            ProjectScreenController psc = _loader.getController();
+            psc = _loader.getController();
 
 
         } catch (IOException e) {
@@ -60,11 +61,11 @@ public class ProjectScreen {
 
     private void createProjectElement(Project project, int index) { // angezeigte Projektelemente auf der Startseite
 
-        GridPane gp = (GridPane) _parent.lookup("#gpProjectScreen");
+
 
         VBox vbProjectBox = new VBox();
         vbProjectBox.setOnMouseClicked(ProjectScreenController::handleProject);
-        vbProjectBox.setStyle("-fx-border-color: black");
+       vbProjectBox.setStyle("-fx-border-color: black");
         vbProjectBox.getStyleClass().add("project-element-section");
 
         Label lblProjectname = new Label(project.get_strProjectName());
@@ -80,7 +81,7 @@ public class ProjectScreen {
         hbProjectHead.getChildren().addAll(lblProjectname, btnProjectOptions);
         vbProjectBox.getChildren().addAll(hbProjectHead, txtaProjectDescription);
 
-        gp.add(vbProjectBox, calcColIndex(index), calcRowIndex(index));
+       psc.gpProjectScreen.add(vbProjectBox, calcColIndex(index), calcRowIndex(index));
     }
 
     private int calcColIndex(int index){

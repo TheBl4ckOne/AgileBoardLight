@@ -24,6 +24,9 @@ import static programm.Programm.mainStage;
 
 public class ProjectScreenController extends ActionEvent {
 
+    @FXML
+    public GridPane gpProjectScreen;
+
     public void handleCreateProject(ActionEvent actionEvent) {
         ProjectCreateScreen pc = new ProjectCreateScreen(Programm.mainStage);
         pc.initForm();
