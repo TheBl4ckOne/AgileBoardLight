@@ -10,7 +10,7 @@
 
 }
 
-    .root{3
+    .root{
          -fx-font-size: 16pt;
          /*-fx-base: rgb(132, 145, 47);*/
          -fx-background: light-primary-color;
