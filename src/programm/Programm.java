@@ -27,13 +27,18 @@ public class Programm extends Application{
 
     public void start(Stage primaryStage){
         mainStage = primaryStage;
+        /*final boolean resizable = mainStage.isResizable();
+        mainStage.setResizable(!resizable); Blockiert die Nutzung des maximieren-Buttons > ausgegraut*/
         ProjectScreen ps = new ProjectScreen(mainStage);
         primaryStage.setTitle("Agile Board Light");
-        ps.initForm();
-        primaryStage.setMaximized(true);
 
-        width = (int) Screen.getPrimary().getVisualBounds().getWidth();
-        height = (int) Screen.getPrimary().getVisualBounds().getHeight();
+        width = 1400;
+        height = 800;
+
+        primaryStage.setWidth(width);
+        primaryStage.setHeight(height);
+        ps.initForm();
+
 
         mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
@@ -59,6 +64,7 @@ public class Programm extends Application{
                 }
             }
         });
+
 
         ps.showProjectScreen();
     }

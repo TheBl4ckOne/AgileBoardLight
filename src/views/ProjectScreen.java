@@ -62,17 +62,20 @@ public class ProjectScreen {
 
         GridPane gp = (GridPane) _parent.lookup("#gpProjectScreen");
 
-
-        VBox vbProjectBox = new VBox(10);
+        VBox vbProjectBox = new VBox();
         vbProjectBox.setOnMouseClicked(ProjectScreenController::handleProject);
+        vbProjectBox.setStyle("-fx-border-color: black");
+        vbProjectBox.getStyleClass().add("project-element-section");
 
         Label lblProjectname = new Label(project.get_strProjectName());
+        lblProjectname.getStyleClass().add("project-element-section");
         btnProjectOptions = new Button("...");
+        btnProjectOptions.getStyleClass().add("project-element-section");
         btnProjectOptions.setOnAction(ProjectScreenController::handleProjectOptions);
         TextArea txtaProjectDescription = new TextArea(project.get_strProjectDescription());
-        HBox hbProjectHead = new HBox();
 
-        //TODO: Rectangle um die einzelnen Projektelemente herum und klickbar machen
+        HBox hbProjectHead = new HBox();
+        hbProjectHead.getStyleClass().add("project-element-section");
 
         hbProjectHead.getChildren().addAll(lblProjectname, btnProjectOptions);
         vbProjectBox.getChildren().addAll(hbProjectHead, txtaProjectDescription);
