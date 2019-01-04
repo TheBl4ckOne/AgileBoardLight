@@ -34,9 +34,7 @@ public class Programm extends Application{
 
         width = 1400;
         height = 800;
-
-        primaryStage.setWidth(width);
-        primaryStage.setHeight(height);
+        
         ps.initForm();
 
 
