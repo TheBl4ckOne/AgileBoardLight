@@ -65,7 +65,7 @@ public class ProjectScreen {
 
         VBox vbProjectBox = new VBox();
         vbProjectBox.setOnMouseClicked(ProjectScreenController::handleProject);
-       vbProjectBox.setStyle("-fx-border-color: black");
+        vbProjectBox.setStyle("-fx-border-color: black");
         vbProjectBox.getStyleClass().add("project-element-section");
 
         Label lblProjectname = new Label(project.get_strProjectName());
@@ -73,13 +73,14 @@ public class ProjectScreen {
         btnProjectOptions = new Button("...");
         btnProjectOptions.getStyleClass().add("project-element-section");
         btnProjectOptions.setOnAction(ProjectScreenController::handleProjectOptions);
-        TextArea txtaProjectDescription = new TextArea(project.get_strProjectDescription());
+        Label lblProjectDescription = new Label(project.get_strProjectDescription());
+        lblProjectDescription.setWrapText(true);
 
         HBox hbProjectHead = new HBox();
         hbProjectHead.getStyleClass().add("project-element-section");
 
         hbProjectHead.getChildren().addAll(lblProjectname, btnProjectOptions);
-        vbProjectBox.getChildren().addAll(hbProjectHead, txtaProjectDescription);
+        vbProjectBox.getChildren().addAll(hbProjectHead, lblProjectDescription);
 
        psc.gpProjectScreen.add(vbProjectBox, calcColIndex(index), calcRowIndex(index));
     }

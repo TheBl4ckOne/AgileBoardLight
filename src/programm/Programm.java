@@ -34,7 +34,7 @@ public class Programm extends Application{
 
         width = 1400;
         height = 800;
-        
+
         ps.initForm();
 
 

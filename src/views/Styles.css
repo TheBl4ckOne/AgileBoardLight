@@ -84,12 +84,10 @@
         }
 
     .project-element-section.label{
-        -fx-background-color: default-primary-color;
         -fx-text-Sfill: black;
         -fx-font-weight: bold;
         -fx-text-alignment: CENTER;
-
-        -fx-border-color: divider-color;
+        -fx-alignment: center-left;
 
         -fx-min-height: 1.5em;
     }
@@ -124,24 +122,25 @@
     }
 
     .scroll-bar:horizontal, .scroll-bar:vertical{
-        -fx-background-color: transparent;
+        -fx-background-color: light-primary-color;
     }
 
     .increment-button, .decrement-button {
-        -fx-background-color: transparent;
-        -fx-border-color: transparent;
+        -fx-background-color: light-primary-color;
+        -fx-border-color: dark-primary-color;
     }
 
     .scroll-bar:horizontal .track,
     .scroll-bar:vertical .track{
-        -fx-background-color: transparent;
-        -fx-border-color: transparent;
+        -fx-background-color: light-primary-color;
+        -fx-border-color: dark-primary-color;
+        -fx-border-width: 1;
         -fx-background-radius: 0em;
     }
 
     .scroll-bar:horizontal .thumb,
     .scroll-bar:vertical .thumb {
-        -fx-background-color: accent-color; /*Innere Farbe*/
+        -fx-background-color: white; /*Innere Farbe*/
         -fx-background-radius: 4em;
     }
 
