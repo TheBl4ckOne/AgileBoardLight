@@ -1,10 +1,7 @@
 package views;
 
-
 import controller.ProjectScreenController;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,6 +10,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import models.Project;
 import programm.Programm;
@@ -62,8 +60,6 @@ public class ProjectScreen {
 
     private void createProjectElement(Project project, int index) { // angezeigte Projektelemente auf der Startseite
 
-        //TODO: Abfragen ob bereits Content vorhanden ist in den anderen Zellen?
-
         GridPane gp = (GridPane) _parent.lookup("#gpProjectScreen");
 
 
@@ -75,6 +71,8 @@ public class ProjectScreen {
         btnProjectOptions.setOnAction(ProjectScreenController::handleProjectOptions);
         TextArea txtaProjectDescription = new TextArea(project.get_strProjectDescription());
         HBox hbProjectHead = new HBox();
+
+        //TODO: Rectangle um die einzelnen Projektelemente herum und klickbar machen
 
         hbProjectHead.getChildren().addAll(lblProjectname, btnProjectOptions);
         vbProjectBox.getChildren().addAll(hbProjectHead, txtaProjectDescription);
