@@ -40,9 +40,12 @@
 
     .project-element-section.button{
         -fx-min-width: 1.5em;
-        -fx-pref-widt: 1.5em;
+        -fx-pref-width: 1.5em;
         -fx-min-height: 1.5em;
         -fx-pref-height: 1.5em;
+        -fx-padding: 0;
+        -fx-text-alignment: center;
+        -fx-alignment: center;
     }
 
     #btnSaveProject{
@@ -95,16 +98,22 @@
 
 /*VBox, HBox*/
     HBox.project-element-section, VBox.project-element-section{
-        -fx-hgap: 10;
-        -fx-vgap: 10;
+        /*-fx-hgap: 10;
+        -fx-vgap: 10;*/
         -fx-spacing: 10;
-        /*-fx-padding: ;*/
+        -fx-padding: 3;
+        -fx-min-width: 30em;
+        -fx-min-height: 20em;
+        -fx-max-width: 30em;
+        -fx-maxheight: 20em;
 
     }
 
     #hbHeaderProjectScreen{
         /*fx-spacing: 500; Entfernt den Button vom Label*/
     }
+
+
 
 
 /*GridPane*/
@@ -144,6 +153,6 @@
         -fx-background-radius: 4em;
     }
 
-    .scroll-pane > .corner { /*Färbt Corner unten rechts schwarz*/
-        -fx-background-color: primary-text-color;
+    .scroll-pane > .corner { /*Färbt Corner unten rechts*/
+        -fx-background-color: light-primary-color;
     }

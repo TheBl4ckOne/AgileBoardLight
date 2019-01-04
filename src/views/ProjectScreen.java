@@ -75,6 +75,19 @@ public class ProjectScreen {
         btnProjectOptions.setOnAction(ProjectScreenController::handleProjectOptions);
         Label lblProjectDescription = new Label(project.get_strProjectDescription());
         lblProjectDescription.setWrapText(true);
+        lblProjectDescription.setStyle
+                (
+                    "-fx-text-alignment: left;"
+                    + "-fx-alignment: top-left;"
+                    + "-fx-border-color: black;"
+                    + "-fx-min-width: 25em;"
+                    + "-fx-max-width: 25em;"
+                    + "-fx-min-height: 19em;"
+                    + "-fx-max-height: 19em;"
+                    + "-fx-alignment: top-left;"
+                    + "-fx-content-display: left;"
+                    + "-fx-text-alignment: left;"
+                );
 
         HBox hbProjectHead = new HBox();
         hbProjectHead.getStyleClass().add("project-element-section");
