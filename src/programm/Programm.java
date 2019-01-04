@@ -10,6 +10,11 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import models.Project;
 import views.ProjectScreen;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -22,6 +27,7 @@ public class Programm extends Application{
 
     public static void main(String[] args) {
         launch(args);
+
     }
     //Hauptklasse in der die main ist und von der aus alles andere gestartet wird
 
@@ -34,7 +40,9 @@ public class Programm extends Application{
 
         width = 1400;
         height = 800;
-        
+
+        databasetest();
+
         ps.initForm();
 
 
@@ -65,5 +73,38 @@ public class Programm extends Application{
 
 
         ps.showProjectScreen();
+    }
+
+    private static void databasetest(){
+        Connection myConnection = null;
+        String url = "jdbc:mysql://localhost:3306/world?useUnicode=true&serverTimezone=CET";
+        String driverClass = "com.mysql.cj.jdbc.Driver";
+        String user = "root";
+        String password = "P@ssw0rd";
+
+        try {
+            //Treiber laden
+            Class.forName(driverClass);
+            //Verbindun aufbauen
+
+            myConnection = DriverManager.getConnection(url,user,password);
+            System.out.println("Verbindung erfolgreich");
+
+            //Abfrage
+            String query = "SELECT * FROM city WHERE CountryCode = 'PSE'";
+            Statement state = myConnection.createStatement();
+            ResultSet rs = state.executeQuery(query);
+
+            while (rs.next()){
+                String name = rs.getString("Name");
+                String Land = rs.getString("CountryCode");
+                System.out.println(name + " --- " + Land);
+            }
+            rs.close();
+            myConnection.close();
+        }catch (final Exception e){
+            e.printStackTrace();
+        }
+
     }
 }
