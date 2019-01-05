@@ -26,6 +26,8 @@ public class TaskScreen {
     private Scene _scene;
     private FXMLLoader _loader;
 
+    private TaskScreenController tsc;
+
     @FXML
     GridPane gpTaskCategories;
 
@@ -41,8 +43,6 @@ public class TaskScreen {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        mainStage.setFullScreen(true);
 
     }
 
@@ -73,21 +73,23 @@ public class TaskScreen {
         gp.add(vbAtWork, 1, 0);
         gp.add(vbReady, 2, 0);
 
-        //TODO: neue Tasks werden der gp hinzugefügt mit column und row-Index
-
         for (Task t : Programm.tasks) {
             createTaskElement(t,Programm.tasks.indexOf(t));
         }
 
     }
 
-    private void createTaskElement(Task task, int index){
+    private void createTaskElement(Task task, int rowindex){
         HBox hbTaskElement = new HBox();
-        MenuButton mbtnTaskOptions = new MenuButton();
-        Label lblTaskName = new Label();
+        MenuButton mbtnTaskOptions = new MenuButton("...");
+        Label lblTaskName = new Label("Aufgabe");
         vbEmployees = new VBox();
 
         hbTaskElement.getChildren().addAll(mbtnTaskOptions, lblTaskName, vbEmployees);
+
+        tsc.gpTaskCategories.add(hbTaskElement, 0, rowindex);
+
+        //TODO: TaskElement wird noch nicht angezeigt
     }
 
     private void createEmployeeElement(){

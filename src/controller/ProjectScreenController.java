@@ -25,7 +25,7 @@ import static programm.Programm.mainStage;
 public class ProjectScreenController extends ActionEvent {
 
     @FXML
-    public GridPane gpProjectScreen;
+    public static GridPane gpProjectScreen;
 
     public void handleCreateProject(ActionEvent actionEvent) {
         ProjectCreateScreen pc = new ProjectCreateScreen(Programm.mainStage);
@@ -51,7 +51,7 @@ public class ProjectScreenController extends ActionEvent {
     }
 
     public static void handleDeleteProject(ActionEvent actionEvent){
-
+        //gpProjectScreen.getChildren().remove(ProjectScreen.vbProjectBox);
     }
 
 }
