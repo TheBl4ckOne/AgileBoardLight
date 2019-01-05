@@ -19,7 +19,9 @@
          -fx-border-color: dark-primary-color transparent transparent transparent;
     }
 
-
+    .project-create-section{
+        -fx-min-width: 40em
+    }
 
 /*Button*/
 
@@ -48,6 +50,14 @@
         -fx-alignment: center;
     }
 
+    .project-element-section.menu-button{
+        -fx-min-height: 1.8em;
+        -fx-max-height: 1.8em;
+        -fx-padding: 0;
+        -fx-text-alignment: center;
+        -fx-alignment: center;
+    }
+
     #btnSaveProject{
         -fx-spacing: 10em;
         -fx-alignment: top-center;
@@ -63,7 +73,7 @@
 
 
     .button:hover {
-        -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+        -fx-background-color: linear-gradient(#2A5058, accent-color);
     }
 
     .button:focus{
@@ -90,22 +100,23 @@
         -fx-text-alignment: CENTER;
         -fx-alignment: center-left;
 
-        -fx-min-height: 1.5em;
+        -fx-min-height: 1.8em;
         -fx-padding: 0 0 0 10;
     }
 
 
 /*VBox, HBox*/
     HBox.project-element-section, VBox.project-element-section{
-        /*-fx-hgap: 10;
-        -fx-vgap: 10;*/
         -fx-spacing: 10;
         -fx-padding: 3;
         -fx-min-width: 30em;
         -fx-min-height: 20em;
         -fx-max-width: 30em;
         -fx-maxheight: 20em;
+    }
 
+    VBox.task-section{
+        -fx-min-width: 20.3em;
     }
 
     #hbHeaderProjectScreen{
@@ -121,6 +132,8 @@
         -fx-vgap: 10;
         -fx-padding: 10;
     }
+
+
 
 
 /*Scrollpane*/

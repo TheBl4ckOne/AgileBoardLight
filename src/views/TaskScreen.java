@@ -47,30 +47,23 @@ public class TaskScreen {
 
         _scene.getStylesheets().add(getClass().getResource("Styles.css").toExternalForm());
 
-        VBox box1 = new VBox();
-        box1.getChildren().add(new Label("Noch zu machen"));
-        VBox box2 = new VBox();
-        box2.getChildren().add(new Label("In Arbeit"));
-        VBox box3 = new VBox();
-        box3.getChildren().add(new Label("Fertig"));
+        VBox vbToDo = new VBox();
+        vbToDo.getChildren().add(new Label("Noch zu machen"));
+        VBox vbAtWork = new VBox();
+        vbAtWork.getChildren().add(new Label("In Arbeit"));
+        VBox vbReady = new VBox();
+        vbReady.getChildren().add(new Label("Fertig"));
 
         GridPane gp = (GridPane) _parent.lookup("#gpTaskCategories");
+        gp.setStyle("-fx-border-color: black");
 
-        gp.add(box1, 0, 0);
-        gp.add(box2, 1, 0);
-        gp.add(box3, 2, 0);
+        vbToDo.getStyleClass().add("task-section");
+        vbAtWork.getStyleClass().add("task-section");
+        vbReady.getStyleClass().add("task-section");
 
-        for (int i = 0 ; i < 3 ; i++) {
-            ColumnConstraints cc = new ColumnConstraints();
-
-            cc.setPercentWidth(100.0/3.0); //TODO: jede Spalte soll ein drittel der gesamten Seitenbreite einnehmen
-            cc.setHgrow(Priority.ALWAYS);
-            gp.getColumnConstraints().add(cc);
-        }
-
-        RowConstraints rc = new RowConstraints();
-        rc.setVgrow(Priority.ALWAYS);
-        gp.getRowConstraints().add(rc);
+        gp.add(vbToDo, 0, 0);
+        gp.add(vbAtWork, 1, 0);
+        gp.add(vbReady, 2, 0);
 
         //TODO: neue Tasks werden der gp hinzugefügt mit column und row-Index
 

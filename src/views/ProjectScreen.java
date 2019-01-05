@@ -4,9 +4,7 @@ import controller.ProjectScreenController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -25,7 +23,7 @@ public class ProjectScreen {
     private FXMLLoader _loader;
     private ProjectScreenController psc;
 
-    public static Button btnProjectOptions;
+    public static MenuButton mbtnProjectOptions;
 
     public ProjectScreen(Stage stage) {
         _mainStage = stage;
@@ -82,12 +80,18 @@ public class ProjectScreen {
         lblProjectname.setStyle
                 (
                         "-fx-background-color: #CFD8DC;"
-                        + "-fx-min-width: 28.9em;"
+                        + "-fx-min-width: 27em;"
                 );
 
-        btnProjectOptions = new Button("...");
-        btnProjectOptions.getStyleClass().add("project-element-section");
-        btnProjectOptions.setOnAction(ProjectScreenController::handleProjectOptions);
+        MenuItem miChange = new MenuItem("ändern");
+        miChange.setOnAction(ProjectScreenController::handleChangeProject);
+
+        MenuItem miDelete = new MenuItem("löschen");
+        miDelete.setOnAction(ProjectScreenController::handleDeleteProject);
+
+        mbtnProjectOptions = new MenuButton("...", null, miChange, miDelete);
+        mbtnProjectOptions.getStyleClass().add("project-element-section");
+
         Label lblProjectDescription = new Label(project.get_strProjectDescription());
         lblProjectDescription.setWrapText(true);
         lblProjectDescription.setStyle
@@ -104,7 +108,7 @@ public class ProjectScreen {
         HBox hbProjectHead = new HBox();
         hbProjectHead.getStyleClass().add("header-section");
 
-        hbProjectHead.getChildren().addAll(lblProjectname, btnProjectOptions);
+        hbProjectHead.getChildren().addAll(lblProjectname, mbtnProjectOptions);
         vbProjectBox.getChildren().addAll(hbProjectHead, lblProjectDescription);
 
        psc.gpProjectScreen.add(vbProjectBox, calcColIndex(index), calcRowIndex(index));

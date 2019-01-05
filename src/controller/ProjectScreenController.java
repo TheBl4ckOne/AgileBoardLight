@@ -33,26 +33,24 @@ public class ProjectScreenController extends ActionEvent {
         pc.showProjectCreate();
     }
 
-    public static void handleProjectOptions(ActionEvent actionEvent) {
-        VBox vBox = new VBox(ProjectScreen.btnProjectOptions);
-
-        ListView<String> lvProjectOptions  = new ListView<String>();
-        ObservableList<String> items = FXCollections.observableArrayList (
-                "löschen", "ändern");
-
-       /* final ListView lvProjectOptions = new ListView(FXCollections.observableList(Arrays.asList("löschen", "ändern"));
-        lv.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-        System.out.println(lvProjectOptions.getSelectionModel().getSelectedItem());
-
-        lvProjectOptions.setItems(items);
-    */
-    }
-
     public static void handleProject(MouseEvent mouseEvent) {
         TaskScreen ts = new TaskScreen(mainStage);
         ts.initForm();
         ts.showTaskScreen();
+
+    }
+
+    public static void handleChangeProject(ActionEvent actionEvent){
+        ProjectCreateScreen pc = new ProjectCreateScreen(Programm.mainStage);
+
+        //ProjectCreateScreen.lblCreateProject.setText("Projekt ändern");
+
+        pc.initForm();
+        pc.showProjectCreate();
+        //TODO: Bereits eingetragenen Text bearbeitbar anzeigen + Überschrift zu "Projekt ändern" abändern
+    }
+
+    public static void handleDeleteProject(ActionEvent actionEvent){
 
     }
 

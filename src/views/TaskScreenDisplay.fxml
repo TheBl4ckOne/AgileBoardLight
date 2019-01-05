@@ -10,12 +10,8 @@
 
     <top>
         <HBox>
-            <Button fx:id="btnHome" styleClass="header-section" text="Home" onAction="#handleHome">
-            </Button>
             <Label fx:id="lblProjectname" styleClass="header-section" textAlignment="CENTER" text="Projektname">
             </Label>
-            <Button fx:id="btnSaveTasks" styleClass="header-section" text="Speichern" onAction="#handleSaveTasks">
-            </Button>
         </HBox>
     </top>
 
@@ -23,9 +19,18 @@
         <ScrollPane>
             <GridPane fx:id="gpTaskCategories">
 
-
             </GridPane>
         </ScrollPane>
     </center>
+
+    <bottom>
+        <HBox>
+            <Button fx:id="btnHome" styleClass="header-section" text="Home" onAction="#handleHome">
+            </Button>
+            <Button fx:id="btnSaveTasks" styleClass="header-section" text="Speichern" onAction="#handleSaveTasks">
+            </Button>
+        </HBox>
+    </bottom>
+
 
 </BorderPane>

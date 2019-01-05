@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import programm.Programm;
@@ -32,6 +33,9 @@ public class ProjectCreateScreen {
 
     @FXML
     Button btnSaveProject;
+
+    @FXML
+    public static Label lblCreateProject;
 
     public ProjectCreateScreen(Stage stage) {
         _mainStage = stage;
