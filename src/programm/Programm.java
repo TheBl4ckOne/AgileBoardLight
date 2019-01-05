@@ -33,8 +33,8 @@ public class Programm extends Application{
 
     public void start(Stage primaryStage){
         mainStage = primaryStage;
-        /*final boolean resizable = mainStage.isResizable();
-        mainStage.setResizable(!resizable); Blockiert die Nutzung des maximieren-Buttons > ausgegraut*/
+        final boolean resizable = mainStage.isResizable();
+        mainStage.setResizable(!resizable); //Blockiert die Funktion des Maximieren-Buttons
         ProjectScreen ps = new ProjectScreen(mainStage);
         primaryStage.setTitle("Agile Board Light");
 

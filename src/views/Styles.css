@@ -78,12 +78,10 @@
         -fx-font-weight: bold;
         -fx-text-alignment: CENTER;
 
-        -fx-border-color: divider-color;
-
         -fx-min-height: 2.5em;
         -fx-min-width: 50em;
 
-        -fx-padding: 10;
+        -fx-padding: 0 0 0 10;
         }
 
     .project-element-section.label{
@@ -93,6 +91,7 @@
         -fx-alignment: center-left;
 
         -fx-min-height: 1.5em;
+        -fx-padding: 0 0 0 10;
     }
 
 

@@ -65,11 +65,26 @@ public class ProjectScreen {
 
         VBox vbProjectBox = new VBox();
         vbProjectBox.setOnMouseClicked(ProjectScreenController::handleProject);
-        vbProjectBox.setStyle("-fx-border-color: black");
+        vbProjectBox.setStyle
+                (
+                    "-fx-border-color: black;"
+                    + "-fx-max-height: 20em;"
+                    + "-fx-min-height: 20em;"
+                    + "-fx-min-width: 30.8em;"
+                    + "-fx-max-width: 30.8em;"
+                    + "-fx-background-color: #FFFFFF;"
+                );
+
         vbProjectBox.getStyleClass().add("project-element-section");
 
         Label lblProjectname = new Label(project.get_strProjectName());
         lblProjectname.getStyleClass().add("project-element-section");
+        lblProjectname.setStyle
+                (
+                        "-fx-background-color: #CFD8DC;"
+                        + "-fx-min-width: 28.9em;"
+                );
+
         btnProjectOptions = new Button("...");
         btnProjectOptions.getStyleClass().add("project-element-section");
         btnProjectOptions.setOnAction(ProjectScreenController::handleProjectOptions);
@@ -77,20 +92,17 @@ public class ProjectScreen {
         lblProjectDescription.setWrapText(true);
         lblProjectDescription.setStyle
                 (
-                    "-fx-text-alignment: left;"
-                    + "-fx-alignment: top-left;"
-                    + "-fx-border-color: black;"
-                    + "-fx-min-width: 25em;"
-                    + "-fx-max-width: 25em;"
-                    + "-fx-min-height: 19em;"
-                    + "-fx-max-height: 19em;"
+                    "-fx-min-width: 29.8em;"
+                    + "-fx-max-width: 29.8em;"
+                    + "-fx-min-height: 17em;"
+                    + "-fx-max-height: 17em;"
                     + "-fx-alignment: top-left;"
                     + "-fx-content-display: left;"
-                    + "-fx-text-alignment: left;"
+                    + "-fx-padding: 0 0 0 10;"
                 );
 
         HBox hbProjectHead = new HBox();
-        hbProjectHead.getStyleClass().add("project-element-section");
+        hbProjectHead.getStyleClass().add("header-section");
 
         hbProjectHead.getChildren().addAll(lblProjectname, btnProjectOptions);
         vbProjectBox.getChildren().addAll(hbProjectHead, lblProjectDescription);
