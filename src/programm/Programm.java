@@ -9,6 +9,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import models.Project;
+import models.Task;
 import views.ProjectScreen;
 
 import java.sql.Connection;
@@ -22,6 +23,7 @@ import java.util.Optional;
 public class Programm extends Application{
     public static Stage mainStage;
     public static ArrayList<Project> projects = new ArrayList<Project>();
+    public static ArrayList<Task> tasks = new ArrayList<Task>();
     public static int width;
     public static int height;
 

@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import models.Project;
+import models.Task;
 import programm.Programm;
 
 import java.io.IOException;
@@ -50,6 +51,7 @@ public class ProjectScreen {
         for (Project p : Programm.projects) {
             createProjectElement(p,Programm.projects.indexOf(p));
         }
+
     }
 
     public void showProjectScreen() {
@@ -59,8 +61,6 @@ public class ProjectScreen {
 
     private void createProjectElement(Project project, int index) { // angezeigte Projektelemente auf der Startseite
 
-
-
         VBox vbProjectBox = new VBox();
         vbProjectBox.setOnMouseClicked(ProjectScreenController::handleProject);
         vbProjectBox.getStyleClass().add("project-element-section-vbProjectBox");
@@ -69,7 +69,7 @@ public class ProjectScreen {
 
         Label lblProjectname = new Label(project.get_strProjectName());
         lblProjectname.getStyleClass().add("project-element-section-lblProjectname");
-        
+
         MenuItem miChange = new MenuItem("ändern");
         miChange.setOnAction(ProjectScreenController::handleChangeProject);
 

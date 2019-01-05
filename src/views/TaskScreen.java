@@ -7,8 +7,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import models.Task;
 import programm.Programm;
 
 import java.io.IOException;
@@ -16,6 +18,8 @@ import java.io.IOException;
 import static programm.Programm.mainStage;
 
 public class TaskScreen {
+
+    public VBox vbEmployees;
 
     private Parent _parent;
     private Stage _mainStage;
@@ -71,12 +75,23 @@ public class TaskScreen {
 
         //TODO: neue Tasks werden der gp hinzugefügt mit column und row-Index
 
-
+        for (Task t : Programm.tasks) {
+            createTaskElement(t,Programm.tasks.indexOf(t));
+        }
 
     }
 
-    private void createTaskElement(){
+    private void createTaskElement(Task task, int index){
+        HBox hbTaskElement = new HBox();
+        MenuButton mbtnTaskOptions = new MenuButton();
+        Label lblTaskName = new Label();
+        vbEmployees = new VBox();
 
+        hbTaskElement.getChildren().addAll(mbtnTaskOptions, lblTaskName, vbEmployees);
+    }
+
+    private void createEmployeeElement(){
+        //Mitarbeiter Anfangsbuchhstaben als Label zur vbEmployees hinzufügen
     }
 
     public void showTaskScreen() {
