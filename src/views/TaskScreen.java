@@ -63,7 +63,7 @@ public class TaskScreen {
         Button btnAddTask = new Button("+");
         btnAddTask.getStyleClass().add("task-section");
         btnAddTask.setOnAction(TaskScreenController::handleTaskCreate);
-        vbToDo.getChildren().add(btnAddTask);
+        gp.add(btnAddTask, 0,1);
 
         gp.add(vbToDo, 0, 0);
         gp.add(vbAtWork, 1, 0);
@@ -72,6 +72,10 @@ public class TaskScreen {
         //TODO: neue Tasks werden der gp hinzugefügt mit column und row-Index
 
 
+
+    }
+
+    private void createTaskElement(){
 
     }
 

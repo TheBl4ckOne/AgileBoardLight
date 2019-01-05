@@ -63,26 +63,13 @@ public class ProjectScreen {
 
         VBox vbProjectBox = new VBox();
         vbProjectBox.setOnMouseClicked(ProjectScreenController::handleProject);
-        vbProjectBox.setStyle
-                (
-                    "-fx-border-color: black;"
-                    + "-fx-max-height: 20em;"
-                    + "-fx-min-height: 20em;"
-                    + "-fx-min-width: 30.8em;"
-                    + "-fx-max-width: 30.8em;"
-                    + "-fx-background-color: #FFFFFF;"
-                );
+        vbProjectBox.getStyleClass().add("project-element-section-vbProjectBox");
 
         vbProjectBox.getStyleClass().add("project-element-section");
 
         Label lblProjectname = new Label(project.get_strProjectName());
-        lblProjectname.getStyleClass().add("project-element-section");
-        lblProjectname.setStyle
-                (
-                        "-fx-background-color: #CFD8DC;"
-                        + "-fx-min-width: 27em;"
-                );
-
+        lblProjectname.getStyleClass().add("project-element-section-lblProjectname");
+        
         MenuItem miChange = new MenuItem("ändern");
         miChange.setOnAction(ProjectScreenController::handleChangeProject);
 
@@ -94,16 +81,7 @@ public class ProjectScreen {
 
         Label lblProjectDescription = new Label(project.get_strProjectDescription());
         lblProjectDescription.setWrapText(true);
-        lblProjectDescription.setStyle
-                (
-                    "-fx-min-width: 29.8em;"
-                    + "-fx-max-width: 29.8em;"
-                    + "-fx-min-height: 17em;"
-                    + "-fx-max-height: 17em;"
-                    + "-fx-alignment: top-left;"
-                    + "-fx-content-display: left;"
-                    + "-fx-padding: 0 0 0 10;"
-                );
+        lblProjectDescription.getStyleClass().add("project-element-section-lblProjectDescription");
 
         HBox hbProjectHead = new HBox();
         hbProjectHead.getStyleClass().add("header-section");

@@ -55,8 +55,6 @@
         -fx-min-height: 1.8em;
         -fx-max-height: 1.8em;
         -fx-padding: 0;
-        -fx-text-alignment: center;
-        -fx-alignment: center;
     }
 
     .task-section.button{
@@ -66,17 +64,13 @@
         -fx-pref-height: 1.5em;
     }
 
-    #btnSaveProject{
+    #btnSaveProject,#btnSaveTasks{
         -fx-spacing: 10em;
         -fx-alignment: top-center;
     }
 
     #btnHome{
         -fx-min-width: 4em;
-    }
-
-    #btnSaveTasks{
-        -fx-min-width: 7em;
     }
 
 
@@ -112,6 +106,23 @@
         -fx-padding: 0 0 0 10;
     }
 
+    .project-element-section-lblProjectname{
+        -fx-background-color: #CFD8DC;
+        -fx-min-width: 27em;
+        -fx-max-width: 27em;
+        -fx-min-height: 1.8em;
+    }
+
+    .project-element-section-lblProjectDescription{
+        -fx-min-width: 29.8em;
+        -fx-max-width: 29.8em;
+        -fx-min-height: 17em;
+        -fx-max-height: 17em;
+        -fx-alignment: top-left;
+        -fx-content-display: left;
+        -fx-padding: 0 0 0 10;
+    }
+
 
 /*VBox, HBox*/
     HBox.project-element-section, VBox.project-element-section{
@@ -126,6 +137,16 @@
     VBox.task-section{
         -fx-min-width: 20.3em;
         -fx-border-color: divider-color;
+    }
+
+    .project-element-section-vbProjectBox{
+        -fx-border-color: black;
+        -fx-max-height: 20em;
+        -fx-min-height: 20em;
+        -fx-min-width: 30.8em;
+        -fx-max-width: 30.8em;
+        -fx-background-color: #FFFFFF;
+
     }
 
     #hbHeaderProjectScreen{
