@@ -27,11 +27,11 @@
                 <Label GridPane.columnIndex="0" GridPane.rowIndex="3" text="Zieltermin">
                 </Label>
 
-                <TextField fx:id="txtfProjectname" styleClass="project-create-section" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <TextField fx:id="txtfProjectname" styleClass="project-create-center-section" GridPane.columnIndex="1" GridPane.rowIndex="0">
                 </TextField>
-                <TextArea fx:id="txtaProjectDescription" styleClass="project-create-section" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <TextArea fx:id="txtaProjectDescription" styleClass="project-create-center-section" GridPane.columnIndex="1" GridPane.rowIndex="1">
                 </TextArea>
-                <TextField fx:id="txtfProjectTeam" styleClass="project-create-section" GridPane.columnIndex="1" GridPane.rowIndex="2" onAction="#handleNewEmployee">
+                <TextField fx:id="txtfProjectTeam" styleClass="project-create-center-section" GridPane.columnIndex="1" GridPane.rowIndex="2" onAction="#handleNewEmployee">
                 </TextField>
                 <DatePicker fx:id="dtpiDeadline" GridPane.columnIndex="1" GridPane.rowIndex="3">
                 </DatePicker>

@@ -23,11 +23,11 @@
                 <Label GridPane.columnIndex="0" GridPane.rowIndex="2" text="Mitarbeiter">
                 </Label>
 
-                <TextField fx:id="txtfTaskname" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <TextField fx:id="txtfTaskname" styleClass="task-create-center-section" GridPane.columnIndex="1" GridPane.rowIndex="0">
                 </TextField>
-                <TextField fx:id="txtfTaskDescription" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                </TextField>
-                <TextField fx:id="txtfTaskEmployee" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <TextArea fx:id="txtaTaskDescription" styleClass="task-create-center-section" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                </TextArea>
+                <TextField fx:id="txtfTaskEmployee" styleClass="task-create-center-section" GridPane.columnIndex="1" GridPane.rowIndex="2">
                 </TextField>
             </GridPane>
         </ScrollPane>

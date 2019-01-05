@@ -14,7 +14,7 @@ public class TaskScreenController {
 
 //Projektnamen hierher geben
 
-    public void handleTaskCreate(ActionEvent actionEvent) {
+    public static void handleTaskCreate(ActionEvent actionEvent) {
         TaskCreateScreen tc = new TaskCreateScreen(Programm.mainStage);
         tc.initForm();
         tc.showTaskCreate();
@@ -28,6 +28,7 @@ public class TaskScreenController {
 
     public void handleSaveTasks(ActionEvent actionEvent){
         //TODO: Speichern der verschobenen Tasks
+
     }
 
 

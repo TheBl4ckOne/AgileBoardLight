@@ -15,6 +15,11 @@ public class TaskCreateController {
     public void handleSaveTask(ActionEvent actionEvent) {
         //Speichern und zurück zur Projektseite
         Task t = new Task();
+
+        TaskScreen ts = new TaskScreen(Programm.mainStage);
+        ts.initForm();
+        ts.showTaskScreen();
+
     }
 
     public void handleAbortTask(ActionEvent actionEvent) {

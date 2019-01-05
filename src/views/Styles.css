@@ -19,9 +19,10 @@
          -fx-border-color: dark-primary-color transparent transparent transparent;
     }
 
-    .project-create-section{
-        -fx-min-width: 40em
+    .project-create-center-section, .task-create-center-section{
+        -fx-min-width: 40em;
     }
+
 
 /*Button*/
 
@@ -56,6 +57,13 @@
         -fx-padding: 0;
         -fx-text-alignment: center;
         -fx-alignment: center;
+    }
+
+    .task-section.button{
+        -fx-min-width: 1.5em;
+        -fx-pref-width: 1.5em;
+        -fx-min-height: 1.5em;
+        -fx-pref-height: 1.5em;
     }
 
     #btnSaveProject{
@@ -117,6 +125,7 @@
 
     VBox.task-section{
         -fx-min-width: 20.3em;
+        -fx-border-color: divider-color;
     }
 
     #hbHeaderProjectScreen{
