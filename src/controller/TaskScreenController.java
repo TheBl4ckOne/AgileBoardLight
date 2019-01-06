@@ -55,5 +55,23 @@ public class TaskScreenController {
 
     }
 
+    public static void handleChangeTask(ActionEvent actionEvent){
+
+    }
+
+    public static void handleDeleteTask(ActionEvent actionEvent){
+
+    }
+
+    public static void handleUpTask(ActionEvent actionEvent){
+        //TODO: Methode zur Kontrolle ob es nicht schon in der ganz rechten oder linken Kategorie ist
+    }
+
+    public static void handleDownTask(ActionEvent actionEvent){
+
+    }
+
+
+
 
 }

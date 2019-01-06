@@ -1,5 +1,6 @@
 package views;
 
+import controller.ProjectScreenController;
 import controller.TaskScreenController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import models.Task;
@@ -82,7 +84,21 @@ public class TaskScreen {
         HBox hbTaskElement = new HBox();
         hbTaskElement.getStyleClass().add("task-element-section");
 
-        MenuButton mbtnTaskOptions = new MenuButton("...");
+        MenuItem miUp = new MenuItem(">");
+        miUp.setOnAction(TaskScreenController::handleUpTask);
+
+        MenuItem miDown = new MenuItem("<");
+        miDown.setOnAction(TaskScreenController::handleDownTask);
+
+        MenuItem miChange = new MenuItem("ändern");
+        miChange.setOnAction(TaskScreenController::handleChangeTask);
+
+
+        MenuItem miDelete = new MenuItem("löschen");
+        miDelete.setOnAction(TaskScreenController::handleDeleteTask);
+
+
+        MenuButton mbtnTaskOptions = new MenuButton("...", null, miUp, miDown, miChange, miDelete);
         mbtnTaskOptions.getStyleClass().add("task-element-section");
 
         Label lblTaskName = new Label();
