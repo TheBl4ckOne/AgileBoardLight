@@ -13,6 +13,14 @@ import views.TaskScreen;
 import javax.swing.*;
 
 public class TaskScreenController {
+    @FXML
+    public
+    GridPane gpTaskCategories;
+
+
+    @FXML
+    public
+    GridPane gpTaskCategories;
 
     @FXML
     public
