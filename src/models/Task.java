@@ -16,19 +16,19 @@ public class Task {
 
     }
 
-    public Task(String strTaskName, String strTaskDescription, String strTaskCatgory, ArrayList<Employee> alTaskEmploees) {
+    public Task(String strTaskName, String strTaskDescription, String strTaskCategory, ArrayList<Employee> alTaskEmployees) {
         this._strTaskName = strTaskName;
         this._strTaskDescription = strTaskDescription;
-        this._strTaskCatgory = strTaskCatgory;
-        this._alTaskEmploees = alTaskEmploees;
+        this._strTaskCatgory = strTaskCategory;
+        this._alTaskEmploees = alTaskEmployees;
     }
 
-    public Task(String strTaskId, String strTaskName, String strTaskDescription, String strTaskCatgory, ArrayList<Employee> alTaskEmploees) {
+    public Task(String strTaskId, String strTaskName, String strTaskDescription, String strTaskCategory, ArrayList<Employee> alTaskEmployees) {
         this._strTaskId = strTaskId;
         this._strTaskName = strTaskName;
         this._strTaskDescription = strTaskDescription;
-        this._strTaskCatgory = strTaskCatgory;
-        this._alTaskEmploees = alTaskEmploees;
+        this._strTaskCatgory = strTaskCategory;
+        this._alTaskEmploees = alTaskEmployees;
     }
 
     //Get-Methoden
