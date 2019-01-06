@@ -27,9 +27,6 @@ public class TaskScreen {
     private FXMLLoader _loader;
     private TaskScreenController tsc;
 
-    @FXML
-    GridPane gpTaskCategories;
-
     public TaskScreen(Stage stage) {
         _mainStage = stage;
 
@@ -89,7 +86,7 @@ public class TaskScreen {
 
         hbTaskElement.getChildren().addAll(mbtnTaskOptions, lblTaskName, vbEmployees);
 
-        //tsc.gpTaskCategories.add(hbTaskElement, 0, rowindex);
+        tsc.gpTaskCategories.add(hbTaskElement, 0, rowindex);
 
         //TODO: TaskElement wird noch nicht angezeigt
     }

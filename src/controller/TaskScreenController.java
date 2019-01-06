@@ -2,6 +2,8 @@ package controller;
 
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.layout.GridPane;
 import programm.Programm;
 import views.ProjectCreateScreen;
 import views.ProjectScreen;
@@ -11,6 +13,10 @@ import views.TaskScreen;
 import javax.swing.*;
 
 public class TaskScreenController {
+
+    @FXML
+    public
+    GridPane gpTaskCategories;
 
 //Projektnamen hierher geben
 
