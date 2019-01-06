@@ -58,10 +58,16 @@
     }
 
     .task-section.button{
-        -fx-min-width: 1.5em;
-        -fx-pref-width: 1.5em;
-        -fx-min-height: 1.5em;
-        -fx-pref-height: 1.5em;
+        -fx-min-width: 1.8em;
+        -fx-pref-width: 1.8em;
+        -fx-min-height: 1.8em;
+        -fx-pref-height: 1.8em;
+        -fx-padding: 0;
+    }
+
+
+    .task-element.section.menu-button{
+        -fx-min-height: 1.8em;
     }
 
     #btnSaveProject,#btnSaveTasks{
@@ -122,6 +128,13 @@
         -fx-content-display: left;
         -fx-padding: 0 0 0 10;
     }
+
+    .task-element.section.label{
+        -fx-min-width: 15em;
+        -fx-min-height: 1.8em;
+    }
+
+
 
 
 /*VBox, HBox*/

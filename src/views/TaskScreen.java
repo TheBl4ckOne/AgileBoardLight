@@ -80,9 +80,16 @@ public class TaskScreen {
     private void createTaskElement(Task task, int rowindex){
 
         HBox hbTaskElement = new HBox();
+        hbTaskElement.getStyleClass().add("task-element-section");
+
         MenuButton mbtnTaskOptions = new MenuButton("...");
-        Label lblTaskName = new Label("Aufgabe");
+        mbtnTaskOptions.getStyleClass().add("task-element-section");
+
+        Label lblTaskName = new Label();
+        lblTaskName.getStyleClass().add("task-element-section");
+
         vbEmployees = new VBox();
+        vbEmployees.getStyleClass().add("task-element-section");
 
         hbTaskElement.getChildren().addAll(mbtnTaskOptions, lblTaskName, vbEmployees);
 
