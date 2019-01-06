@@ -18,6 +18,10 @@ public class TaskScreenController {
     GridPane gpTaskCategories;
 
 
+    @FXML
+    public
+    GridPane gpTaskCategories;
+
 //Projektnamen hierher geben
 
     public static void handleTaskCreate(ActionEvent actionEvent) {
