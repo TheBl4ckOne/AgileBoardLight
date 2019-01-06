@@ -20,6 +20,7 @@ public class TaskScreenController {
     @FXML
     public
     GridPane gpTaskCategories;
+    private TaskScreenController tsc;
 
 //Projektnamen hierher geben
 
@@ -56,7 +57,10 @@ public class TaskScreenController {
     }
 
     public static void handleChangeTask(ActionEvent actionEvent){
-
+        TaskCreateScreen tcs = new TaskCreateScreen(Programm.mainStage);
+        tcs.initForm();
+        tcs.showTaskCreate();
+        //TODO: Bereits eingetragenen Text bearbeitbar anzeigen + Überschrift zu "Projekt ändern" abändern
     }
 
     public static void handleDeleteTask(ActionEvent actionEvent){
@@ -65,6 +69,11 @@ public class TaskScreenController {
 
     public static void handleUpTask(ActionEvent actionEvent){
         //TODO: Methode zur Kontrolle ob es nicht schon in der ganz rechten oder linken Kategorie ist
+
+        //tsc.gpTaskCategories.add(hbTaskElement, 0, (rowindex+2));
+        //get column index?
+        //row neu bestimmen nach ArrayList
+        //Get Node > Welcher Task wurde geklickt?
     }
 
     public static void handleDownTask(ActionEvent actionEvent){
