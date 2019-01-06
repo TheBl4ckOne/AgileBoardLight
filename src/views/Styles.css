@@ -19,8 +19,12 @@
          -fx-border-color: dark-primary-color transparent transparent transparent;
     }
 
-    .project-create-center-section, .task-create-center-section{
+    .project-create-center-section{
         -fx-min-width: 40em;
+    }
+
+    .task-create-center-section{
+        -fx-min-width: 43em;
     }
 
 
