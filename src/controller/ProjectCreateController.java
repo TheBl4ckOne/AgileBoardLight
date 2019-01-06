@@ -74,7 +74,7 @@ public class ProjectCreateController extends ActionEvent{
         String[] strProjectTeam = txtfProjectTeam.getText().split(",");
         LocalDate ldtDeadline =  dtpiDeadline.getValue();
 
-        ArrayList<Employee> alEmployees =  new ArrayList<Employee>();
+        ArrayList<Employee> alEmployees = new ArrayList<Employee>();
         //For-Each Schleife: kürzere Methode zum durchlaufen von Arrays als for-Schleife
         //Die Laufvariable ist vom Datentyp der Elemente des zu durchlaufenden Arrays(hier String)
         //In den Klammern nach dem For steht zunächst die Dekleration der Laufvariable gefolg von einem Doppelpunkt danach kommt der Name des ARrays das durchlaufen werden soll
