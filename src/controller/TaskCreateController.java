@@ -2,14 +2,14 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import models.Employee;
 import models.Task;
 import programm.Programm;
 import views.TaskScreen;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import static programm.Programm.mainStage;
 
@@ -50,11 +50,24 @@ public class TaskCreateController {
     }
 
     public void handleAbortTask(ActionEvent actionEvent) {
-        TaskScreen ts = new TaskScreen(mainStage);
-        ts.initForm();
-        ts.showTaskScreen();
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Aufgabe erstellen Abbrechen?");
+        alert.setHeaderText("Möchten Sie die Erstellung Ihrer Aufgabe wirklich abbrechen? Alle Änderungen gehen verloren.");
+        alert.setContentText("Sind Sie damit einverstanden?");
 
-        //zurück zur Projektseite
+        ButtonType btnJa = new ButtonType("JA");
+        ButtonType btnNein = new ButtonType("NEIN", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        alert.getButtonTypes().setAll(btnJa,btnNein);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == btnJa) {
+
+            TaskScreen ts = new TaskScreen(mainStage);
+            ts.initForm();
+            ts.showTaskScreen();
+        }
+
 
     }
 }

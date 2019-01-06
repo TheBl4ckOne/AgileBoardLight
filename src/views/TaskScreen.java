@@ -33,7 +33,7 @@ public class TaskScreen {
         try {
             _loader = new FXMLLoader(getClass().getResource("TaskScreenDisplay.fxml"));
             _parent = _loader.load();
-            TaskScreenController tsc = _loader.getController();
+            tsc = _loader.getController();
 
 
         } catch (IOException e) {
@@ -86,9 +86,8 @@ public class TaskScreen {
 
         hbTaskElement.getChildren().addAll(mbtnTaskOptions, lblTaskName, vbEmployees);
 
-        tsc.gpTaskCategories.add(hbTaskElement, 0, rowindex);
+        tsc.gpTaskCategories.add(hbTaskElement, 0, (rowindex+2));
 
-        //TODO: TaskElement wird noch nicht angezeigt
     }
 
     private void createEmployeeElement(){
