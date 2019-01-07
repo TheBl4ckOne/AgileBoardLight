@@ -52,6 +52,7 @@ public class ProjectScreenController extends ActionEvent {
 
     public static void handleDeleteProject(ActionEvent actionEvent){
         //gpProjectScreen.getChildren().remove(ProjectScreen.vbProjectBox);
+        //Daten mit VBox verknüpfen (Metadaten)
     }
 
 }

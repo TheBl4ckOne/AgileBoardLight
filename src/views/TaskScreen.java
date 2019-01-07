@@ -97,17 +97,16 @@ public class TaskScreen {
         MenuItem miDelete = new MenuItem("löschen");
         miDelete.setOnAction(TaskScreenController::handleDeleteTask);
 
-
         MenuButton mbtnTaskOptions = new MenuButton("...", null, miUp, miDown, miChange, miDelete);
         mbtnTaskOptions.getStyleClass().add("task-element-section");
 
-        Label lblTaskName = new Label();
+        Label lblTaskName = new Label(task.get_strTaskName());
         lblTaskName.getStyleClass().add("task-element-section");
 
-        vbEmployees = new VBox();
+        vbEmployees = new VBox(); //Hierher muss das Employee-Objekt übergeben werden
         vbEmployees.getStyleClass().add("task-element-section");
 
-        hbTaskElement.getChildren().addAll(mbtnTaskOptions, lblTaskName, vbEmployees);
+        hbTaskElement.getChildren().addAll(vbEmployees, lblTaskName, mbtnTaskOptions);
 
         tsc.gpTaskCategories.add(hbTaskElement, 0, (rowindex+2));
 
