@@ -166,8 +166,16 @@
 
     }
 
+    HBox.task-element-section{
+        -fx-border-color: divider-color;
+    }
+
     #hbHeaderProjectScreen{
         /*fx-spacing: 500; Entfernt den Button vom Label*/
+    }
+
+    HBox.bottom-section{
+        -fx-spacing: 5;
     }
 
 

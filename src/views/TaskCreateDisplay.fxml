@@ -34,7 +34,7 @@
     </center>
 
     <bottom>
-        <HBox>
+        <HBox styleClass="bottom-section">
             <Button fx:id="btnAbortTask" text="Abbrechen" onAction="#handleAbortTask">
             </Button>
             <Button fx:id="btnSaveProject" text="Speichern" onAction="#handleSaveTask">

@@ -24,7 +24,7 @@
     </center>
 
     <bottom>
-        <HBox>
+        <HBox styleClass="bottom-section">
             <Button fx:id="btnHome" styleClass="header-section" text="Home" onAction="#handleHome">
             </Button>
             <Button fx:id="btnSaveTasks" styleClass="header-section" text="Speichern" onAction="#handleSaveTasks">

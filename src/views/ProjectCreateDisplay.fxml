@@ -40,7 +40,7 @@
     </center>
 
     <bottom>
-            <HBox fx:id="hbProjectCreateBottom">
+            <HBox fx:id="hbProjectCreateBottom" styleClass="bottom-section">
                 <Button fx:id="btnAbortProject" text="Abbrechen" onAction="#handleAbortProject">
                 </Button>
                 <Button fx:id="btnSaveProject" text="Speichern" onAction="#handleSaveProject">
