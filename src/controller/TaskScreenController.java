@@ -14,6 +14,7 @@ import views.TaskCreateScreen;
 import views.TaskScreen;
 
 import javax.swing.*;
+import java.awt.event.MouseEvent;
 import java.util.Optional;
 
 public class TaskScreenController {
@@ -81,6 +82,12 @@ public class TaskScreenController {
     }
 
 
+    public static void handleOpenTask(javafx.scene.input.MouseEvent mouseEvent) {
+        TaskCreateScreen tcs = new TaskCreateScreen(Programm.mainStage);
+        tcs.initForm();
+        tcs.showTaskCreate();
+        //TODO: Überschrift ändern zu Aufgabe anzeigen und den bereits eingetragenen Text anzeigen
+    }
 
 
 }

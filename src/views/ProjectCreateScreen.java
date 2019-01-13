@@ -3,12 +3,15 @@ package views;
 import controller.ProjectCreateController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import models.Project;
 import programm.Programm;
 
 import java.io.IOException;
@@ -36,6 +39,9 @@ public class ProjectCreateScreen {
 
     @FXML
     public static Label lblCreateProject;
+
+    @FXML
+    public static TextArea txtaProjectDescription;
 
     public ProjectCreateScreen(Stage stage) {
         _mainStage = stage;
@@ -66,6 +72,9 @@ public class ProjectCreateScreen {
     }
 
     public void showProjectCreate() {
+        //txtaProjectDescription.setText(strProjectDescription);
+        //label.setTextProperty.bind(folder); = Label an String binden
+
         _mainStage.show();
     }
 

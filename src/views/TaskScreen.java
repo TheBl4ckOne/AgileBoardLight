@@ -102,6 +102,7 @@ public class TaskScreen {
 
         Label lblTaskName = new Label(task.get_strTaskName());
         lblTaskName.getStyleClass().add("task-element-section");
+        lblTaskName.setOnMouseClicked(TaskScreenController::handleOpenTask);
 
         vbEmployees = new VBox(); //TODO: Hierher muss das Employee-Objekt übergeben werden > task.get_alTaskEmploees() Schleife mit dem divider , Durchlaufen und vbox befüllen?
         vbEmployees.getStyleClass().add("task-element-section");

@@ -10,7 +10,7 @@ public class Project {
 
     private String _strProjectId;
     private String _strProjectName;
-    private String _strProjectDescription;
+    public String _strProjectDescription;
     private LocalDate _ldtDeadline;
     private ArrayList<Employee> _employees;
 
