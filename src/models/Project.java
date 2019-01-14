@@ -29,6 +29,14 @@ public class Project {
         this._employees = employees;
     }
 
+    public Project(String strProjectId, String strProjectName, String strProjectDescription, LocalDate ldtDeadline){
+        //Nur für Testzwecke
+        this._strProjectId = strProjectId;
+        this._strProjectName = strProjectName;
+        this._strProjectDescription = strProjectDescription;
+        this._ldtDeadline = ldtDeadline;
+    }
+
     //Get Methoden
     public String get_strProjectId() {
         return _strProjectId;
