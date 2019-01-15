@@ -13,7 +13,9 @@ public class Project {
     public String _strProjectDescription;
     private LocalDate _ldtDeadline;
     private ArrayList<Employee> _employees;
+    private ArrayList<Task> _tasks;
 
+    //Konstruktor mit allen vom Nutzer bei der erstellung eingegeben Daten
     public  Project(String strProjectName, String strProjectDescription, LocalDate ldtDeadline, ArrayList<Employee> alEmployees){
         _strProjectName = strProjectName;
         _strProjectDescription = strProjectDescription;
@@ -21,12 +23,14 @@ public class Project {
         _employees = alEmployees;
     }
 
-    public Project(String strProjectId, String strProjectName, String strProjectDescription, LocalDate ldtDeadline, ArrayList<Employee> employees) {
+    //Konstruktor mit allen Parametern wenn aus der DB geladen wird
+    public Project(String strProjectId, String strProjectName, String strProjectDescription, LocalDate ldtDeadline, ArrayList<Employee> employees, ArrayList<Task> tasks) {
         this._strProjectId = strProjectId;
         this._strProjectName = strProjectName;
         this._strProjectDescription = strProjectDescription;
         this._ldtDeadline = ldtDeadline;
         this._employees = employees;
+        this._tasks = tasks;
     }
 
     public Project(String strProjectId, String strProjectName, String strProjectDescription, LocalDate ldtDeadline){
