@@ -29,7 +29,7 @@
 
                 <TextField fx:id="txtfProjectname" styleClass="project-create-center-section" GridPane.columnIndex="1" GridPane.rowIndex="0">
                 </TextField>
-                <TextArea fx:id="txtaProjectDescription" styleClass="project-create-center-section" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <TextArea fx:id="txtaProjectDescription" styleClass="project-create-center-section" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                 </TextArea>
                 <TextField fx:id="txtfProjectTeam" styleClass="project-create-center-section" GridPane.columnIndex="1" GridPane.rowIndex="2" onAction="#handleNewEmployee">
                 </TextField>
