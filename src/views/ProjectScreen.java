@@ -62,13 +62,13 @@ public class ProjectScreen {
     private void createProjectElement(Project project, int index) { // angezeigte Projektelemente auf der Startseite
 
         VBox vbProjectBox = new VBox();
-        vbProjectBox.setOnMouseClicked(ProjectScreenController::handleProject);
         vbProjectBox.getStyleClass().add("project-element-section-vbProjectBox");
 
         vbProjectBox.getStyleClass().add("project-element-section");
 
         Label lblProjectname = new Label(project.get_strProjectName());
         lblProjectname.getStyleClass().add("project-element-section-lblProjectname");
+        lblProjectname.setOnMouseClicked(ProjectScreenController::handleProject);
 
         MenuItem miChange = new MenuItem("ändern");
         miChange.setOnAction(ProjectScreenController::handleChangeProject);
