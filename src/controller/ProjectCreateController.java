@@ -86,7 +86,9 @@ public class ProjectCreateController extends ActionEvent{
         
 
         Project project = new Project(strProjectname,strProjectDescription,ldtDeadline,alEmployees);
+        project.saveProjectToDatabase();
         Programm.projects.add(project);
+
 
         ProjectScreen ps = new ProjectScreen(Programm.mainStage);
         ps.initForm();

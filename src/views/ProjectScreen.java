@@ -49,7 +49,7 @@ public class ProjectScreen {
         _scene.getStylesheets().add(getClass().getResource("Styles.css").toExternalForm());
 
         for (Project p : Programm.projects) {
-            createProjectElement(p,Programm.projects.indexOf(p));
+            drawProjectElement(p,Programm.projects.indexOf(p));
         }
 
     }
@@ -59,9 +59,11 @@ public class ProjectScreen {
     }
 
 
-    private void createProjectElement(Project project, int index) { // angezeigte Projektelemente auf der Startseite
+    private void drawProjectElement(Project project, int index) { // angezeigte Projektelemente auf der Startseite
 
         VBox vbProjectBox = new VBox();
+        //id der VBox ist gleich der projektid um Project-objekt in der Arraylist
+        vbProjectBox.setId(project.get_strProjectId());
         vbProjectBox.setOnMouseClicked(ProjectScreenController::handleProject);
         vbProjectBox.getStyleClass().add("project-element-section-vbProjectBox");
 
