@@ -84,13 +84,7 @@
     }
 
 
-    .button:hover {
-        -fx-background-color: linear-gradient(#2A5058, accent-color);
-    }
 
-    .button:focus{
-
-    }
 
 /*Label*/
 
@@ -192,15 +186,12 @@
 
 
 
-
 /*GridPane*/
     GridPane{
         -fx-hgap: 10;
         -fx-vgap: 10;
         -fx-padding: 10;
     }
-
-
 
 
 /*Scrollpane*/
@@ -234,4 +225,32 @@
 
     .scroll-pane > .corner { /*Färbt Corner unten rechts*/
         -fx-background-color: light-primary-color;
+    }
+
+
+/*Hovers*/
+
+  .button:hover {
+      -fx-background-color: linear-gradient(#2A5058, accent-color);
+      -fx-cursor: hand;
+  }
+
+    .menu-button:hover {
+        -fx-background-color: linear-gradient(#2A5058, accent-color);
+        -fx-cursor: hand;
+    }
+
+    .menu-item:hover {
+        -fx-background-color: linear-gradient(#2A5058, accent-color);
+        -fx-cursor: hand;
+    }
+
+    .project-element-section-lblProjectname:hover{
+        -fx-background-color: linear-gradient(#2A5058, accent-color);
+        -fx-cursor: hand;
+    }
+
+    .task-element-section.label:hover{
+        -fx-background-color: linear-gradient(#2A5058, accent-color);
+        -fx-cursor: hand;
     }
