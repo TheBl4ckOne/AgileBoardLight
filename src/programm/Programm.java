@@ -12,10 +12,8 @@ import models.Project;
 import models.Task;
 import views.ProjectScreen;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -44,6 +42,7 @@ public class Programm extends Application{
         height = 800;
 
         //databasetest();
+        readFromDatabase();
 
         ps.initForm();
 
@@ -77,9 +76,59 @@ public class Programm extends Application{
         ps.showProjectScreen();
     }
 
+    private void saveToDatabase(){
+        Connection myConnection = null;
+        String url = "jdbc:mysql://localhost:3306/agileboarddb?useUnicode=true&serverTimezone=CET";
+        String driverClass = "com.mysql.cj.jdbc.Driver";
+        String user = "root";
+        String password = "P@ssw0rd";
+        try {
+            //Treiber Laden und Verbindung aufbauen
+            myConnection = DriverManager.getConnection(url,user,password);
+            Statement statement = myConnection.createStatement();
+
+            //Einfügen der Projekte aus
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void readFromDatabase(){
+        Connection myConnection = null;
+        String url = "jdbc:mysql://localhost:3306/agileboarddb?useUnicode=true&serverTimezone=CET";
+        String driverClass = "com.mysql.cj.jdbc.Driver";
+        String user = "root";
+        String password = "P@ssw0rd";
+        try {
+            //Treiber Laden und Verbindung aufbauen
+            myConnection = DriverManager.getConnection(url,user,password);
+            Statement statement = myConnection.createStatement();
+
+            String query = "SELECT * FROM projects";
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()){
+                String strProjctId = rs.getString("projectsId");
+                String strProjectName = rs.getString("projectName");
+                String strProjectDeadline = rs.getString("projectDeadline");
+                String strProjectDescription = rs.getString("projectDescription");
+                LocalDate ldtProjectdeadline = LocalDate.parse(strProjectDeadline);
+
+                Project p = new Project(strProjctId,strProjectDeadline,strProjectDescription,ldtProjectdeadline);
+                projects.add(p);
+            }
+            rs.close();
+            myConnection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     private static void databasetest(){
         Connection myConnection = null;
-        String url = "jdbc:mysql://localhost:3306/world?useUnicode=true&serverTimezone=CET";
+        String url = "jdbc:mysql://localhost:3306/agileboarddb?useUnicode=true&serverTimezone=CET";
         String driverClass = "com.mysql.cj.jdbc.Driver";
         String user = "root";
         String password = "P@ssw0rd";
@@ -93,14 +142,14 @@ public class Programm extends Application{
             System.out.println("Verbindung erfolgreich");
 
             //Abfrage
-            String query = "SELECT * FROM city WHERE CountryCode = 'PSE'";
+            String query = "SELECT * FROM project";
             Statement state = myConnection.createStatement();
             ResultSet rs = state.executeQuery(query);
 
             while (rs.next()){
-                String name = rs.getString("Name");
-                String Land = rs.getString("CountryCode");
-                System.out.println(name + " --- " + Land);
+                String pid = rs.getString("projectid");
+                String name = rs.getString("projectname");
+                System.out.println(pid + " --- " + name);
             }
             rs.close();
             myConnection.close();
