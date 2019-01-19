@@ -41,6 +41,15 @@ public class Project {
         this._strProjectDescription = strProjectDescription;
         this._ldtDeadline = ldtDeadline;
     }
+
+    public ArrayList<Task> get_tasks() {
+        return _tasks;
+    }
+
+    public void set_tasks(ArrayList<Task> _tasks) {
+        this._tasks = _tasks;
+    }
+
     public void saveProjectToDatabase(){
         Connection myConnection = null;
         String url = "jdbc:mysql://localhost:3306/agileboarddb?useUnicode=true&serverTimezone=CET";
@@ -61,6 +70,7 @@ public class Project {
             //TODO speichern der Mitarbeitern in die Tablle emploees
 
         } catch (SQLException e) {
+
             e.printStackTrace();
         }
     }

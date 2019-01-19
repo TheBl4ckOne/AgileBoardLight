@@ -114,7 +114,7 @@ public class Programm extends Application{
                 String strProjectDescription = rs.getString("projectDescription");
                 LocalDate ldtProjectdeadline = LocalDate.parse(strProjectDeadline);
 
-                Project p = new Project(strProjctId,strProjectDeadline,strProjectDescription,ldtProjectdeadline);
+                Project p = new Project(strProjctId,strProjectName,strProjectDescription,ldtProjectdeadline);
                 projects.add(p);
             }
             rs.close();

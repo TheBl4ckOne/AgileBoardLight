@@ -89,6 +89,7 @@ public class TaskScreen {
 
         MenuItem miDown = new MenuItem("<");
         miDown.setOnAction(TaskScreenController::handleDownTask);
+        miDown.setDisable(true);
 
         MenuItem miChange = new MenuItem("ändern");
         miChange.setOnAction(TaskScreenController::handleChangeTask);
