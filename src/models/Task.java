@@ -43,28 +43,6 @@ public class Task {
         this._alTaskEmploees = alTaskEmployees;
     }
 
-    public void saveTaskToDatabase (){
-        Connection myConnection = null;
-        String url = "jdbc:mysql://localhost:3306/agileboarddb?useUnicode=true&serverTimezone=CET";
-        String driverClass = "com.mysql.cj.jdbc.Driver";
-        String user = "root";
-        String password = "P@ssw0rd";
-        try {
-            //Treiber Laden und Verbindung aufbauen
-            myConnection = DriverManager.getConnection(url, user, password);
-
-            String strIntoTasks = "INSERT INTO tasks (taskName, taskDescription, taskStatus, projectID) VALUES (?,?,?,?)";
-
-            PreparedStatement prepStatementTast = myConnection.prepareStatement(strIntoTasks);
-            prepStatementTast.setString(1,_strTaskName);
-            prepStatementTast.setString(2,_strTaskDescription);
-            prepStatementTast.setString(3,_strTaskCatgory);
-            prepStatementTast.setInt(4,_intProjectId);
-
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
 
     //Get-Methoden
     public Integer get_intTaskId() {

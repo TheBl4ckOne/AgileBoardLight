@@ -25,32 +25,11 @@ public class Employee {
         _intProjectId = intProjectId;
     }
 
-    public Employee(Integer intEmployeeId, String strEmployeeName) {
+    public Employee(String strEmployeeName) {
         //Nur Zum Debuggen
-        this._intEmployeeId = intEmployeeId;
         this._strEmployeeName = strEmployeeName;
     }
 
-    public void saveEmployeeToDatabase(){
-        Connection myConnection = null;
-        String url = "jdbc:mysql://localhost:3306/agileboarddb?useUnicode=true&serverTimezone=CET";
-        String driverClass = "com.mysql.cj.jdbc.Driver";
-        String user = "root";
-        String password = "P@ssw0rd";
-        try {
-            //Treiber Laden und Verbindung aufbauen
-            myConnection = DriverManager.getConnection(url, user, password);
-
-            String strIntoEployees = "INSERT INTO employees (employeeName, projectId) VALUES (?,?)";
-
-            PreparedStatement prepStatementEmployees = myConnection.prepareStatement(strIntoEployees);
-            prepStatementEmployees.setString(1,_strEmployeeName);
-            prepStatementEmployees.setInt(2,_intProjectId);
-
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
 
     //Get-Methoden
 

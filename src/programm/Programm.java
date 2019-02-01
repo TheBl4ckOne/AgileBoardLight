@@ -8,6 +8,7 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import models.DatabaseAgent;
 import models.Project;
 import models.Task;
 import views.ProjectScreen;
@@ -22,6 +23,7 @@ public class Programm extends Application{
     public static Stage mainStage;
     public static ArrayList<Project> projects = new ArrayList<Project>();
     public static ArrayList<Task> tasks = new ArrayList<Task>();
+    public static DatabaseAgent dbAgent = new DatabaseAgent();
     public static int width;
     public static int height;
 
@@ -41,8 +43,7 @@ public class Programm extends Application{
         width = 1400;
         height = 800;
 
-        //databasetest();
-        readFromDatabase();
+        dbAgent.getAllProjects();
 
         ps.initForm();
 
@@ -76,86 +77,4 @@ public class Programm extends Application{
         ps.showProjectScreen();
     }
 
-    private void saveToDatabase(){
-        Connection myConnection = null;
-        String url = "jdbc:mysql://localhost:3306/agileboarddb?useUnicode=true&serverTimezone=CET";
-        String driverClass = "com.mysql.cj.jdbc.Driver";
-        String user = "root";
-        String password = "P@ssw0rd";
-        try {
-            //Treiber Laden und Verbindung aufbauen
-            myConnection = DriverManager.getConnection(url,user,password);
-            Statement statement = myConnection.createStatement();
-
-            //Einfügen der Projekte aus
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void readFromDatabase(){
-        Connection myConnection = null;
-        String url = "jdbc:mysql://localhost:3306/agileboarddb?useUnicode=true&serverTimezone=CET";
-        String driverClass = "com.mysql.cj.jdbc.Driver";
-        String user = "root";
-        String password = "P@ssw0rd";
-        try {
-            //Treiber Laden und Verbindung aufbauen
-            myConnection = DriverManager.getConnection(url,user,password);
-            Statement statement = myConnection.createStatement();
-
-            String query = "SELECT * FROM projects";
-            ResultSet rs = statement.executeQuery(query);
-            while (rs.next()){
-                String strProjctId = rs.getString("projectsId");
-                String strProjectName = rs.getString("projectName");
-                String strProjectDeadline = rs.getString("projectDeadline");
-                String strProjectDescription = rs.getString("projectDescription");
-                LocalDate ldtProjectdeadline = LocalDate.parse(strProjectDeadline);
-
-                Project p = new Project(strProjctId,strProjectName,strProjectDescription,ldtProjectdeadline);
-                projects.add(p);
-            }
-            rs.close();
-            myConnection.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    private static void databasetest(){
-        Connection myConnection = null;
-        String url = "jdbc:mysql://localhost:3306/agileboarddb?useUnicode=true&serverTimezone=CET";
-        String driverClass = "com.mysql.cj.jdbc.Driver";
-        String user = "root";
-        String password = "P@ssw0rd";
-
-        try {
-            //Treiber laden
-            //Class.forName(driverClass);
-            //Verbindun aufbauen
-
-            myConnection = DriverManager.getConnection(url,user,password);
-            System.out.println("Verbindung erfolgreich");
-
-            //Abfrage
-            String query = "SELECT * FROM project";
-            Statement state = myConnection.createStatement();
-            ResultSet rs = state.executeQuery(query);
-
-            while (rs.next()){
-                String pid = rs.getString("projectid");
-                String name = rs.getString("projectname");
-                System.out.println(pid + " --- " + name);
-            }
-            rs.close();
-            myConnection.close();
-        }catch (final Exception e){
-            e.printStackTrace();
-        }
-
-    }
 }

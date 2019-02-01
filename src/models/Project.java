@@ -50,30 +50,7 @@ public class Project {
         this._tasks = _tasks;
     }
 
-    public void saveProjectToDatabase(){
-        Connection myConnection = null;
-        String url = "jdbc:mysql://localhost:3306/agileboarddb?useUnicode=true&serverTimezone=CET";
-        String driverClass = "com.mysql.cj.jdbc.Driver";
-        String user = "root";
-        String password = "P@ssw0rd";
-        try {
-            //Treiber Laden und Verbindung aufbauen
-            myConnection = DriverManager.getConnection(url,user,password);
 
-            String strIntoProject = "INSERT INTO projects (projectName, projectDescription,projectDeadline) VALUES(?,?,?)";
-
-            PreparedStatement prepStatementProject = myConnection.prepareStatement(strIntoProject);
-            prepStatementProject.setString(1,_strProjectName);
-            prepStatementProject.setString(2,_strProjectDescription);
-            prepStatementProject.setString(3,_ldtDeadline.toString());
-            prepStatementProject.execute();
-            //TODO speichern der Mitarbeitern in die Tablle emploees
-
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-        }
-    }
 
     //Get Methoden
     public String get_strProjectId() {
