@@ -74,7 +74,7 @@ public class ProjectCreateController extends ActionEvent{
         String[] strProjectTeam = txtfProjectTeam.getText().split(",");
         LocalDate ldtDeadline =  dtpiDeadline.getValue();
 
-        ArrayList<Employee> alEmployees = new ArrayList<Employee>();
+        ArrayList<Employee> alEmployees = new ArrayList<>();
         //For-Each Schleife: kürzere Methode zum durchlaufen von Arrays als for-Schleife
         //Die Laufvariable ist vom Datentyp der Elemente des zu durchlaufenden Arrays(hier String)
         //In den Klammern nach dem For steht zunächst die Dekleration der Laufvariable gefolgt von einem Doppelpunkt danach kommt der Name des ARrays das durchlaufen werden soll
@@ -86,7 +86,11 @@ public class ProjectCreateController extends ActionEvent{
         
 
         Project project = new Project(strProjectname,strProjectDescription,ldtDeadline,alEmployees);
-        project.saveProjectToDatabase();
+        Programm.dbAgent.saveProjectToDatabase(project);
+        for (Employee e: alEmployees) {
+            Programm.dbAgent.saveEmployeeToDatabase(e);
+        }
+
         Programm.projects.add(project);
 
 

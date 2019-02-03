@@ -1,9 +1,7 @@
 package models;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import programm.Programm;
+
 import java.util.ArrayList;
 
 public class Task {
@@ -12,8 +10,11 @@ public class Task {
     private String _strTaskName;
     private String _strTaskDescription;
     private String _strTaskCatgory;
+    private String _strTaskStatus;
     private Integer _intProjectId;
     private ArrayList<Employee> _alTaskEmploees;
+
+
 
 
     public Task(String strTaskName, String strTaskDescription, String strTaskStatus, ArrayList<Employee> alTaskEmployees, Integer intProjectId) {
@@ -23,6 +24,7 @@ public class Task {
         this._strTaskCatgory = strTaskStatus;
         this._alTaskEmploees = alTaskEmployees;
         this._intProjectId = intProjectId;
+        this._strTaskStatus = Programm.enmTaskStatus.ToDo.toString();
     }
 
     public Task(Integer intTaskId, String strTaskName, String strTaskDescription, String strTaskStatus, ArrayList<Employee> alTaskEmployees, Integer intProjectId) {

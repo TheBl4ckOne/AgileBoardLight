@@ -25,4 +25,8 @@ alle Variablennamen enthalten ein Kürzel aus dem der Datetyp hervor geht
        TextField txtf
        DatePicket dtpi
        Borderpane bp
-  
+        
+       Resultset rs
+       PreparedStatement prep
+       
+       Enum enm

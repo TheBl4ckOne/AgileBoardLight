@@ -1,11 +1,5 @@
 package models;
 
-import javax.print.DocFlavor;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
 public class Employee {
 
     private Integer _intEmployeeId;
@@ -29,7 +23,6 @@ public class Employee {
         //Nur Zum Debuggen
         this._strEmployeeName = strEmployeeName;
     }
-
 
     //Get-Methoden
 
