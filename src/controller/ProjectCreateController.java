@@ -3,20 +3,15 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import models.Employee;
 import models.Project;
 import programm.Programm;
-import views.ProjectCreateScreen;
 import views.ProjectScreen;
 
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Optional;
 
 public class ProjectCreateController extends ActionEvent{
@@ -83,15 +78,10 @@ public class ProjectCreateController extends ActionEvent{
         for (String s: strProjectTeam) {
             alEmployees.add(new Employee(s));
         }
-        
 
+        // Hinzufügen des neuen Projektes zur Datenbank wir im Konstruktor des Projektes behandelt
         Project project = new Project(strProjectname,strProjectDescription,ldtDeadline,alEmployees);
-        Programm.dbAgent.saveProjectToDatabase(project);
-        for (Employee e: alEmployees) {
-            Programm.dbAgent.saveEmployeeToDatabase(e);
-        }
 
-        Programm.projects.add(project);
 
 
         ProjectScreen ps = new ProjectScreen(Programm.mainStage);

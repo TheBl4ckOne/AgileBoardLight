@@ -1,11 +1,9 @@
 package models;
 
-import controller.ProjectCreateController;
+import programm.Programm;
 
-import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Project {
 
@@ -17,11 +15,14 @@ public class Project {
     private ArrayList<Task> _tasks;
 
     //Konstruktor mit allen vom Nutzer bei der erstellung eingegeben Daten
+    //ACHTUNG erstellen eines Projektobjektes OHNE ProjektID führt zu einem INSERT in die Datenbank, da diese die ID vergibt
     public  Project(String strProjectName, String strProjectDescription, LocalDate ldtDeadline, ArrayList<Employee> alEmployees){
         _strProjectName = strProjectName;
         _strProjectDescription = strProjectDescription;
         _ldtDeadline = ldtDeadline;
         _employees = alEmployees;
+
+        Programm.dbAgent.InsertProjectIntoDatabase(this);
     }
 
     //Konstruktor mit allen Parametern wenn aus der DB geladen wird

@@ -15,19 +15,34 @@ public class DatabaseAgent {
     private String _password = "P@ssw0rd";
 
     public DatabaseAgent() {
+        try {
+            _myConnection = DriverManager.getConnection(_url, _user, _password);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void finalize(){
+        try {
+            _myConnection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     //Projects
-    public void getAllProjects() {
+    public void SelectAllProjects() {
         try {
-            //Treiber Laden und Verbindung aufbauen
-            _myConnection = DriverManager.getConnection(_url, _user, _password);
+            //Rücksetzen des lokalen Projektspeichers
+            Programm.projects.clear();
+
             Statement statement = _myConnection.createStatement();
 
             String strProjectQuery = "SELECT * FROM projects";
             ResultSet rsProjects = statement.executeQuery(strProjectQuery);
             while (rsProjects.next()) {
-                String strProjctId = rsProjects.getString("projectsId");
+                String strProjectId = rsProjects.getString("projectsId");
                 String strProjectName = rsProjects.getString("projectName");
                 String strProjectDeadline = rsProjects.getString("projectDeadline");
                 String strProjectDescription = rsProjects.getString("projectDescription");
@@ -35,11 +50,11 @@ public class DatabaseAgent {
                 //Achtung die Arraylists für Employees und Tasks werden nicht zwischengespeichert
                 //Sie stehen als Funktionsaufruf mit entsprechendem Rückgabewert im Konstruktor
 
-                Project p = new Project(strProjctId, strProjectName, strProjectDescription, ldtProjectdeadline,getEmployees(strProjctId), getTasks(strProjctId));
+                Project p = new Project(strProjectId, strProjectName, strProjectDescription, ldtProjectdeadline, SelectEmployeesOfProject(strProjectId), SelectTasksOfProject(strProjectId));
                 Programm.projects.add(p);
             }
             rsProjects.close();
-            _myConnection.close();
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -47,10 +62,8 @@ public class DatabaseAgent {
 
     }
 
-    public void saveProjectToDatabase(Project project){
+    public void InsertProjectIntoDatabase(Project project){
         try {
-            //Treiber Laden und Verbindung aufbauen
-            _myConnection = DriverManager.getConnection(_url,_user,_password);
 
             String strIntoProject = "INSERT INTO projects (projectName, projectDescription,projectDeadline) VALUES(?,?,?)";
 
@@ -60,36 +73,44 @@ public class DatabaseAgent {
             prepStatementProject.setString(3,project.get_ldtDeadline().toString());
             prepStatementProject.execute();
 
-            _myConnection.close();
-        } catch (SQLException e) {
+            String strSelectLatestProject = "SELECT MAX(projectsId) FROM projects";
+            Statement staLatestProject = _myConnection.createStatement();
+            ResultSet rsLatestProject = staLatestProject.executeQuery(strSelectLatestProject);
+            while (rsLatestProject.next()){
+                for (Employee e : project.get_employees()) {
+                    e.set_intProjectId(rsLatestProject.getInt("MAX(projectsId)"));
+                    InsertEmployeeIntoDatabase(e);
+                }
+            }
+
+            } catch (SQLException e) {
 
             e.printStackTrace();
         }
+        //Neuladen des lokalen Projektspeichers inkl. des neuen Projektes
+        SelectAllProjects();
     }
 
     //Employees
-    public void saveEmployeeToDatabase(Employee employee){
+    public void InsertEmployeeIntoDatabase(Employee employee){
         try {
-            //Treiber Laden und Verbindung aufbauen
-            _myConnection = DriverManager.getConnection(_url, _user, _password);
 
             String strIntoEployees = "INSERT INTO employees (employeeName, projectId) VALUES (?,?)";
 
             PreparedStatement prepStatementEmployees = _myConnection.prepareStatement(strIntoEployees);
             prepStatementEmployees.setString(1,employee.get_strEmployeeName());
             prepStatementEmployees.setInt(2,employee.get_intProjectId());
+            prepStatementEmployees.execute();
 
-            _myConnection.close();
         } catch (SQLException e){
             e.printStackTrace();
         }
     }
 
-    public ArrayList<Employee> getEmployees (String projectId){
+    public ArrayList<Employee> SelectEmployeesOfProject(String projectId){
         ArrayList<Employee> alEmployees = new ArrayList<>();
 
         try {
-            _myConnection = DriverManager.getConnection(_url, _user, _password);
             String strSelectEmployees ="SELECT *  FROM employees WHERE projectId = ?";
 
             PreparedStatement prepStatementEmployees = _myConnection.prepareStatement(strSelectEmployees);
@@ -105,7 +126,7 @@ public class DatabaseAgent {
             }
 
             rsEmployees.close();
-            _myConnection.close();
+
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -114,11 +135,8 @@ public class DatabaseAgent {
     }
 
     //Tasks
-    public void saveTaskToDatabase(Task task){
+    public void InsertTaskIntoDatabase(Task task){
         try {
-            //Treiber Laden und Verbindung aufbauen
-            _myConnection = DriverManager.getConnection(_url, _user, _password);
-
             String strIntoTasks = "INSERT INTO tasks (taskName, taskDescription, taskStatus, projectID) VALUES (?,?,?,?)";
 
             PreparedStatement prepStatementTask = _myConnection.prepareStatement(strIntoTasks);
@@ -128,16 +146,15 @@ public class DatabaseAgent {
             prepStatementTask.setInt(4,task.get_intProjectId());
             prepStatementTask.execute();
 
-            _myConnection.close();
         } catch (SQLException e){
             e.printStackTrace();
         }
     }
 
-    public ArrayList<Task> getTasks(String projectId){
+    public ArrayList<Task> SelectTasksOfProject(String projectId){
         ArrayList<Task> alTasks = new ArrayList<>();
         try {
-            _myConnection = DriverManager.getConnection(_url, _user, _password);
+
             String strSelectTasks = "SELECT * FROM tasks WHERE projectID = ?";
             PreparedStatement prepStatementTask = _myConnection.prepareStatement(strSelectTasks);
             prepStatementTask.setString(1,projectId);
@@ -151,23 +168,21 @@ public class DatabaseAgent {
                 String strTaskStatus = rsTasks.getString("taskStatus");
                 int intProjectId = rsTasks.getInt("projectID");
 
-                Task t = new Task(intTaskId,strTaskName,strTaskDescription,strTaskStatus,getEmployeesInTask(intTaskId),intProjectId);
+                Task t = new Task(intTaskId,strTaskName,strTaskDescription,strTaskStatus, SelectEmployeesInTask(intTaskId),intProjectId);
                 alTasks.add(t);
-
-                rsTasks.close();
-                _myConnection.close();
             }
+        rsTasks.close();
+
         } catch (Exception e ){
             e.printStackTrace();
         }
         return alTasks;
     }
 
-    public ArrayList<Employee> getEmployeesInTask (int taskId){
+    public ArrayList<Employee> SelectEmployeesInTask(int taskId){
         ArrayList<Employee> alEmployeesInTask = new ArrayList<>();
 
         try {
-            _myConnection = DriverManager.getConnection(_url, _user, _password);
             String strSelectEmployeesInTasks = "SELECT * FROM employees e INNER JOIN employees_in_tasks eit on e.employeeId = eit.employeeId WHERE eit.taskid= ?";
             PreparedStatement prepEmployeesInTasks = _myConnection.prepareStatement(strSelectEmployeesInTasks);
             prepEmployeesInTasks.setInt(1,taskId);

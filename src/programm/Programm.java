@@ -5,7 +5,6 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import models.DatabaseAgent;
@@ -13,8 +12,6 @@ import models.Project;
 import models.Task;
 import views.ProjectScreen;
 
-import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -47,7 +44,7 @@ public class Programm extends Application{
         width = 1400;
         height = 800;
 
-        dbAgent.getAllProjects();
+        dbAgent.SelectAllProjects();
 
         ps.initForm();
 
