@@ -5,13 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import models.Project;
-import models.Task;
 import programm.Programm;
 
 import java.io.IOException;
@@ -63,8 +60,9 @@ public class ProjectScreen {
 
         VBox vbProjectBox = new VBox();
         //id der VBox ist gleich der projektid um Project-objekt in der Arraylist
-        vbProjectBox.setId(project.get_strProjectId());
-        vbProjectBox.setOnMouseClicked(ProjectScreenController::handleProject);
+        //Die ID der VB-Box ist der Index des Projektes im Project-Array. Dieser Index wird bei bedarf weitergeben
+        vbProjectBox.setId(Integer.toString(index));
+        vbProjectBox.setOnMouseClicked(ProjectScreenController::handleSelectProject);
         vbProjectBox.getStyleClass().add("project-element-section-vbProjectBox");
 
         vbProjectBox.getStyleClass().add("project-element-section");

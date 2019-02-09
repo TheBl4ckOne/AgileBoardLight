@@ -2,8 +2,12 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import models.Employee;
+import models.Project;
 import models.Task;
 import programm.Programm;
 import views.TaskScreen;
@@ -22,28 +26,43 @@ public class TaskCreateController {
     public TextArea txtaTaskDescription;
 
     @FXML
-    public TextField txtfTaskEmployee;
+    public GridPane gpTaskData;
+
+    private int intCurrentProjectIndex;
 
     public void handleSaveTask(ActionEvent actionEvent) {
         //Speichern und zurück zur Projektseite
 
         String strTaskName = txtfTaskname.getText();
         String strTaskDescription = txtaTaskDescription.getText();
-        String strTaskCategory = ""; //TODO: TaskCategory als Enum
-        ArrayList<Employee> alTaskEmployees = null;
+        String strTaskCategory = Programm.enmTaskStatus.ToDo.toString();
+        ArrayList<Employee> alTaskEmployees = new ArrayList<>();
 
-        String[] strTaskTeam = txtfTaskEmployee.getText().split(",");
 
-        ArrayList<Employee> alEmployees =  new ArrayList<Employee>();
-        for (String s: strTaskTeam) {
-            alEmployees.add(new Employee(s));
+        HBox hbEmployees = (HBox) gpTaskData.getScene().lookup("#hbEmployees");
+
+        for (Node node: hbEmployees.getChildren()) {
+            try{
+                CheckBox cb = (CheckBox) node;
+
+                if(cb.isSelected()){
+                    //Die Id der CheckBox ist immer auch die ID des Employee, siehe TaskCreateScreen initForm
+                    int intEmployeeId = Integer.parseInt(cb.getId());
+                    Project p = Programm.projects.get(intCurrentProjectIndex);
+                    Employee e = p.get_employees().get(intEmployeeId);
+                    alTaskEmployees.add(e);
+                }
+            }catch (ClassCastException e){
+
+            }
         }
 
-        Task t = new Task(strTaskName, strTaskDescription, strTaskCategory, alTaskEmployees);
+        //Hinzufügen des Task zur Datenbank wird im Konstruktor des Task behandelt
+        Project p = Programm.projects.get(intCurrentProjectIndex);
+        new Task(strTaskName, strTaskDescription, strTaskCategory, alTaskEmployees, Integer.parseInt(p.get_strProjectId()));
 
-        Programm.tasks.add(t);
 
-        TaskScreen ts = new TaskScreen(Programm.mainStage);
+        TaskScreen ts = new TaskScreen(Programm.mainStage, intCurrentProjectIndex);
         ts.initForm();
         ts.showTaskScreen();
 
@@ -63,11 +82,17 @@ public class TaskCreateController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == btnJa) {
 
-            TaskScreen ts = new TaskScreen(mainStage);
+            TaskScreen ts = new TaskScreen(mainStage, intCurrentProjectIndex);
             ts.initForm();
             ts.showTaskScreen();
         }
+    }
 
+    public void setIntCurrentProjectIndex(int intCurrentProjectIndex) {
+        this.intCurrentProjectIndex = intCurrentProjectIndex;
+    }
 
+    public int getIntCurrentProjectIndex() {
+        return intCurrentProjectIndex;
     }
 }

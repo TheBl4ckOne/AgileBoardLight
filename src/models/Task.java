@@ -12,7 +12,7 @@ public class Task {
     private String _strTaskCatgory;
     private String _strTaskStatus;
     private Integer _intProjectId;
-    private ArrayList<Employee> _alTaskEmploees;
+    private ArrayList<Employee> _alTaskEmployees;
 
 
 
@@ -22,9 +22,11 @@ public class Task {
         this._strTaskName = strTaskName;
         this._strTaskDescription = strTaskDescription;
         this._strTaskCatgory = strTaskStatus;
-        this._alTaskEmploees = alTaskEmployees;
+        this._alTaskEmployees = alTaskEmployees;
         this._intProjectId = intProjectId;
         this._strTaskStatus = Programm.enmTaskStatus.ToDo.toString();
+
+        Programm.dbAgent.InsertTaskIntoDatabase(this);
     }
 
     public Task(Integer intTaskId, String strTaskName, String strTaskDescription, String strTaskStatus, ArrayList<Employee> alTaskEmployees, Integer intProjectId) {
@@ -33,7 +35,7 @@ public class Task {
         this._strTaskName = strTaskName;
         this._strTaskDescription = strTaskDescription;
         this._strTaskCatgory = strTaskStatus;
-        this._alTaskEmploees = alTaskEmployees;
+        this._alTaskEmployees = alTaskEmployees;
         this._intProjectId = intProjectId;
     }
 
@@ -42,7 +44,7 @@ public class Task {
         this._strTaskName = strTaskName;
         this._strTaskDescription = strTaskDescription;
         this._strTaskCatgory = strTaskStatus;
-        this._alTaskEmploees = alTaskEmployees;
+        this._alTaskEmployees = alTaskEmployees;
     }
 
 
@@ -63,8 +65,8 @@ public class Task {
         return _strTaskCatgory;
     }
 
-    public ArrayList<Employee> get_alTaskEmploees() {
-        return _alTaskEmploees;
+    public ArrayList<Employee> get_alTaskEmployees() {
+        return _alTaskEmployees;
     }
 
     public Integer get_intProjectId() {
@@ -88,8 +90,8 @@ public class Task {
         this._strTaskCatgory = _strTaskCatgory;
     }
 
-    public void set_alTaskEmploees(ArrayList<Employee> _alTaskEmploees) {
-        this._alTaskEmploees = _alTaskEmploees;
+    public void set_alTaskEmployees(ArrayList<Employee> _alTaskEmployees) {
+        this._alTaskEmployees = _alTaskEmployees;
     }
 
     public void set_intProjectId(Integer _intProjectId) {

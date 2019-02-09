@@ -15,7 +15,7 @@
 
     <center>
         <ScrollPane>
-            <GridPane>
+            <GridPane fx:id="gpTaskData" >
                 <Label GridPane.columnIndex="0" GridPane.rowIndex="0" text="Name">
                 </Label>
                 <Label GridPane.columnIndex="0" GridPane.rowIndex="1" text="Beschreibung">
@@ -27,8 +27,6 @@
                 </TextField>
                 <TextArea fx:id="txtaTaskDescription" styleClass="task-create-center-section" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                 </TextArea>
-                <TextField fx:id="txtfTaskEmployee" styleClass="task-create-center-section" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                </TextField>
             </GridPane>
         </ScrollPane>
     </center>

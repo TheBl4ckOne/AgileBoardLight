@@ -146,9 +146,15 @@ public class DatabaseAgent {
             prepStatementTask.setInt(4,task.get_intProjectId());
             prepStatementTask.execute();
 
+            for (Employee e : task.get_alTaskEmployees()) {
+                InsertEmployeesInTasks(e.get_intEmployeeId());
+            }
+
         } catch (SQLException e){
             e.printStackTrace();
         }
+        //Stellt sicher, das der neue Task aus der Datenbank in den lokalen Speicher geladen wird
+        SelectAllProjects();
     }
 
     public ArrayList<Task> SelectTasksOfProject(String projectId){
@@ -179,6 +185,26 @@ public class DatabaseAgent {
         return alTasks;
     }
 
+    private void InsertEmployeesInTasks(int intEmployeeId){
+        try {
+            String strSelectLatestTask = "SELECT MAX(taskid) FROM tasks";
+            Statement staLatestTask = _myConnection.createStatement();
+            ResultSet rsLatestProject = staLatestTask.executeQuery(strSelectLatestTask);
+            int intTaskId = 0;
+            while (rsLatestProject.next()){
+                intTaskId = rsLatestProject.getInt("MAX(taskid)");
+            }
+
+           String strIntoEmployeesInTasks = "INSERT INTO employees_in_tasks (taskid, employeeId) VALUES (?,?)";
+           PreparedStatement prepIntoEmployeesInTasks = _myConnection.prepareStatement(strIntoEmployeesInTasks);
+           prepIntoEmployeesInTasks.setInt(1,intTaskId);
+           prepIntoEmployeesInTasks.setInt(2,intEmployeeId);
+           prepIntoEmployeesInTasks.execute();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public ArrayList<Employee> SelectEmployeesInTask(int taskId){
         ArrayList<Employee> alEmployeesInTask = new ArrayList<>();
 
@@ -201,5 +227,4 @@ public class DatabaseAgent {
         }
         return  alEmployeesInTask;
     }
-
 }

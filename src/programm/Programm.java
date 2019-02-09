@@ -19,7 +19,6 @@ import java.util.Optional;
 public class Programm extends Application{
     public static Stage mainStage;
     public static ArrayList<Project> projects = new ArrayList<>();
-    public static ArrayList<Task> tasks = new ArrayList<>();
     public static DatabaseAgent dbAgent = new DatabaseAgent();
     public static int width;
     public static int height;

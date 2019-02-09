@@ -8,25 +8,22 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.GridPane;
 import programm.Programm;
-import views.ProjectCreateScreen;
 import views.ProjectScreen;
 import views.TaskCreateScreen;
-import views.TaskScreen;
 
-import javax.swing.*;
-import java.awt.event.MouseEvent;
 import java.util.Optional;
 
 public class TaskScreenController {
     @FXML
     public
     GridPane gpTaskCategories;
-    private TaskScreenController tsc;
+    public static int intCurrentProjectIndex;
 
 //Projektnamen hierher geben
 
+
     public static void handleTaskCreate(ActionEvent actionEvent) {
-        TaskCreateScreen tc = new TaskCreateScreen(Programm.mainStage);
+        TaskCreateScreen tc = new TaskCreateScreen(Programm.mainStage, intCurrentProjectIndex);
         tc.initForm();
         tc.showTaskCreate();
     }
@@ -58,7 +55,7 @@ public class TaskScreenController {
     }
 
     public static void handleChangeTask(ActionEvent actionEvent){
-        TaskCreateScreen tcs = new TaskCreateScreen(Programm.mainStage);
+        TaskCreateScreen tcs = new TaskCreateScreen(Programm.mainStage, intCurrentProjectIndex);
         tcs.initForm();
         tcs.showTaskCreate();
         //TODO: Bereits eingetragenen Text bearbeitbar anzeigen + Überschrift zu "Projekt ändern" abändern
@@ -83,11 +80,13 @@ public class TaskScreenController {
 
 
     public static void handleOpenTask(javafx.scene.input.MouseEvent mouseEvent) {
-        TaskCreateScreen tcs = new TaskCreateScreen(Programm.mainStage);
+        TaskCreateScreen tcs = new TaskCreateScreen(Programm.mainStage, intCurrentProjectIndex);
         tcs.initForm();
         tcs.showTaskCreate();
         //TODO: Überschrift ändern zu Aufgabe anzeigen und den bereits eingetragenen Text anzeigen
     }
 
-
+    public void setIntCurrentProjectIndex(int intCurrentProjectIndex) {
+        this.intCurrentProjectIndex = intCurrentProjectIndex;
+    }
 }

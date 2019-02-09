@@ -80,7 +80,7 @@ public class ProjectCreateController extends ActionEvent{
         }
 
         // Hinzufügen des neuen Projektes zur Datenbank wir im Konstruktor des Projektes behandelt
-        Project project = new Project(strProjectname,strProjectDescription,ldtDeadline,alEmployees);
+        new Project(strProjectname,strProjectDescription,ldtDeadline,alEmployees);
 
 
 

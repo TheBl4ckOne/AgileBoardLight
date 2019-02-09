@@ -33,8 +33,11 @@ public class ProjectScreenController extends ActionEvent {
         pc.showProjectCreate();
     }
 
-    public static void handleProject(MouseEvent mouseEvent) {
-        TaskScreen ts = new TaskScreen(mainStage);
+    public static void handleSelectProject(MouseEvent mouseEvent) {
+        VBox vbCurrProject = (VBox) mouseEvent.getSource();
+        int intCurrProjectId = Integer.parseInt(vbCurrProject.getId());
+
+        TaskScreen ts = new TaskScreen(mainStage, intCurrProjectId);
         ts.initForm();
         ts.showTaskScreen();
 

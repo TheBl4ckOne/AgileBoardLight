@@ -1,8 +1,6 @@
 package views;
 
-import controller.ProjectScreenController;
 import controller.TaskScreenController;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,8 +15,6 @@ import programm.Programm;
 
 import java.io.IOException;
 
-import static programm.Programm.mainStage;
-
 public class TaskScreen {
 
     public VBox vbEmployees;
@@ -29,13 +25,14 @@ public class TaskScreen {
     private FXMLLoader _loader;
     private TaskScreenController tsc;
 
-    public TaskScreen(Stage stage) {
+    public TaskScreen(Stage stage, int intCurrProject) {
         _mainStage = stage;
 
         try {
             _loader = new FXMLLoader(getClass().getResource("TaskScreenDisplay.fxml"));
             _parent = _loader.load();
             tsc = _loader.getController();
+            tsc.setIntCurrentProjectIndex(intCurrProject);
 
 
         } catch (IOException e) {
@@ -73,8 +70,8 @@ public class TaskScreen {
 
         //TODO: neue Tasks werden der gp hinzugefügt mit column und row-Index
 
-        for (Task t : Programm.tasks) {
-            createTaskElement(t,Programm.tasks.indexOf(t));
+        for (Task t : Programm.projects.get(tsc.intCurrentProjectIndex).get_tasks()) {
+            createTaskElement(t,Programm.projects.get(tsc.intCurrentProjectIndex).get_tasks().indexOf(t));
         }
 
     }
@@ -105,7 +102,7 @@ public class TaskScreen {
         lblTaskName.getStyleClass().add("task-element-section");
         lblTaskName.setOnMouseClicked(TaskScreenController::handleOpenTask);
 
-        vbEmployees = new VBox(); //TODO: Hierher muss das Employee-Objekt übergeben werden > task.get_alTaskEmploees() Schleife mit dem divider , Durchlaufen und vbox befüllen?
+        vbEmployees = new VBox(); //TODO: Hierher muss das Employee-Objekt übergeben werden > task.get_alTaskEmployees() Schleife mit dem divider , Durchlaufen und vbox befüllen?
         vbEmployees.getStyleClass().add("task-element-section");
 
         hbTaskElement.getChildren().addAll(vbEmployees, lblTaskName, mbtnTaskOptions);
