@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Project {
 
-    private String _strProjectId;
+    private int _intProjectId;
     private String _strProjectName;
     public String _strProjectDescription;
     private LocalDate _ldtDeadline;
@@ -26,8 +26,8 @@ public class Project {
     }
 
     //Konstruktor mit allen Parametern wenn aus der DB geladen wird
-    public Project(String strProjectId, String strProjectName, String strProjectDescription, LocalDate ldtDeadline, ArrayList<Employee> employees, ArrayList<Task> tasks) {
-        this._strProjectId = strProjectId;
+    public Project(int intProjectId, String strProjectName, String strProjectDescription, LocalDate ldtDeadline, ArrayList<Employee> employees, ArrayList<Task> tasks) {
+        this._intProjectId = intProjectId;
         this._strProjectName = strProjectName;
         this._strProjectDescription = strProjectDescription;
         this._ldtDeadline = ldtDeadline;
@@ -35,9 +35,9 @@ public class Project {
         this._tasks = tasks;
     }
 
-    public Project(String strProjectId, String strProjectName, String strProjectDescription, LocalDate ldtDeadline){
+    public Project(int intProjectId, String strProjectName, String strProjectDescription, LocalDate ldtDeadline){
         //Nur für Testzwecke
-        this._strProjectId = strProjectId;
+        this._intProjectId = intProjectId;
         this._strProjectName = strProjectName;
         this._strProjectDescription = strProjectDescription;
         this._ldtDeadline = ldtDeadline;
@@ -54,8 +54,8 @@ public class Project {
 
 
     //Get Methoden
-    public String get_strProjectId() {
-        return _strProjectId;
+    public int get_intProjectId() {
+        return _intProjectId;
     }
 
     public String get_strProjectName() {
@@ -75,8 +75,8 @@ public class Project {
     }
 
     //Set-Methoden
-    public void set_strProjectId(String _strProjectId) {
-        this._strProjectId = _strProjectId;
+    public void set_intProjectId(int intProjectId) {
+        this._intProjectId = intProjectId;
     }
 
     public void set_strProjectName(String _strProjectName) {

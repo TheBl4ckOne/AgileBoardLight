@@ -31,6 +31,7 @@ public class DatabaseAgent {
         }
     }
 
+
     //Projects
     public void SelectAllProjects() {
         try {
@@ -42,7 +43,7 @@ public class DatabaseAgent {
             String strProjectQuery = "SELECT * FROM projects";
             ResultSet rsProjects = statement.executeQuery(strProjectQuery);
             while (rsProjects.next()) {
-                String strProjectId = rsProjects.getString("projectsId");
+                int intProjectId = rsProjects.getInt("projectsId");
                 String strProjectName = rsProjects.getString("projectName");
                 String strProjectDeadline = rsProjects.getString("projectDeadline");
                 String strProjectDescription = rsProjects.getString("projectDescription");
@@ -50,7 +51,7 @@ public class DatabaseAgent {
                 //Achtung die Arraylists für Employees und Tasks werden nicht zwischengespeichert
                 //Sie stehen als Funktionsaufruf mit entsprechendem Rückgabewert im Konstruktor
 
-                Project p = new Project(strProjectId, strProjectName, strProjectDescription, ldtProjectdeadline, SelectEmployeesOfProject(strProjectId), SelectTasksOfProject(strProjectId));
+                Project p = new Project(intProjectId, strProjectName, strProjectDescription, ldtProjectdeadline, SelectEmployeesOfProject(intProjectId), SelectTasksOfProject(intProjectId));
                 Programm.projects.add(p);
             }
             rsProjects.close();
@@ -67,11 +68,11 @@ public class DatabaseAgent {
 
             String strIntoProject = "INSERT INTO projects (projectName, projectDescription,projectDeadline) VALUES(?,?,?)";
 
-            PreparedStatement prepStatementProject = _myConnection.prepareStatement(strIntoProject);
-            prepStatementProject.setString(1,project.get_strProjectName());
-            prepStatementProject.setString(2,project.get_strProjectDescription());
-            prepStatementProject.setString(3,project.get_ldtDeadline().toString());
-            prepStatementProject.execute();
+            PreparedStatement prepStatementInsProject = _myConnection.prepareStatement(strIntoProject);
+            prepStatementInsProject.setString(1,project.get_strProjectName());
+            prepStatementInsProject.setString(2,project.get_strProjectDescription());
+            prepStatementInsProject.setString(3,project.get_ldtDeadline().toString());
+            prepStatementInsProject.execute();
 
             String strSelectLatestProject = "SELECT MAX(projectsId) FROM projects";
             Statement staLatestProject = _myConnection.createStatement();
@@ -91,32 +92,72 @@ public class DatabaseAgent {
         SelectAllProjects();
     }
 
+    public void UpdateProject (Project project){
+        //Für das Update werden alle Spalten erneuert, um Differenzermittlung zu vermeiden
+            try {
+                String strUpdateProject = "UPDATE projects " +
+                                            "SET projectName = ?, projectDescription = ?, projectDeadline = ?" +
+                                            "WHERE projectsId = ?";
+                PreparedStatement prepStatementUpdProject = _myConnection.prepareStatement(strUpdateProject);
+                prepStatementUpdProject.setString(1,project.get_strProjectName());
+                prepStatementUpdProject.setString(2,project.get_strProjectDescription());
+                prepStatementUpdProject.setString(3,project.get_ldtDeadline().toString());
+                prepStatementUpdProject.execute();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+    }
+
+    public void DeleteProject(Project project){
+        try {
+            //Um Inkonsistenz zu vermeiden müssen auch alle mti dem Projekt verknüpften Daten in der DB gelöscht werden
+            for (Task t: project.get_tasks()) {
+                DeleteTask(t);
+            }
+
+            for (Employee e:project.get_employees()) {
+                DeleteEmployee(e);
+            }
+
+            String strDeleteProject ="DELETE FROM projects WHERE projectsId = ?";
+            PreparedStatement prepStatemntDelProject = _myConnection.prepareStatement(strDeleteProject);
+            prepStatemntDelProject.setInt(1,project.get_intProjectId());
+            prepStatemntDelProject.execute();
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        //Neuladen des lokalen Projektspeichers
+        SelectAllProjects();
+    }
+
+
     //Employees
     public void InsertEmployeeIntoDatabase(Employee employee){
         try {
 
             String strIntoEployees = "INSERT INTO employees (employeeName, projectId) VALUES (?,?)";
 
-            PreparedStatement prepStatementEmployees = _myConnection.prepareStatement(strIntoEployees);
-            prepStatementEmployees.setString(1,employee.get_strEmployeeName());
-            prepStatementEmployees.setInt(2,employee.get_intProjectId());
-            prepStatementEmployees.execute();
+            PreparedStatement prepStatementInsEmployees = _myConnection.prepareStatement(strIntoEployees);
+            prepStatementInsEmployees.setString(1,employee.get_strEmployeeName());
+            prepStatementInsEmployees.setInt(2,employee.get_intProjectId());
+            prepStatementInsEmployees.execute();
 
         } catch (SQLException e){
             e.printStackTrace();
         }
     }
 
-    public ArrayList<Employee> SelectEmployeesOfProject(String projectId){
+    public ArrayList<Employee> SelectEmployeesOfProject(int projectId){
         ArrayList<Employee> alEmployees = new ArrayList<>();
 
         try {
             String strSelectEmployees ="SELECT *  FROM employees WHERE projectId = ?";
 
-            PreparedStatement prepStatementEmployees = _myConnection.prepareStatement(strSelectEmployees);
-            prepStatementEmployees.setString(1,projectId);
+            PreparedStatement prepStatementSelEmployees = _myConnection.prepareStatement(strSelectEmployees);
+            prepStatementSelEmployees.setInt(1,projectId);
 
-            ResultSet rsEmployees = prepStatementEmployees.executeQuery();
+            ResultSet rsEmployees = prepStatementSelEmployees.executeQuery();
             while (rsEmployees.next()){
                 int intEmployeeId = rsEmployees.getInt("employeeId");
                 String strEmployeeName = rsEmployees.getString("employeeName");
@@ -134,17 +175,46 @@ public class DatabaseAgent {
         return alEmployees;
     }
 
+    public void UpdateEmployee (Employee employee){
+        try {
+            String strUpdEmployee = "UPDATE employees SET employeeName = ? WHERE employeeId = ?";
+            PreparedStatement prepStatementUpdEmployee = _myConnection.prepareStatement(strUpdEmployee);
+            prepStatementUpdEmployee.setString(1,employee.get_strEmployeeName());
+            prepStatementUpdEmployee.setInt(2,employee.get_intEmployeeId());
+            prepStatementUpdEmployee.execute();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void DeleteEmployee (Employee employee){
+        try {
+            //Um Inkonsistenzen zu vermeiden müssen auch alle Zuordnungen des Mitarbeiters zu Aufgaben gelöscht werden
+            DeleteEmployeeInTaskByEmployee(employee.get_intEmployeeId());
+
+            String strDeleteEmployee ="DELETE FROM employees WHERE employeeId  = ?";
+            PreparedStatement prepStatemntDelEmployee = _myConnection.prepareStatement(strDeleteEmployee);
+            prepStatemntDelEmployee.setInt(1,employee.get_intProjectId());
+            prepStatemntDelEmployee.execute();
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
     //Tasks
     public void InsertTaskIntoDatabase(Task task){
         try {
             String strIntoTasks = "INSERT INTO tasks (taskName, taskDescription, taskStatus, projectID) VALUES (?,?,?,?)";
 
-            PreparedStatement prepStatementTask = _myConnection.prepareStatement(strIntoTasks);
-            prepStatementTask.setString(1,task.get_strTaskName());
-            prepStatementTask.setString(2,task.get_strTaskDescription());
-            prepStatementTask.setString(3,task.get_strTaskCatgory());
-            prepStatementTask.setInt(4,task.get_intProjectId());
-            prepStatementTask.execute();
+            PreparedStatement prepStatementInsTask = _myConnection.prepareStatement(strIntoTasks);
+            prepStatementInsTask.setString(1,task.get_strTaskName());
+            prepStatementInsTask.setString(2,task.get_strTaskDescription());
+            prepStatementInsTask.setString(3,task.get_strTaskCatgory());
+            prepStatementInsTask.setInt(4,task.get_intProjectId());
+            prepStatementInsTask.execute();
 
             for (Employee e : task.get_alTaskEmployees()) {
                 InsertEmployeesInTasks(e.get_intEmployeeId());
@@ -157,15 +227,15 @@ public class DatabaseAgent {
         SelectAllProjects();
     }
 
-    public ArrayList<Task> SelectTasksOfProject(String projectId){
+    public ArrayList<Task> SelectTasksOfProject(int projectId){
         ArrayList<Task> alTasks = new ArrayList<>();
         try {
 
             String strSelectTasks = "SELECT * FROM tasks WHERE projectID = ?";
-            PreparedStatement prepStatementTask = _myConnection.prepareStatement(strSelectTasks);
-            prepStatementTask.setString(1,projectId);
+            PreparedStatement prepStatementSelTask = _myConnection.prepareStatement(strSelectTasks);
+            prepStatementSelTask.setInt(1,projectId);
 
-            ResultSet rsTasks = prepStatementTask.executeQuery();
+            ResultSet rsTasks = prepStatementSelTask.executeQuery();
 
             while (rsTasks.next()){
                 int intTaskId = rsTasks.getInt("taskid");
@@ -185,6 +255,36 @@ public class DatabaseAgent {
         return alTasks;
     }
 
+    public void UpdateTask (Task task){
+        try{
+            String strUpdTask = "UPDATE tasks SET taskName = ?, taskDescription = ?, taskStatus = ? WHERE taskid = ?";
+            PreparedStatement prepStatementUpdTask = _myConnection.prepareStatement(strUpdTask);
+            prepStatementUpdTask.setString(1,task.get_strTaskName());
+            prepStatementUpdTask.setString(2,task.get_strTaskDescription());
+            prepStatementUpdTask.setString(3,task.get_strTaskCatgory());
+            prepStatementUpdTask.setInt(4,task.get_intTaskId());
+            prepStatementUpdTask.execute();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void DeleteTask(Task task){
+        try {
+            //Um Inkonsistenzen zu vermeiden müssen auch alle Zuordnungen des Mitarbeiters zu Aufgaben gelöscht werden
+            DeleteEmployeeInTaskByTask(task.get_intTaskId());
+
+            String strDeleteTask ="DELETE FROM tasks WHERE taskid = ?";
+            PreparedStatement prepStatementDelTask = _myConnection.prepareStatement(strDeleteTask);
+            prepStatementDelTask.setInt(1,task.get_intProjectId());
+            prepStatementDelTask.execute();
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    //EmployeesInTasks
     private void InsertEmployeesInTasks(int intEmployeeId){
         try {
             String strSelectLatestTask = "SELECT MAX(taskid) FROM tasks";
@@ -196,10 +296,10 @@ public class DatabaseAgent {
             }
 
            String strIntoEmployeesInTasks = "INSERT INTO employees_in_tasks (taskid, employeeId) VALUES (?,?)";
-           PreparedStatement prepIntoEmployeesInTasks = _myConnection.prepareStatement(strIntoEmployeesInTasks);
-           prepIntoEmployeesInTasks.setInt(1,intTaskId);
-           prepIntoEmployeesInTasks.setInt(2,intEmployeeId);
-           prepIntoEmployeesInTasks.execute();
+           PreparedStatement prepInsEmployeesInTasks = _myConnection.prepareStatement(strIntoEmployeesInTasks);
+           prepInsEmployeesInTasks.setInt(1,intTaskId);
+           prepInsEmployeesInTasks.setInt(2,intEmployeeId);
+           prepInsEmployeesInTasks.execute();
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -210,10 +310,10 @@ public class DatabaseAgent {
 
         try {
             String strSelectEmployeesInTasks = "SELECT * FROM employees e INNER JOIN employees_in_tasks eit on e.employeeId = eit.employeeId WHERE eit.taskid= ?";
-            PreparedStatement prepEmployeesInTasks = _myConnection.prepareStatement(strSelectEmployeesInTasks);
-            prepEmployeesInTasks.setInt(1,taskId);
+            PreparedStatement prepSelEmployeesInTasks = _myConnection.prepareStatement(strSelectEmployeesInTasks);
+            prepSelEmployeesInTasks.setInt(1,taskId);
 
-            ResultSet rsEmployeesInTask = prepEmployeesInTasks.executeQuery();
+            ResultSet rsEmployeesInTask = prepSelEmployeesInTasks.executeQuery();
             while (rsEmployeesInTask.next()){
                 int intEmployeeId = rsEmployeesInTask.getInt("employeeId");
                 String strEmployeeName = rsEmployeesInTask.getString("employeeName");
@@ -226,5 +326,29 @@ public class DatabaseAgent {
             e.printStackTrace();
         }
         return  alEmployeesInTask;
+    }
+
+    public void DeleteEmployeeInTaskByEmployee(int emplyeeId){
+        try {
+            String strDeleteEmployeeInTask ="DELETE FROM employees_in_tasks WHERE employeeId = ?";
+            PreparedStatement prepStatementDelTask = _myConnection.prepareStatement(strDeleteEmployeeInTask);
+            prepStatementDelTask.setInt(1,emplyeeId);
+            prepStatementDelTask.execute();
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void DeleteEmployeeInTaskByTask (int taskId){
+        try {
+            String strDeleteEmployeeInTask ="DELETE FROM employees_in_tasks WHERE taskid = ?";
+            PreparedStatement prepStatementDelTask = _myConnection.prepareStatement(strDeleteEmployeeInTask);
+            prepStatementDelTask.setInt(1,taskId);
+            prepStatementDelTask.execute();
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
