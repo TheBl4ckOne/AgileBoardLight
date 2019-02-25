@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -18,7 +14,9 @@
     <center>
         <ScrollPane>
             <GridPane fx:id="gpTaskCategories">
-
+                <VBox fx:id="vbToDo" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <VBox fx:id="vbInProgress" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <VBox fx:id="vbDone" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
             </GridPane>
         </ScrollPane>
     </center>
@@ -26,8 +24,6 @@
     <bottom>
         <HBox styleClass="bottom-section">
             <Button fx:id="btnHome" styleClass="header-section" text="Home" onAction="#handleHome">
-            </Button>
-            <Button fx:id="btnSaveTasks" styleClass="header-section" text="Speichern" onAction="#handleSaveTasks">
             </Button>
         </HBox>
     </bottom>

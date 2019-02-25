@@ -59,7 +59,7 @@ public class TaskCreateController {
 
         //Hinzufügen des Task zur Datenbank wird im Konstruktor des Task behandelt
         Project p = Programm.projects.get(intCurrentProjectIndex);
-        new Task(strTaskName, strTaskDescription, strTaskCategory, alTaskEmployees, Integer.parseInt(p.get_intProjectId()));
+        new Task(strTaskName, strTaskDescription, strTaskCategory, alTaskEmployees, p.get_intProjectId());
 
 
         TaskScreen ts = new TaskScreen(Programm.mainStage, intCurrentProjectIndex);

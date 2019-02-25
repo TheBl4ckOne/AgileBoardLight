@@ -2,12 +2,10 @@ package views;
 
 import controller.TaskScreenController;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import models.Task;
@@ -15,9 +13,11 @@ import programm.Programm;
 
 import java.io.IOException;
 
+import static javafx.scene.layout.GridPane.getColumnIndex;
+
 public class TaskScreen {
 
-    public VBox vbEmployees;
+    private VBox vbEmployees;
 
     private Parent _parent;
     private Stage _mainStage;
@@ -33,12 +33,10 @@ public class TaskScreen {
             _parent = _loader.load();
             tsc = _loader.getController();
             tsc.setIntCurrentProjectIndex(intCurrProject);
-
-
+            tsc.setTs(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void initForm() {
@@ -76,17 +74,21 @@ public class TaskScreen {
 
     }
 
-    private void createTaskElement(Task task, int rowindex){
+    private void createTaskElement(Task task, int index){
 
         HBox hbTaskElement = new HBox();
         hbTaskElement.getStyleClass().add("task-element-section");
+        hbTaskElement.setId(Integer.toString(index));
+        hbTaskElement.setUserData(task);
 
         MenuItem miUp = new MenuItem(">");
         miUp.setOnAction(TaskScreenController::handleUpTask);
+        miUp.setUserData(hbTaskElement);
 
         MenuItem miDown = new MenuItem("<");
         miDown.setOnAction(TaskScreenController::handleDownTask);
-        miDown.setDisable(true);
+        miDown.setUserData(hbTaskElement);
+
 
         MenuItem miChange = new MenuItem("ändern");
         miChange.setOnAction(TaskScreenController::handleChangeTask);
@@ -94,6 +96,7 @@ public class TaskScreen {
 
         MenuItem miDelete = new MenuItem("löschen");
         miDelete.setOnAction(TaskScreenController::handleDeleteTask);
+        miDelete.setUserData(hbTaskElement);
 
         MenuButton mbtnTaskOptions = new MenuButton("...", null, miUp, miDown, miChange, miDelete);
         mbtnTaskOptions.getStyleClass().add("task-element-section");
@@ -106,9 +109,34 @@ public class TaskScreen {
         vbEmployees.getStyleClass().add("task-element-section");
 
         hbTaskElement.getChildren().addAll(vbEmployees, lblTaskName, mbtnTaskOptions);
+        drawTaskElement(hbTaskElement);
+    }
 
-        tsc.gpTaskCategories.add(hbTaskElement, 0, (rowindex+2));
+    private void drawTaskElement(HBox hbTaskElement){
+        Task currentTask = (Task) hbTaskElement.getUserData();
+        String strStatus = currentTask.get_strTaskStatus();
 
+        switch (strStatus) {
+            case "ToDo":
+                tsc.vbToDo.getChildren().add(hbTaskElement);
+                break;
+            case "InProgress":
+                tsc.vbInProgress.getChildren().add(hbTaskElement);
+                break;
+            case "Done":
+                tsc.vbDone.getChildren().add(hbTaskElement);
+                break;
+        }
+    }
+
+    public void updateTaskElement(HBox hbCurrentTask){
+        removeTaskElement(hbCurrentTask);
+        drawTaskElement(hbCurrentTask);
+    }
+
+    public void removeTaskElement(HBox hbCurrentTask){
+        VBox vBox = (VBox) hbCurrentTask.getParent();
+        vBox.getChildren().remove(hbCurrentTask);
     }
 
     private void createEmployeeElement(){

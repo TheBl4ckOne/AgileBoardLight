@@ -212,7 +212,7 @@ public class DatabaseAgent {
             PreparedStatement prepStatementInsTask = _myConnection.prepareStatement(strIntoTasks);
             prepStatementInsTask.setString(1,task.get_strTaskName());
             prepStatementInsTask.setString(2,task.get_strTaskDescription());
-            prepStatementInsTask.setString(3,task.get_strTaskCatgory());
+            prepStatementInsTask.setString(3,task.get_strTaskStatus());
             prepStatementInsTask.setInt(4,task.get_intProjectId());
             prepStatementInsTask.execute();
 
@@ -261,7 +261,7 @@ public class DatabaseAgent {
             PreparedStatement prepStatementUpdTask = _myConnection.prepareStatement(strUpdTask);
             prepStatementUpdTask.setString(1,task.get_strTaskName());
             prepStatementUpdTask.setString(2,task.get_strTaskDescription());
-            prepStatementUpdTask.setString(3,task.get_strTaskCatgory());
+            prepStatementUpdTask.setString(3,task.get_strTaskStatus());
             prepStatementUpdTask.setInt(4,task.get_intTaskId());
             prepStatementUpdTask.execute();
         }catch (Exception e){
@@ -276,7 +276,7 @@ public class DatabaseAgent {
 
             String strDeleteTask ="DELETE FROM tasks WHERE taskid = ?";
             PreparedStatement prepStatementDelTask = _myConnection.prepareStatement(strDeleteTask);
-            prepStatementDelTask.setInt(1,task.get_intProjectId());
+            prepStatementDelTask.setInt(1,task.get_intTaskId());
             prepStatementDelTask.execute();
 
         } catch (Exception e){

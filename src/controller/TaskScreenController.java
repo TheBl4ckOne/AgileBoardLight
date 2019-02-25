@@ -6,21 +6,29 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import models.Task;
 import programm.Programm;
 import views.ProjectScreen;
 import views.TaskCreateScreen;
+import views.TaskScreen;
 
 import java.util.Optional;
 
 public class TaskScreenController {
     @FXML
-    public
-    GridPane gpTaskCategories;
+    public  GridPane gpTaskCategories;
+    @FXML
+    public VBox vbToDo;
+    @FXML
+    public VBox vbInProgress;
+    @FXML
+    public VBox vbDone;
     public static int intCurrentProjectIndex;
-
-//Projektnamen hierher geben
-
+    private static TaskScreen ts;
 
     public static void handleTaskCreate(ActionEvent actionEvent) {
         TaskCreateScreen tc = new TaskCreateScreen(Programm.mainStage, intCurrentProjectIndex);
@@ -49,11 +57,6 @@ public class TaskScreenController {
 
     }
 
-    public void handleSaveTasks(ActionEvent actionEvent){
-        //TODO: Speichern der verschobenen Tasks
-
-    }
-
     public static void handleChangeTask(ActionEvent actionEvent){
         TaskCreateScreen tcs = new TaskCreateScreen(Programm.mainStage, intCurrentProjectIndex);
         tcs.initForm();
@@ -62,20 +65,40 @@ public class TaskScreenController {
     }
 
     public static void handleDeleteTask(ActionEvent actionEvent){
+        MenuItem miCurrentTask = (MenuItem) actionEvent.getSource();
+        HBox hbCurrentTask = (HBox) miCurrentTask.getUserData();
+        Task currentTask = (Task) hbCurrentTask.getUserData();
 
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Aufgabe löschen?");
+        alert.setHeaderText("Wollen Sie diese Aufgabe wirklich endgültig löschen?");
+
+        ButtonType btnJa = new ButtonType("JA");
+        ButtonType btnNein = new ButtonType("NEIN", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        alert.getButtonTypes().setAll(btnJa,btnNein);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == btnJa){
+            currentTask.deleteTask();
+            ts.removeTaskElement(hbCurrentTask);
+        }
     }
 
     public static void handleUpTask(ActionEvent actionEvent){
-        //TODO: Methode zur Kontrolle ob es nicht schon in der ganz rechten oder linken Kategorie ist
-
-        //tsc.gpTaskCategories.add(hbTaskElement, 0, (rowindex+2));
-        //get column index?
-        //row neu bestimmen nach ArrayList
-        //Get Node > Welcher Task wurde geklickt?
-    }
+        MenuItem miCurrentTask = (MenuItem) actionEvent.getSource();
+        HBox hbCurrentTask = (HBox) miCurrentTask.getUserData();
+        Task currentTask = (Task) hbCurrentTask.getUserData();
+        currentTask.upTask();
+        ts.updateTaskElement(hbCurrentTask);
+        }
 
     public static void handleDownTask(ActionEvent actionEvent){
-
+        MenuItem miCurrentTask = (MenuItem) actionEvent.getSource();
+        HBox hbCurrentTask = (HBox) miCurrentTask.getUserData();
+        Task currentTask = (Task) hbCurrentTask.getUserData();
+        currentTask.downTask();
+        ts.updateTaskElement(hbCurrentTask);
     }
 
 
@@ -88,5 +111,9 @@ public class TaskScreenController {
 
     public void setIntCurrentProjectIndex(int intCurrentProjectIndex) {
         this.intCurrentProjectIndex = intCurrentProjectIndex;
+    }
+
+    public void setTs(TaskScreen ts) {
+        this.ts = ts;
     }
 }

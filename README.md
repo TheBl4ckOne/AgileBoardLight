@@ -25,6 +25,7 @@ alle Variablennamen enthalten ein Kürzel aus dem der Datetyp hervor geht
        TextField txtf
        DatePicket dtpi
        Borderpane bp
+       MenuItem mi
         
        Resultset rs
        PreparedStatement prep

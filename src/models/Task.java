@@ -4,27 +4,26 @@ import programm.Programm;
 
 import java.util.ArrayList;
 
+import static programm.Programm.enmTaskStatus.*;
+
 public class Task {
 
     private Integer _intTaskId;
     private String _strTaskName;
     private String _strTaskDescription;
-    private String _strTaskCatgory;
     private String _strTaskStatus;
     private Integer _intProjectId;
     private ArrayList<Employee> _alTaskEmployees;
 
-
-
-
+    //Konstuktoren
     public Task(String strTaskName, String strTaskDescription, String strTaskStatus, ArrayList<Employee> alTaskEmployees, Integer intProjectId) {
         //Konstruktor zum erstellen eines Task aus Nutzereingaben
         this._strTaskName = strTaskName;
         this._strTaskDescription = strTaskDescription;
-        this._strTaskCatgory = strTaskStatus;
+        this._strTaskStatus = strTaskStatus;
         this._alTaskEmployees = alTaskEmployees;
         this._intProjectId = intProjectId;
-        this._strTaskStatus = Programm.enmTaskStatus.ToDo.toString();
+        this._strTaskStatus = ToDo.toString();
 
         Programm.dbAgent.InsertTaskIntoDatabase(this);
     }
@@ -34,7 +33,7 @@ public class Task {
         this._intTaskId = intTaskId;
         this._strTaskName = strTaskName;
         this._strTaskDescription = strTaskDescription;
-        this._strTaskCatgory = strTaskStatus;
+        this._strTaskStatus = strTaskStatus;
         this._alTaskEmployees = alTaskEmployees;
         this._intProjectId = intProjectId;
     }
@@ -43,10 +42,44 @@ public class Task {
         //Nur zum Debuggen
         this._strTaskName = strTaskName;
         this._strTaskDescription = strTaskDescription;
-        this._strTaskCatgory = strTaskStatus;
+        this._strTaskStatus = strTaskStatus;
         this._alTaskEmployees = alTaskEmployees;
     }
 
+    //Methoden
+    public void upTask(){
+        switch (this._strTaskStatus) {
+            case "ToDo":
+                this.set_strTaskStatus(InProgress.toString());
+                break;
+            case "InProgress":
+                this.set_strTaskStatus(Done.toString());
+                break;
+            case "Done":
+                break;
+        }
+        Programm.dbAgent.UpdateTask(this);
+    }
+
+    public  void downTask(){
+        switch (this._strTaskStatus) {
+            case "ToDo":
+                break;
+            case "InProgress":
+                this.set_strTaskStatus(ToDo.toString());
+                break;
+            case "Done":
+                this.set_strTaskStatus(InProgress.toString());
+                break;
+        }
+        Programm.dbAgent.UpdateTask(this);
+    }
+
+    public void deleteTask(){
+        Project currentProject = Programm.projects.get(this.get_intProjectId());
+        currentProject.get_tasks().remove(this);
+        Programm.dbAgent.DeleteTask(this);
+    }
 
     //Get-Methoden
     public Integer get_intTaskId() {
@@ -61,8 +94,8 @@ public class Task {
         return _strTaskDescription;
     }
 
-    public String get_strTaskCatgory() {
-        return _strTaskCatgory;
+    public String get_strTaskStatus() {
+        return _strTaskStatus;
     }
 
     public ArrayList<Employee> get_alTaskEmployees() {
@@ -86,8 +119,8 @@ public class Task {
         this._strTaskDescription = _strTaskDescription;
     }
 
-    public void set_strTaskCatgory(String _strTaskCatgory) {
-        this._strTaskCatgory = _strTaskCatgory;
+    public void set_strTaskStatus(String _strTaskStatus) {
+        this._strTaskStatus = _strTaskStatus;
     }
 
     public void set_alTaskEmployees(ArrayList<Employee> _alTaskEmployees) {
