@@ -195,7 +195,7 @@ public class DatabaseAgent {
 
             String strDeleteEmployee ="DELETE FROM employees WHERE employeeId  = ?";
             PreparedStatement prepStatemntDelEmployee = _myConnection.prepareStatement(strDeleteEmployee);
-            prepStatemntDelEmployee.setInt(1,employee.get_intProjectId());
+            prepStatemntDelEmployee.setInt(1,employee.get_intEmployeeId());
             prepStatemntDelEmployee.execute();
 
         } catch (Exception e){

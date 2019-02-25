@@ -43,14 +43,10 @@ public class Project {
         this._ldtDeadline = ldtDeadline;
     }
 
-    public ArrayList<Task> get_tasks() {
-        return _tasks;
+    public void deleteProject(){
+        Programm.dbAgent.DeleteProject(this);
+        Programm.projects.remove(this);
     }
-
-    public void set_tasks(ArrayList<Task> _tasks) {
-        this._tasks = _tasks;
-    }
-
 
 
     //Get Methoden
@@ -74,6 +70,10 @@ public class Project {
         return _employees;
     }
 
+    public ArrayList<Task> get_tasks() {
+        return _tasks;
+    }
+
     //Set-Methoden
     public void set_intProjectId(int intProjectId) {
         this._intProjectId = intProjectId;
@@ -93,5 +93,9 @@ public class Project {
 
     public void set_employees(ArrayList<Employee> _employees) {
         this._employees = _employees;
+    }
+
+    public void set_tasks(ArrayList<Task> _tasks) {
+        this._tasks = _tasks;
     }
 }

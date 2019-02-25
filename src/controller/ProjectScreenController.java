@@ -1,23 +1,17 @@
 package controller;
 
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import models.Project;
 import programm.Programm;
 import views.ProjectCreateScreen;
 import views.ProjectScreen;
 import views.TaskScreen;
-
-import java.util.Arrays;
 
 import static programm.Programm.mainStage;
 
@@ -26,6 +20,8 @@ public class ProjectScreenController extends ActionEvent {
 
     @FXML
     public GridPane gpProjectScreen;
+
+    private static ProjectScreen ps;
 
     public void handleCreateProject(ActionEvent actionEvent) {
         ProjectCreateScreen pc = new ProjectCreateScreen(Programm.mainStage);
@@ -54,9 +50,15 @@ public class ProjectScreenController extends ActionEvent {
     }
 
     public static void handleDeleteProject(ActionEvent actionEvent){
-        //gpProjectScreen.getChildren().remove(ProjectScreen.vbProjectBox);
-        //Daten mit VBox verknüpfen (Metadaten)
+        MenuItem miCurrentProject = (MenuItem) actionEvent.getSource();
+        VBox vbCurrentProject = (VBox) miCurrentProject.getUserData();
+        Project currentProject = (Project) vbCurrentProject.getUserData();
+        currentProject.deleteProject();
+        ps.removeProjectElement(vbCurrentProject);
     }
 
+    public void setPs(ProjectScreen ps) {
+        this.ps = ps;
+    }
 }
 

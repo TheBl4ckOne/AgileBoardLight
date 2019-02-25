@@ -129,14 +129,14 @@ public class TaskScreen {
         }
     }
 
-    public void updateTaskElement(HBox hbCurrentTask){
-        removeTaskElement(hbCurrentTask);
-        drawTaskElement(hbCurrentTask);
+    public void updateTaskElement(HBox hbCurrentTaskElement){
+        removeTaskElement(hbCurrentTaskElement);
+        drawTaskElement(hbCurrentTaskElement);
     }
 
-    public void removeTaskElement(HBox hbCurrentTask){
-        VBox vBox = (VBox) hbCurrentTask.getParent();
-        vBox.getChildren().remove(hbCurrentTask);
+    public void removeTaskElement(HBox hbCurrentTaskElement){
+        VBox vBox = (VBox) hbCurrentTaskElement.getParent();
+        vBox.getChildren().remove(hbCurrentTaskElement);
     }
 
     private void createEmployeeElement(){

@@ -30,6 +30,7 @@ public class ProjectScreen {
             _loader = new FXMLLoader(getClass().getResource("ProjectScreenDisplay.fxml"));
             _parent = _loader.load();
             psc = _loader.getController();
+            psc.setPs(this);
 
 
         } catch (IOException e) {
@@ -64,17 +65,22 @@ public class ProjectScreen {
         vbProjectBox.setId(Integer.toString(index));
         vbProjectBox.setOnMouseClicked(ProjectScreenController::handleSelectProject);
         vbProjectBox.getStyleClass().add("project-element-section-vbProjectBox");
+        vbProjectBox.setUserData(project);
 
         vbProjectBox.getStyleClass().add("project-element-section");
 
         Label lblProjectname = new Label(project.get_strProjectName());
         lblProjectname.getStyleClass().add("project-element-section-lblProjectname");
 
+        //Wenn die MenuItems zu einem Menubutton gehören haben sie kein Earentelement
+        //--> um die Verbindung zur VBox nicht zu verlieren wird diese als UserData übergeben
         MenuItem miChange = new MenuItem("ändern");
         miChange.setOnAction(ProjectScreenController::handleChangeProject);
+        miChange.setUserData(vbProjectBox);
 
         MenuItem miDelete = new MenuItem("löschen");
         miDelete.setOnAction(ProjectScreenController::handleDeleteProject);
+        miDelete.setUserData(vbProjectBox);
 
         mbtnProjectOptions = new MenuButton("...", null, miChange, miDelete);
         mbtnProjectOptions.getStyleClass().add("project-element-section");
@@ -98,5 +104,9 @@ public class ProjectScreen {
 
     private int calcRowIndex(int index){
        return index/2;
+    }
+
+    public void removeProjectElement(VBox vbCurrentTaskElement){
+        psc.gpProjectScreen.getChildren().remove(vbCurrentTaskElement);
     }
 }
