@@ -56,7 +56,6 @@ public class TaskCreateScreen {
             CheckBox cbEmployee = new CheckBox();
             cbEmployee.setText(e.get_strEmployeeName());
             cbEmployee.setId(String.valueOf(arrCurrEmployees.indexOf(e)));
-            cbEmployee.getStyleClass().add("task-create-center-section");
             hbEmployees.getChildren().add(cbEmployee);
         }
 

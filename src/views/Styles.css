@@ -22,9 +22,8 @@
     .project-create-center-section{
         -fx-min-width: 40em;
     }
-
     .task-create-center-section{
-        -fx-min-width: 43em;
+        -fx-min-width: 40em;
     }
 
 
