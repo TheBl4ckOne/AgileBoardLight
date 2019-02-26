@@ -66,7 +66,6 @@ public class TaskScreen {
         gp.add(vbAtWork, 1, 0);
         gp.add(vbReady, 2, 0);
 
-        //TODO: neue Tasks werden der gp hinzugefügt mit column und row-Index
 
         for (Task t : Programm.projects.get(tsc.intCurrentProjectIndex).get_tasks()) {
             createTaskElement(t,Programm.projects.get(tsc.intCurrentProjectIndex).get_tasks().indexOf(t));
@@ -104,6 +103,7 @@ public class TaskScreen {
         Label lblTaskName = new Label(task.get_strTaskName());
         lblTaskName.getStyleClass().add("task-element-section");
         lblTaskName.setOnMouseClicked(TaskScreenController::handleOpenTask);
+        lblTaskName.setUserData(hbTaskElement);
 
         vbEmployees = new VBox(); //TODO: Hierher muss das Employee-Objekt übergeben werden > task.get_alTaskEmployees() Schleife mit dem divider , Durchlaufen und vbox befüllen?
         vbEmployees.getStyleClass().add("task-element-section");

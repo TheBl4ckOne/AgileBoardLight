@@ -30,6 +30,8 @@ public class TaskCreateController {
 
     private int intCurrentProjectIndex;
 
+    private boolean bNewTask;
+
     public void handleSaveTask(ActionEvent actionEvent) {
         //Speichern und zurück zur Projektseite
 
@@ -53,14 +55,21 @@ public class TaskCreateController {
                     alTaskEmployees.add(e);
                 }
             }catch (ClassCastException e){
-
+                e.printStackTrace();
             }
         }
 
-        //Hinzufügen des Task zur Datenbank wird im Konstruktor des Task behandelt
-        Project p = Programm.projects.get(intCurrentProjectIndex);
-        new Task(strTaskName, strTaskDescription, strTaskCategory, alTaskEmployees, p.get_intProjectId());
-
+        if (bNewTask){
+            //Hinzufügen des Task zur Datenbank wird im Konstruktor des Task behandelt
+            Project p = Programm.projects.get(intCurrentProjectIndex);
+            new Task(strTaskName, strTaskDescription, strTaskCategory, alTaskEmployees, p.get_intProjectId());
+        }else {
+            Task t = (Task) gpTaskData.getUserData();
+            t.set_strTaskName(txtfTaskname.getText());
+            t.set_strTaskDescription(txtaTaskDescription.getText());
+            t.set_alTaskEmployees(alTaskEmployees);
+            Programm.dbAgent.UpdateTask(t);
+        }
 
         TaskScreen ts = new TaskScreen(Programm.mainStage, intCurrentProjectIndex);
         ts.initForm();
@@ -88,10 +97,16 @@ public class TaskCreateController {
         }
     }
 
+    //Setter
     public void setIntCurrentProjectIndex(int intCurrentProjectIndex) {
         this.intCurrentProjectIndex = intCurrentProjectIndex;
     }
 
+    public void setbNewTask(boolean bNewTask) {
+        this.bNewTask = bNewTask;
+    }
+
+    //Getter
     public int getIntCurrentProjectIndex() {
         return intCurrentProjectIndex;
     }

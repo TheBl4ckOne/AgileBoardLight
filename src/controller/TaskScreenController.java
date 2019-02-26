@@ -3,10 +3,7 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -103,10 +100,13 @@ public class TaskScreenController {
 
 
     public static void handleOpenTask(javafx.scene.input.MouseEvent mouseEvent) {
+        Label lblCurrentTaskLabel = (Label) mouseEvent.getSource();
+        HBox hbCurrentTaskElement =  (HBox) lblCurrentTaskLabel.getParent();
+        Task currentTask = (Task) hbCurrentTaskElement.getUserData();
+
         TaskCreateScreen tcs = new TaskCreateScreen(Programm.mainStage, intCurrentProjectIndex);
-        tcs.initForm();
+        tcs.initForm(currentTask);
         tcs.showTaskCreate();
-        //TODO: Überschrift ändern zu Aufgabe anzeigen und den bereits eingetragenen Text anzeigen
     }
 
     public void setIntCurrentProjectIndex(int intCurrentProjectIndex) {
