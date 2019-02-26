@@ -26,6 +26,7 @@ alle Variablennamen enthalten ein Kürzel aus dem der Datetyp hervor geht
        DatePicket dtpi
        Borderpane bp
        MenuItem mi
+       Boolean b
         
        Resultset rs
        PreparedStatement prep

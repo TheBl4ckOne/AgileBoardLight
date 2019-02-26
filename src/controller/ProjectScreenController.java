@@ -40,13 +40,12 @@ public class ProjectScreenController extends ActionEvent {
     }
 
     public static void handleChangeProject(ActionEvent actionEvent){
+        MenuItem miCurrentProject = (MenuItem) actionEvent.getSource();
+        VBox vbCurrentProjectElement = (VBox) miCurrentProject.getUserData();
+        Project currentProject = (Project) vbCurrentProjectElement.getUserData();
         ProjectCreateScreen pc = new ProjectCreateScreen(Programm.mainStage);
-
-        //ProjectCreateScreen.lblCreateProject.setText("Projekt ändern");
-
-        pc.initForm();
+        pc.initForm(currentProject);
         pc.showProjectCreate();
-        //TODO: Bereits eingetragenen Text bearbeitbar anzeigen + Überschrift zu "Projekt ändern" abändern
     }
 
     public static void handleDeleteProject(ActionEvent actionEvent){

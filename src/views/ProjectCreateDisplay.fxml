@@ -8,7 +8,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextArea?>
-<BorderPane fx:id="bpProjectCreateDisplay" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@Styles.css" fx:controller="controller.ProjectCreateController">
+<BorderPane  xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@Styles.css" fx:controller="controller.ProjectCreateController">
 
     <top>
         <Label id="lblCreateProject" styleClass="header-section" text="Projekt erstellen">
@@ -31,8 +31,12 @@
                 </TextField>
                 <TextArea fx:id="txtaProjectDescription" styleClass="project-create-center-section" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                 </TextArea>
-                <TextField fx:id="txtfProjectTeam" styleClass="project-create-center-section" GridPane.columnIndex="1" GridPane.rowIndex="2" onAction="#handleNewEmployee">
-                </TextField>
+                <HBox styleClass="project-create-center-section" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <TextField fx:id="txtfProjectTeam"  onAction="#handleNewEmployee" >
+                    </TextField>
+                    <Button onAction="#handleNewEmployee" >+</Button>
+                    <Label fx:id="lblEmployees"></Label>
+                </HBox>
                 <DatePicker fx:id="dtpiDeadline" GridPane.columnIndex="1" GridPane.rowIndex="3">
                 </DatePicker>
             </GridPane>
@@ -40,10 +44,10 @@
     </center>
 
     <bottom>
-            <HBox fx:id="hbProjectCreateBottom" styleClass="bottom-section">
-                <Button fx:id="btnAbortProject" text="Abbrechen" onAction="#handleAbortProject">
+            <HBox styleClass="bottom-section">
+                <Button text="Abbrechen" onAction="#handleAbortProject">
                 </Button>
-                <Button fx:id="btnSaveProject" text="Speichern" onAction="#handleSaveProject">
+                <Button text="Speichern" onAction="#handleSaveProject">
                 </Button>
             </HBox>
 

@@ -2,8 +2,12 @@ package controller;
 
 
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import models.Employee;
 import models.Project;
@@ -19,17 +23,16 @@ public class ProjectCreateController extends ActionEvent{
 
     //Lädt das Element mit der Entsprechenden ID aus dem FXML
     @FXML
-    private TextField txtfProjectname, txtfProjectTeam;
+    public TextField txtfProjectname, txtfProjectTeam;
     @FXML
-    private TextArea txtaProjectDescription;
+    public TextArea txtaProjectDescription;
     @FXML
-    private DatePicker dtpiDeadline;
+    public DatePicker dtpiDeadline;
     @FXML
-    private Button btnAbortProject, btnSaveProject;
-    @FXML
-    private BorderPane bpProjectCreateDisplay;
+    public Label lblEmployees;
 
 
+    private boolean bNewProject;
 
     public void handleAbortProject(ActionEvent actionEvent){ //siehe ProjectChangeController
 
@@ -57,16 +60,13 @@ public class ProjectCreateController extends ActionEvent{
     }
     @FXML //Ermöglicht den aufruf der private Methode aus der FXML heraus
     private void handleSaveProject(ActionEvent actionEvent) {
-
-        //TODO Datenbankverbindung herstellen und eingegebenen Daten speichern
-
         //CHANGE Im alten Stand würden neue Textfelder im Code generiert und deren Text abgefragt
         //  Die im Code generierten Textfelder sind nicht die selben wie die angezeigten Textfelder, deren Text wiederum nicht abgefragt wurde
         //  --> Die Elemente werden nun aus der FXML geladen, siehe Oben
 
         String strProjectname = txtfProjectname.getText();
         String strProjectDescription = txtaProjectDescription.getText();
-        String[] strProjectTeam = txtfProjectTeam.getText().split(",");
+        String[] strProjectTeam = lblEmployees.getText().split(", ");
         LocalDate ldtDeadline =  dtpiDeadline.getValue();
 
         ArrayList<Employee> alEmployees = new ArrayList<>();
@@ -79,10 +79,18 @@ public class ProjectCreateController extends ActionEvent{
             alEmployees.add(new Employee(s));
         }
 
-        // Hinzufügen des neuen Projektes zur Datenbank wir im Konstruktor des Projektes behandelt
-        new Project(strProjectname,strProjectDescription,ldtDeadline,alEmployees);
+        if(bNewProject){
+            // Hinzufügen des neuen Projektes zur Datenbank wir im Konstruktor des Projektes behandelt
+            new Project(strProjectname,strProjectDescription,ldtDeadline,alEmployees);
+        }else {
+           Project p = (Project) txtfProjectname.getUserData();
+           p.set_strProjectName(strProjectname);
+           p.set_strProjectDescription(strProjectDescription);
+           p.set_ldtDeadline(ldtDeadline);
+           p.set_employees(alEmployees);
 
-
+           Programm.dbAgent.UpdateProject(p);
+        }
 
         ProjectScreen ps = new ProjectScreen(Programm.mainStage);
         ps.initForm();
@@ -90,6 +98,17 @@ public class ProjectCreateController extends ActionEvent{
     }
 
     public void handleNewEmployee(ActionEvent actionEvent) {
-        actionEvent.getSource();
+        Node node = (Node) actionEvent.getSource();
+        if (lblEmployees.getText()== ""){
+            lblEmployees.setText(txtfProjectTeam.getText());
+            txtfProjectTeam.setText("");
+        }else {
+            lblEmployees.setText(lblEmployees.getText() + ", " + txtfProjectTeam.getText());
+            txtfProjectTeam.setText("");
+        }
+    }
+
+    public void setbNewProject(boolean bNewProject) {
+        this.bNewProject = bNewProject;
     }
 }

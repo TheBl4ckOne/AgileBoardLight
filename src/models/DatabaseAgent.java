@@ -102,6 +102,7 @@ public class DatabaseAgent {
                 prepStatementUpdProject.setString(1,project.get_strProjectName());
                 prepStatementUpdProject.setString(2,project.get_strProjectDescription());
                 prepStatementUpdProject.setString(3,project.get_ldtDeadline().toString());
+                prepStatementUpdProject.setInt(4,project.get_intProjectId());
                 prepStatementUpdProject.execute();
             }catch (Exception e){
                 e.printStackTrace();
@@ -133,7 +134,7 @@ public class DatabaseAgent {
 
 
     //Employees
-    public void InsertEmployeeIntoDatabase(Employee employee){
+    private void InsertEmployeeIntoDatabase(Employee employee){
         try {
 
             String strIntoEployees = "INSERT INTO employees (employeeName, projectId) VALUES (?,?)";
@@ -148,7 +149,7 @@ public class DatabaseAgent {
         }
     }
 
-    public ArrayList<Employee> SelectEmployeesOfProject(int projectId){
+    private ArrayList<Employee> SelectEmployeesOfProject(int projectId){
         ArrayList<Employee> alEmployees = new ArrayList<>();
 
         try {

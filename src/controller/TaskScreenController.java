@@ -55,10 +55,13 @@ public class TaskScreenController {
     }
 
     public static void handleChangeTask(ActionEvent actionEvent){
+        Label lblCurrentTaskLabel = (Label) actionEvent.getSource();
+        HBox hbCurrentTaskElement =  (HBox) lblCurrentTaskLabel.getParent();
+        Task currentTask = (Task) hbCurrentTaskElement.getUserData();
+
         TaskCreateScreen tcs = new TaskCreateScreen(Programm.mainStage, intCurrentProjectIndex);
-        tcs.initForm();
+        tcs.initForm(currentTask);
         tcs.showTaskCreate();
-        //TODO: Bereits eingetragenen Text bearbeitbar anzeigen + Überschrift zu "Projekt ändern" abändern
     }
 
     public static void handleDeleteTask(ActionEvent actionEvent){
