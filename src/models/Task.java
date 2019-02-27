@@ -76,8 +76,6 @@ public class Task {
     }
 
     public void deleteTask(){
-        Project currentProject = Programm.projects.get(this.get_intProjectId());
-        currentProject.get_tasks().remove(this);
         Programm.dbAgent.DeleteTask(this);
     }
 

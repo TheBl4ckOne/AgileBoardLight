@@ -284,6 +284,7 @@ public class DatabaseAgent {
         } catch (Exception e){
             e.printStackTrace();
         }
+        SelectAllProjects();
     }
 
     //EmployeesInTasks
