@@ -21,7 +21,7 @@ public class ProjectScreenController extends ActionEvent {
     @FXML
     public GridPane gpProjectScreen;
 
-    private static ProjectScreen ps;
+    private ProjectScreen ps;
 
     public void handleCreateProject(ActionEvent actionEvent) {
         ProjectCreateScreen pc = new ProjectCreateScreen(Programm.mainStage);
@@ -29,7 +29,7 @@ public class ProjectScreenController extends ActionEvent {
         pc.showProjectCreate();
     }
 
-    public static void handleSelectProject(MouseEvent mouseEvent) {
+    public void handleSelectProject(MouseEvent mouseEvent) {
         VBox vbCurrProject = (VBox) mouseEvent.getSource();
         int intCurrProjectId = Integer.parseInt(vbCurrProject.getId());
 
@@ -39,7 +39,7 @@ public class ProjectScreenController extends ActionEvent {
 
     }
 
-    public static void handleChangeProject(ActionEvent actionEvent){
+    public void handleChangeProject(ActionEvent actionEvent){
         MenuItem miCurrentProject = (MenuItem) actionEvent.getSource();
         VBox vbCurrentProjectElement = (VBox) miCurrentProject.getUserData();
         Project currentProject = (Project) vbCurrentProjectElement.getUserData();
@@ -48,7 +48,7 @@ public class ProjectScreenController extends ActionEvent {
         pc.showProjectCreate();
     }
 
-    public static void handleDeleteProject(ActionEvent actionEvent){
+    public void handleDeleteProject(ActionEvent actionEvent){
         MenuItem miCurrentProject = (MenuItem) actionEvent.getSource();
         VBox vbCurrentProject = (VBox) miCurrentProject.getUserData();
         Project currentProject = (Project) vbCurrentProject.getUserData();

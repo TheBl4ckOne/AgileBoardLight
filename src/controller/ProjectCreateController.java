@@ -34,7 +34,7 @@ public class ProjectCreateController extends ActionEvent{
 
     private boolean bNewProject;
 
-    public void handleAbortProject(ActionEvent actionEvent){ //siehe ProjectChangeController
+    public void handleAbortProject(ActionEvent actionEvent){
 
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Projekt erstellen Abbrechen?");
@@ -108,7 +108,7 @@ public class ProjectCreateController extends ActionEvent{
             p.get_employees().add(new Employee(txtfProjectTeam.getText(),p.get_intProjectId()));
         }
 
-        if (lblEmployees.getText()== ""){
+        if (lblEmployees.getText().equals("")){
             lblEmployees.setText(txtfProjectTeam.getText());
             txtfProjectTeam.setText("");
         }else {

@@ -2,7 +2,6 @@ package views;
 
 import controller.TaskScreenController;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -13,8 +12,6 @@ import programm.Programm;
 
 import java.io.IOException;
 
-import static javafx.scene.layout.GridPane.getColumnIndex;
-
 public class TaskScreen {
 
     private VBox vbEmployees;
@@ -23,7 +20,7 @@ public class TaskScreen {
     private Stage _mainStage;
     private Scene _scene;
     private FXMLLoader _loader;
-    private TaskScreenController tsc;
+    private TaskScreenController _tsc;
 
     public TaskScreen(Stage stage, int intCurrProject) {
         _mainStage = stage;
@@ -31,9 +28,9 @@ public class TaskScreen {
         try {
             _loader = new FXMLLoader(getClass().getResource("TaskScreenDisplay.fxml"));
             _parent = _loader.load();
-            tsc = _loader.getController();
-            tsc.setIntCurrentProjectIndex(intCurrProject);
-            tsc.setTs(this);
+            _tsc = _loader.getController();
+            _tsc.set_intCurrentProjectIndex(intCurrProject);
+            _tsc.set_ts(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -44,6 +41,9 @@ public class TaskScreen {
         _mainStage.setScene(_scene);
 
         _scene.getStylesheets().add(getClass().getResource("Styles.css").toExternalForm());
+
+        String strProjectName = Programm.projects.get(_tsc.get_intCurrentProjectIndex()).get_strProjectName();
+        _tsc.lblProjectname.setText(strProjectName);
 
         VBox vbToDo = new VBox();
         vbToDo.getChildren().add(new Label("Noch zu machen"));
@@ -59,7 +59,7 @@ public class TaskScreen {
 
         Button btnAddTask = new Button("+");
         btnAddTask.getStyleClass().add("task-section");
-        btnAddTask.setOnAction(TaskScreenController::handleTaskCreate);
+        btnAddTask.setOnAction(_tsc::handleTaskCreate);
         gp.add(btnAddTask, 0,1);
 
         gp.add(vbToDo, 0, 0);
@@ -67,8 +67,8 @@ public class TaskScreen {
         gp.add(vbReady, 2, 0);
 
 
-        for (Task t : Programm.projects.get(tsc.intCurrentProjectIndex).get_tasks()) {
-            createTaskElement(t,Programm.projects.get(tsc.intCurrentProjectIndex).get_tasks().indexOf(t));
+        for (Task t : Programm.projects.get(_tsc.get_intCurrentProjectIndex()).get_tasks()) {
+            createTaskElement(t,Programm.projects.get(_tsc.get_intCurrentProjectIndex()).get_tasks().indexOf(t));
         }
 
     }
@@ -81,20 +81,20 @@ public class TaskScreen {
         hbTaskElement.setUserData(task);
 
         MenuItem miUp = new MenuItem(">");
-        miUp.setOnAction(TaskScreenController::handleUpTask);
+        miUp.setOnAction(_tsc::handleUpTask);
         miUp.setUserData(hbTaskElement);
 
         MenuItem miDown = new MenuItem("<");
-        miDown.setOnAction(TaskScreenController::handleDownTask);
+        miDown.setOnAction(_tsc::handleDownTask);
         miDown.setUserData(hbTaskElement);
 
 
         MenuItem miChange = new MenuItem("ändern");
-        miChange.setOnAction(TaskScreenController::handleChangeTask);
+        miChange.setOnAction(_tsc::handleChangeTask);
 
 
         MenuItem miDelete = new MenuItem("löschen");
-        miDelete.setOnAction(TaskScreenController::handleDeleteTask);
+        miDelete.setOnAction(_tsc::handleDeleteTask);
         miDelete.setUserData(hbTaskElement);
 
         MenuButton mbtnTaskOptions = new MenuButton("...", null, miUp, miDown, miChange, miDelete);
@@ -102,7 +102,7 @@ public class TaskScreen {
 
         Label lblTaskName = new Label(task.get_strTaskName());
         lblTaskName.getStyleClass().add("task-element-section");
-        lblTaskName.setOnMouseClicked(TaskScreenController::handleOpenTask);
+        lblTaskName.setOnMouseClicked(_tsc::handleOpenTask);
         lblTaskName.setUserData(hbTaskElement);
 
         vbEmployees = new VBox(); //TODO: Hierher muss das Employee-Objekt übergeben werden > task.get_alTaskEmployees() Schleife mit dem divider , Durchlaufen und vbox befüllen?
@@ -118,13 +118,13 @@ public class TaskScreen {
 
         switch (strStatus) {
             case "ToDo":
-                tsc.vbToDo.getChildren().add(hbTaskElement);
+                _tsc.vbToDo.getChildren().add(hbTaskElement);
                 break;
             case "InProgress":
-                tsc.vbInProgress.getChildren().add(hbTaskElement);
+                _tsc.vbInProgress.getChildren().add(hbTaskElement);
                 break;
             case "Done":
-                tsc.vbDone.getChildren().add(hbTaskElement);
+                _tsc.vbDone.getChildren().add(hbTaskElement);
                 break;
         }
     }
@@ -137,10 +137,6 @@ public class TaskScreen {
     public void removeTaskElement(HBox hbCurrentTaskElement){
         VBox vBox = (VBox) hbCurrentTaskElement.getParent();
         vBox.getChildren().remove(hbCurrentTaskElement);
-    }
-
-    private void createEmployeeElement(){
-        //Mitarbeiter Anfangsbuchhstaben als Label zur vbEmployees hinzufügen
     }
 
     public void showTaskScreen() {

@@ -19,9 +19,9 @@ public class ProjectScreen {
     private Stage _mainStage;
     private Scene _scene;
     private FXMLLoader _loader;
-    private ProjectScreenController psc;
+    private ProjectScreenController _psc;
 
-    public static MenuButton mbtnProjectOptions;
+    private MenuButton mbtnProjectOptions;
 
     public ProjectScreen(Stage stage) {
         _mainStage = stage;
@@ -29,8 +29,8 @@ public class ProjectScreen {
         try {
             _loader = new FXMLLoader(getClass().getResource("ProjectScreenDisplay.fxml"));
             _parent = _loader.load();
-            psc = _loader.getController();
-            psc.setPs(this);
+            _psc = _loader.getController();
+            _psc.setPs(this);
 
 
         } catch (IOException e) {
@@ -63,7 +63,7 @@ public class ProjectScreen {
         //id der VBox ist gleich der projektid um Project-objekt in der Arraylist
         //Die ID der VB-Box ist der Index des Projektes im Project-Array. Dieser Index wird bei bedarf weitergeben
         vbProjectBox.setId(Integer.toString(index));
-        vbProjectBox.setOnMouseClicked(ProjectScreenController::handleSelectProject);
+        vbProjectBox.setOnMouseClicked(_psc::handleSelectProject);
         vbProjectBox.getStyleClass().add("project-element-section-vbProjectBox");
         vbProjectBox.setUserData(project);
 
@@ -75,11 +75,11 @@ public class ProjectScreen {
         //Wenn die MenuItems zu einem Menubutton gehören haben sie kein Earentelement
         //--> um die Verbindung zur VBox nicht zu verlieren wird diese als UserData übergeben
         MenuItem miChange = new MenuItem("ändern");
-        miChange.setOnAction(ProjectScreenController::handleChangeProject);
+        miChange.setOnAction(_psc::handleChangeProject);
         miChange.setUserData(vbProjectBox);
 
         MenuItem miDelete = new MenuItem("löschen");
-        miDelete.setOnAction(ProjectScreenController::handleDeleteProject);
+        miDelete.setOnAction(_psc::handleDeleteProject);
         miDelete.setUserData(vbProjectBox);
 
         mbtnProjectOptions = new MenuButton("...", null, miChange, miDelete);
@@ -95,7 +95,7 @@ public class ProjectScreen {
         hbProjectHead.getChildren().addAll(lblProjectname, mbtnProjectOptions);
         vbProjectBox.getChildren().addAll(hbProjectHead, lblProjectDescription);
 
-       psc.gpProjectScreen.add(vbProjectBox, calcColIndex(index), calcRowIndex(index));
+       _psc.gpProjectScreen.add(vbProjectBox, calcColIndex(index), calcRowIndex(index));
     }
 
     private int calcColIndex(int index){
@@ -107,6 +107,6 @@ public class ProjectScreen {
     }
 
     public void removeProjectElement(VBox vbCurrentTaskElement){
-        psc.gpProjectScreen.getChildren().remove(vbCurrentTaskElement);
+        _psc.gpProjectScreen.getChildren().remove(vbCurrentTaskElement);
     }
 }

@@ -24,11 +24,15 @@ public class TaskScreenController {
     public VBox vbInProgress;
     @FXML
     public VBox vbDone;
-    public static int intCurrentProjectIndex;
-    private static TaskScreen ts;
+    @FXML
+    public Label lblProjectname;
 
-    public static void handleTaskCreate(ActionEvent actionEvent) {
-        TaskCreateScreen tc = new TaskCreateScreen(Programm.mainStage, intCurrentProjectIndex);
+    private int _intCurrentProjectIndex;
+    private TaskScreen _ts;
+
+
+    public void handleTaskCreate(ActionEvent actionEvent) {
+        TaskCreateScreen tc = new TaskCreateScreen(Programm.mainStage, _intCurrentProjectIndex);
         tc.initForm();
         tc.showTaskCreate();
     }
@@ -54,17 +58,17 @@ public class TaskScreenController {
 
     }
 
-    public static void handleChangeTask(ActionEvent actionEvent){
+    public void handleChangeTask(ActionEvent actionEvent){
         Label lblCurrentTaskLabel = (Label) actionEvent.getSource();
         HBox hbCurrentTaskElement =  (HBox) lblCurrentTaskLabel.getParent();
         Task currentTask = (Task) hbCurrentTaskElement.getUserData();
 
-        TaskCreateScreen tcs = new TaskCreateScreen(Programm.mainStage, intCurrentProjectIndex);
+        TaskCreateScreen tcs = new TaskCreateScreen(Programm.mainStage, _intCurrentProjectIndex);
         tcs.initForm(currentTask);
         tcs.showTaskCreate();
     }
 
-    public static void handleDeleteTask(ActionEvent actionEvent){
+    public void handleDeleteTask(ActionEvent actionEvent){
         MenuItem miCurrentTask = (MenuItem) actionEvent.getSource();
         HBox hbCurrentTask = (HBox) miCurrentTask.getUserData();
         Task currentTask = (Task) hbCurrentTask.getUserData();
@@ -81,42 +85,46 @@ public class TaskScreenController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == btnJa){
             currentTask.deleteTask();
-            ts.removeTaskElement(hbCurrentTask);
+            _ts.removeTaskElement(hbCurrentTask);
         }
     }
 
-    public static void handleUpTask(ActionEvent actionEvent){
+    public void handleUpTask(ActionEvent actionEvent){
         MenuItem miCurrentTask = (MenuItem) actionEvent.getSource();
         HBox hbCurrentTask = (HBox) miCurrentTask.getUserData();
         Task currentTask = (Task) hbCurrentTask.getUserData();
         currentTask.upTask();
-        ts.updateTaskElement(hbCurrentTask);
+        _ts.updateTaskElement(hbCurrentTask);
         }
 
-    public static void handleDownTask(ActionEvent actionEvent){
+    public void handleDownTask(ActionEvent actionEvent){
         MenuItem miCurrentTask = (MenuItem) actionEvent.getSource();
         HBox hbCurrentTask = (HBox) miCurrentTask.getUserData();
         Task currentTask = (Task) hbCurrentTask.getUserData();
         currentTask.downTask();
-        ts.updateTaskElement(hbCurrentTask);
+        _ts.updateTaskElement(hbCurrentTask);
     }
 
 
-    public static void handleOpenTask(javafx.scene.input.MouseEvent mouseEvent) {
+    public void handleOpenTask(javafx.scene.input.MouseEvent mouseEvent) {
         Label lblCurrentTaskLabel = (Label) mouseEvent.getSource();
         HBox hbCurrentTaskElement =  (HBox) lblCurrentTaskLabel.getParent();
         Task currentTask = (Task) hbCurrentTaskElement.getUserData();
 
-        TaskCreateScreen tcs = new TaskCreateScreen(Programm.mainStage, intCurrentProjectIndex);
+        TaskCreateScreen tcs = new TaskCreateScreen(Programm.mainStage, _intCurrentProjectIndex);
         tcs.initForm(currentTask);
         tcs.showTaskCreate();
     }
 
-    public void setIntCurrentProjectIndex(int intCurrentProjectIndex) {
-        this.intCurrentProjectIndex = intCurrentProjectIndex;
+    public void set_intCurrentProjectIndex(int _intCurrentProjectIndex) {
+        this._intCurrentProjectIndex = _intCurrentProjectIndex;
     }
 
-    public void setTs(TaskScreen ts) {
-        this.ts = ts;
+    public int get_intCurrentProjectIndex() {
+        return _intCurrentProjectIndex;
+    }
+
+    public void set_ts(TaskScreen _ts) {
+        this._ts = _ts;
     }
 }
