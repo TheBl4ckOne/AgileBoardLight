@@ -7,7 +7,7 @@ public class Employee {
     private  Integer _intProjectId;
 
     public Employee(String strEmployeeName, Integer intProjectId){
-        //Zum Erstellen eines Mitarbeiters aus Nutzereingeben
+        //Zum Erstellen eines Mitarbeiters wenn das Projekt schon vorhanden ist
         _strEmployeeName = strEmployeeName;
         _intProjectId = intProjectId;
     }
@@ -20,7 +20,7 @@ public class Employee {
     }
 
     public Employee(String strEmployeeName) {
-        //Nur Zum Debuggen
+        //Zum Erstellen eines Employee Objekt wenn das zugehörige Projekt noch keine ID duch die DB erhalten hat
         this._strEmployeeName = strEmployeeName;
     }
 

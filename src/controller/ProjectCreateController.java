@@ -87,7 +87,12 @@ public class ProjectCreateController extends ActionEvent{
            p.set_strProjectName(strProjectname);
            p.set_strProjectDescription(strProjectDescription);
            p.set_ldtDeadline(ldtDeadline);
-           p.set_employees(alEmployees);
+
+            for (Employee localProjectEmployee:p.get_employees()) {
+                if (localProjectEmployee.get_intEmployeeId() == null){
+                    Programm.dbAgent.InsertEmployeeIntoDatabase(localProjectEmployee);
+                }
+            }
 
            Programm.dbAgent.UpdateProject(p);
         }
@@ -98,7 +103,11 @@ public class ProjectCreateController extends ActionEvent{
     }
 
     public void handleNewEmployee(ActionEvent actionEvent) {
-        Node node = (Node) actionEvent.getSource();
+        if (!bNewProject){
+            Project p = (Project) txtfProjectname.getUserData();
+            p.get_employees().add(new Employee(txtfProjectTeam.getText(),p.get_intProjectId()));
+        }
+
         if (lblEmployees.getText()== ""){
             lblEmployees.setText(txtfProjectTeam.getText());
             txtfProjectTeam.setText("");
