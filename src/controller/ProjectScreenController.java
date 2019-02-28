@@ -53,7 +53,7 @@ public class ProjectScreenController extends ActionEvent {
         VBox vbCurrentProject = (VBox) miCurrentProject.getUserData();
         Project currentProject = (Project) vbCurrentProject.getUserData();
         currentProject.deleteProject();
-        ps.removeProjectElement(vbCurrentProject);
+        ps.refreshProjectElements();
     }
 
     public void setPs(ProjectScreen ps) {

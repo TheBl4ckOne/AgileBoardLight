@@ -5,12 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import models.Project;
 import programm.Programm;
-
 import java.io.IOException;
 
 public class ProjectScreen {
@@ -106,7 +107,11 @@ public class ProjectScreen {
        return index/2;
     }
 
-    public void removeProjectElement(VBox vbCurrentTaskElement){
-        _psc.gpProjectScreen.getChildren().remove(vbCurrentTaskElement);
+    public void refreshProjectElements(){
+        _psc.gpProjectScreen.getChildren().clear();
+        for (Project p : Programm.projects) {
+            drawProjectElement(p,Programm.projects.indexOf(p));
+        }
+
     }
 }
