@@ -162,8 +162,8 @@
 
     .project-element-section-vbProjectBox{
         -fx-border-color: black;
-        -fx-max-height: 20em;
-        -fx-min-height: 20em;
+        -fx-max-height: 15em;
+        -fx-min-height: 15em;
         -fx-min-width: 30.8em;
         -fx-max-width: 30.8em;
         -fx-background-color: #FFFFFF;

@@ -15,14 +15,9 @@ import models.Project;
 import programm.Programm;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 public class ProjectCreateScreen {
-
-    public static String strProjectname;
-    public static String strProjectDescription;
-    public static String strProjectTeam;
-    public static String strDeadline;
-
     private Parent _parent;
     private Stage _mainStage;
     private Scene _scene;
@@ -51,6 +46,8 @@ public class ProjectCreateScreen {
 
         _scene.getStylesheets().add(getClass().getResource("Styles.css").toExternalForm());
 
+        _pcc.dtpiDeadline.setValue(LocalDateTime.now().toLocalDate());
+
         _pcc.setbNewProject(true);
     }
 
@@ -68,7 +65,7 @@ public class ProjectCreateScreen {
         _pcc.txtaProjectDescription.setText(currentProject.get_strProjectDescription());
         _pcc.dtpiDeadline.setValue(currentProject.get_ldtDeadline());
         for (Employee projectEmployee: currentProject.get_employees()) {
-            if(_pcc.lblEmployees.getText() == ""){
+            if(_pcc.lblEmployees.getText().equals("")){
                 _pcc.lblEmployees.setText(projectEmployee.get_strEmployeeName());
             }else{
                 _pcc.lblEmployees.setText(_pcc.lblEmployees.getText() + ", " + projectEmployee.get_strEmployeeName());
