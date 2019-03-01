@@ -7,15 +7,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import models.Employee;
 import models.Task;
 import programm.Programm;
 
 import java.io.IOException;
 
 public class TaskScreen {
-
-    private VBox vbEmployees;
-
     private Parent _parent;
     private Stage _mainStage;
     private Scene _scene;
@@ -75,27 +73,37 @@ public class TaskScreen {
 
     private void createTaskElement(Task task, int index){
 
-        HBox hbTaskElement = new HBox();
-        hbTaskElement.getStyleClass().add("task-element-section");
-        hbTaskElement.setId(Integer.toString(index));
-        hbTaskElement.setUserData(task);
+        VBox vbTaskElement = new VBox();
+        vbTaskElement.getStyleClass().add("task-element");
+        vbTaskElement.setId(Integer.toString(index));
+        vbTaskElement.setUserData(task);
+
+        HBox hbTaskInfo = new HBox();
+        hbTaskInfo.getStyleClass().add("task-element-hbTaskinfo");
+
+        ListView<String> lvEmployees = new ListView<>();
+        for (Employee e :task.get_alTaskEmployees()) {
+            lvEmployees.getItems().add(e.get_strEmployeeName());
+        }
+        lvEmployees.getStyleClass().add("task-element-lvEmployees");
 
         MenuItem miUp = new MenuItem(">");
         miUp.setOnAction(_tsc::handleUpTask);
-        miUp.setUserData(hbTaskElement);
+        miUp.setUserData(vbTaskElement);
 
         MenuItem miDown = new MenuItem("<");
         miDown.setOnAction(_tsc::handleDownTask);
-        miDown.setUserData(hbTaskElement);
+        miDown.setUserData(vbTaskElement);
 
 
         MenuItem miChange = new MenuItem("ändern");
         miChange.setOnAction(_tsc::handleChangeTask);
+        miChange.setUserData(vbTaskElement);
 
 
         MenuItem miDelete = new MenuItem("löschen");
         miDelete.setOnAction(_tsc::handleDeleteTask);
-        miDelete.setUserData(hbTaskElement);
+        miDelete.setUserData(vbTaskElement);
 
         MenuButton mbtnTaskOptions = new MenuButton("...", null, miUp, miDown, miChange, miDelete);
         mbtnTaskOptions.getStyleClass().add("task-element-section");
@@ -103,40 +111,40 @@ public class TaskScreen {
         Label lblTaskName = new Label(task.get_strTaskName());
         lblTaskName.getStyleClass().add("task-element-section");
         lblTaskName.setOnMouseClicked(_tsc::handleOpenTask);
-        lblTaskName.setUserData(hbTaskElement);
+        lblTaskName.setUserData(vbTaskElement);
 
-        vbEmployees = new VBox(); //TODO: Hierher muss das Employee-Objekt übergeben werden > task.get_alTaskEmployees() Schleife mit dem divider , Durchlaufen und vbox befüllen?
-        vbEmployees.getStyleClass().add("task-element-section");
 
-        hbTaskElement.getChildren().addAll(vbEmployees, lblTaskName, mbtnTaskOptions);
-        drawTaskElement(hbTaskElement);
+        hbTaskInfo.getChildren().addAll(lblTaskName,mbtnTaskOptions);
+
+        vbTaskElement.getChildren().addAll(hbTaskInfo,lvEmployees);
+        drawTaskElement(vbTaskElement);
     }
 
-    private void drawTaskElement(HBox hbTaskElement){
-        Task currentTask = (Task) hbTaskElement.getUserData();
+    private void drawTaskElement(VBox vbTaskElement){
+        Task currentTask = (Task) vbTaskElement.getUserData();
         String strStatus = currentTask.get_strTaskStatus();
 
         switch (strStatus) {
             case "ToDo":
-                _tsc.vbToDo.getChildren().add(hbTaskElement);
+                _tsc.vbToDo.getChildren().add(vbTaskElement);
                 break;
             case "InProgress":
-                _tsc.vbInProgress.getChildren().add(hbTaskElement);
+                _tsc.vbInProgress.getChildren().add(vbTaskElement);
                 break;
             case "Done":
-                _tsc.vbDone.getChildren().add(hbTaskElement);
+                _tsc.vbDone.getChildren().add(vbTaskElement);
                 break;
         }
     }
 
-    public void updateTaskElement(HBox hbCurrentTaskElement){
-        removeTaskElement(hbCurrentTaskElement);
-        drawTaskElement(hbCurrentTaskElement);
+    public void updateTaskElement(VBox vbCurrentTaskElement){
+        removeTaskElement(vbCurrentTaskElement);
+        drawTaskElement(vbCurrentTaskElement);
     }
 
-    public void removeTaskElement(HBox hbCurrentTaskElement){
-        VBox vBox = (VBox) hbCurrentTaskElement.getParent();
-        vBox.getChildren().remove(hbCurrentTaskElement);
+    public void removeTaskElement(VBox vbCurrentTaskElement){
+        VBox vBox = (VBox) vbCurrentTaskElement.getParent();
+        vBox.getChildren().remove(vbCurrentTaskElement);
     }
 
     public void showTaskScreen() {

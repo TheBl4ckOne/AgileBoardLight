@@ -4,6 +4,7 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -44,9 +45,9 @@ public class TaskScreenController {
     }
 
     public void handleChangeTask(ActionEvent actionEvent){
-        Label lblCurrentTaskLabel = (Label) actionEvent.getSource();
-        HBox hbCurrentTaskElement =  (HBox) lblCurrentTaskLabel.getParent();
-        Task currentTask = (Task) hbCurrentTaskElement.getUserData();
+        MenuItem miCurrentTaskMenuItem = (MenuItem) actionEvent.getSource();
+        VBox vbCurrentTaskElement =  (VBox) miCurrentTaskMenuItem.getUserData();
+        Task currentTask = (Task) vbCurrentTaskElement.getUserData();
 
         TaskCreateScreen tcs = new TaskCreateScreen(Programm.mainStage, _intCurrentProjectIndex);
         tcs.initForm(currentTask);
@@ -55,8 +56,8 @@ public class TaskScreenController {
 
     public void handleDeleteTask(ActionEvent actionEvent){
         MenuItem miCurrentTask = (MenuItem) actionEvent.getSource();
-        HBox hbCurrentTask = (HBox) miCurrentTask.getUserData();
-        Task currentTask = (Task) hbCurrentTask.getUserData();
+        VBox vbCurrentTask = (VBox) miCurrentTask.getUserData();
+        Task currentTask = (Task) vbCurrentTask.getUserData();
 
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Aufgabe löschen?");
@@ -70,28 +71,28 @@ public class TaskScreenController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == btnJa){
             currentTask.deleteTask();
-            _ts.removeTaskElement(hbCurrentTask);
+            _ts.removeTaskElement(vbCurrentTask);
         }
     }
 
     public void handleUpTask(ActionEvent actionEvent){
         MenuItem miCurrentTask = (MenuItem) actionEvent.getSource();
-        HBox hbCurrentTask = (HBox) miCurrentTask.getUserData();
-        Task currentTask = (Task) hbCurrentTask.getUserData();
+        VBox vbCurrentTask = (VBox) miCurrentTask.getUserData();
+        Task currentTask = (Task) vbCurrentTask.getUserData();
         currentTask.upTask();
-        _ts.updateTaskElement(hbCurrentTask);
+        _ts.updateTaskElement(vbCurrentTask);
         }
 
     public void handleDownTask(ActionEvent actionEvent){
         MenuItem miCurrentTask = (MenuItem) actionEvent.getSource();
-        HBox hbCurrentTask = (HBox) miCurrentTask.getUserData();
-        Task currentTask = (Task) hbCurrentTask.getUserData();
+        VBox vbCurrentTask = (VBox) miCurrentTask.getUserData();
+        Task currentTask = (Task) vbCurrentTask.getUserData();
         currentTask.downTask();
-        _ts.updateTaskElement(hbCurrentTask);
+        _ts.updateTaskElement(vbCurrentTask);
     }
 
 
-    public void handleOpenTask(javafx.scene.input.MouseEvent mouseEvent) {
+    public void handleOpenTask(MouseEvent mouseEvent) {
         Label lblCurrentTaskLabel = (Label) mouseEvent.getSource();
         HBox hbCurrentTaskElement =  (HBox) lblCurrentTaskLabel.getParent();
         Task currentTask = (Task) hbCurrentTaskElement.getUserData();

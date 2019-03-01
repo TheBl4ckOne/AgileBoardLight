@@ -14,9 +14,9 @@
     <center>
         <ScrollPane>
             <GridPane fx:id="gpTaskCategories">
-                <VBox fx:id="vbToDo" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-                <VBox fx:id="vbInProgress" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                <VBox fx:id="vbDone" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                <VBox fx:id="vbToDo" GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="task-section"/>
+                <VBox fx:id="vbInProgress" GridPane.columnIndex="1" GridPane.rowIndex="2" styleClass="task-section"/>
+                <VBox fx:id="vbDone" GridPane.columnIndex="2" GridPane.rowIndex="2" styleClass="task-section"/>
             </GridPane>
         </ScrollPane>
     </center>
