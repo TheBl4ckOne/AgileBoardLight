@@ -24,6 +24,11 @@ public class Employee {
         this._strEmployeeName = strEmployeeName;
     }
 
+    @Override
+    public String toString(){
+        return _strEmployeeName;
+    }
+
     //Get-Methoden
 
     public Integer get_intProjectId() {

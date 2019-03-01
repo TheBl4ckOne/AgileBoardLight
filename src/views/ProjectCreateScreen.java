@@ -1,14 +1,9 @@
 package views;
 
 import controller.ProjectCreateController;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import models.Employee;
 import models.Project;
@@ -65,11 +60,7 @@ public class ProjectCreateScreen {
         _pcc.txtaProjectDescription.setText(currentProject.get_strProjectDescription());
         _pcc.dtpiDeadline.setValue(currentProject.get_ldtDeadline());
         for (Employee projectEmployee: currentProject.get_employees()) {
-            if(_pcc.lblEmployees.getText().equals("")){
-                _pcc.lblEmployees.setText(projectEmployee.get_strEmployeeName());
-            }else{
-                _pcc.lblEmployees.setText(_pcc.lblEmployees.getText() + ", " + projectEmployee.get_strEmployeeName());
-            }
+            _pcc.lvEmployees.getItems().add(projectEmployee.get_strEmployeeName());
         }
         _pcc.setbNewProject(false);
     }

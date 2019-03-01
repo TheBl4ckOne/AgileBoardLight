@@ -2,13 +2,8 @@ package controller;
 
 
 import javafx.event.ActionEvent;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
 import models.Employee;
 import models.Project;
 import programm.Programm;
@@ -29,7 +24,7 @@ public class ProjectCreateController extends ActionEvent{
     @FXML
     public DatePicker dtpiDeadline;
     @FXML
-    public Label lblEmployees;
+    public ListView<String> lvEmployees;
 
 
     private boolean bNewProject;
@@ -66,7 +61,6 @@ public class ProjectCreateController extends ActionEvent{
 
         String strProjectname = txtfProjectname.getText();
         String strProjectDescription = txtaProjectDescription.getText();
-        String[] strProjectTeam = lblEmployees.getText().split(", ");
         LocalDate ldtDeadline =  dtpiDeadline.getValue();
 
         ArrayList<Employee> alEmployees = new ArrayList<>();
@@ -75,7 +69,7 @@ public class ProjectCreateController extends ActionEvent{
         //In den Klammern nach dem For steht zunächst die Dekleration der Laufvariable gefolgt von einem Doppelpunkt danach kommt der Name des ARrays das durchlaufen werden soll
         //Mit jedem Durchlauf nimmt die Laufwariable nun den Wert des Arrays an der aktuellen Stelle an
 
-        for (String s: strProjectTeam) {
+        for (String s: lvEmployees.getItems()) {
             alEmployees.add(new Employee(s));
         }
 
@@ -108,13 +102,8 @@ public class ProjectCreateController extends ActionEvent{
             p.get_employees().add(new Employee(txtfProjectTeam.getText(),p.get_intProjectId()));
         }
 
-        if (lblEmployees.getText().equals("")){
-            lblEmployees.setText(txtfProjectTeam.getText());
-            txtfProjectTeam.setText("");
-        }else {
-            lblEmployees.setText(lblEmployees.getText() + ", " + txtfProjectTeam.getText());
-            txtfProjectTeam.setText("");
-        }
+        lvEmployees.getItems().add(txtfProjectTeam.getText());
+        txtfProjectTeam.setText("");
     }
 
     public void setbNewProject(boolean bNewProject) {

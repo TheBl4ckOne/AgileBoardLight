@@ -44,6 +44,12 @@
         -fx-pref-height: 2.5em;
     }
 
+    .project-create-center-section-btnAdd{
+        -fx-min-width: 2em;
+        -fx-max-width: 2em;
+        -fx-min-height: 2em;
+        -fx-max-height: 2em;
+    }
     .project-element-section.button{
         -fx-min-width: 1.5em;
         -fx-pref-width: 1.5em;
@@ -133,7 +139,20 @@
         -fx-padding: 0 0 0 10;
     }
 
+/*ListView*/
+    ListView.project-create-center-section{
+        -fx-orientation: horizontal;
+        -fx-min-width: 30em;
+        -fx-min-height: 2em;
+        -fx-max-height: 2em;
+    }
 
+/*Textfield*/
+    .project-create-center-section-txtProjectTeam{
+        -fx-min-height: 2em;
+        -fx-max-height: 2em;
+        -fx-max-width: 10em;
+    }
 
 
 /*VBox, HBox*/
@@ -144,6 +163,10 @@
         -fx-min-height: 20em;
         -fx-max-width: 30em;
         -fx-maxheight: 20em;
+    }
+
+    HBox.project-create-center-section{
+        -fx-spacing: 5;
     }
 
     VBox.task-section{

@@ -8,7 +8,8 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextArea?>
-<BorderPane  xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@Styles.css" fx:controller="controller.ProjectCreateController">
+<?import javafx.scene.control.ListView?>
+<BorderPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@Styles.css" fx:controller="controller.ProjectCreateController">
 
     <top>
         <Label id="lblCreateProject" styleClass="header-section" text="Projekt erstellen">
@@ -32,10 +33,10 @@
                 <TextArea fx:id="txtaProjectDescription" styleClass="project-create-center-section" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                 </TextArea>
                 <HBox styleClass="project-create-center-section" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                    <TextField fx:id="txtfProjectTeam"  onAction="#handleNewEmployee" >
+                    <TextField fx:id="txtfProjectTeam"  onAction="#handleNewEmployee" styleClass="project-create-center-section-txtProjectTeam" >
                     </TextField>
-                    <Button onAction="#handleNewEmployee" >+</Button>
-                    <Label fx:id="lblEmployees"></Label>
+                    <Button onAction="#handleNewEmployee"  styleClass="project-create-center-section-btnAdd">+</Button>
+                    <ListView fx:id="lvEmployees" styleClass="project-create-center-section"/>
                 </HBox>
                 <DatePicker fx:id="dtpiDeadline" GridPane.columnIndex="1" GridPane.rowIndex="3">
                 </DatePicker>
