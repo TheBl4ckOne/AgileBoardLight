@@ -94,8 +94,9 @@ public class TaskScreenController {
 
     public void handleOpenTask(MouseEvent mouseEvent) {
         Label lblCurrentTaskLabel = (Label) mouseEvent.getSource();
-        HBox hbCurrentTaskElement =  (HBox) lblCurrentTaskLabel.getParent();
-        Task currentTask = (Task) hbCurrentTaskElement.getUserData();
+        //Zweifaches getParent da erst der Layoutcontainer hbTaskinfo "übersprungen" werden muss
+        VBox vbCurrentTaskElement =  (VBox) lblCurrentTaskLabel.getParent().getParent();
+        Task currentTask = (Task) vbCurrentTaskElement.getUserData();
 
         TaskCreateScreen tcs = new TaskCreateScreen(Programm.mainStage, _intCurrentProjectIndex);
         tcs.initForm(currentTask);
