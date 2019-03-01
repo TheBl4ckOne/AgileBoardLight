@@ -69,6 +69,18 @@ public class TaskCreateController {
             t.set_strTaskDescription(txtaTaskDescription.getText());
             t.set_alTaskEmployees(alTaskEmployees);
             Programm.dbAgent.UpdateTask(t);
+            Programm.dbAgent.DeleteEmployeeInTaskByTask(t.get_intTaskId());
+            for (Employee e:t.get_alTaskEmployees()) {
+                Programm.dbAgent.InsertEmployeesInTasks(e.get_intEmployeeId(),t.get_intTaskId());
+            }
+
+
+
+            t.set_alTaskEmployees(alTaskEmployees);
+
+
+
+
         }
 
         TaskScreen ts = new TaskScreen(Programm.mainStage, intCurrentProjectIndex);

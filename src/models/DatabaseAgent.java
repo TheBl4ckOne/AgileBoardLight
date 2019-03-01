@@ -289,6 +289,7 @@ public class DatabaseAgent {
 
     //EmployeesInTasks
     private void InsertEmployeesInTasks(int intEmployeeId){
+        //Für neu erstllte Tasks
         try {
             String strSelectLatestTask = "SELECT MAX(taskid) FROM tasks";
             Statement staLatestTask = _myConnection.createStatement();
@@ -303,6 +304,18 @@ public class DatabaseAgent {
            prepInsEmployeesInTasks.setInt(1,intTaskId);
            prepInsEmployeesInTasks.setInt(2,intEmployeeId);
            prepInsEmployeesInTasks.execute();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void InsertEmployeesInTasks(int intEmployeeId, int intTaskId){
+        try{
+            String strIntoEmployeesInTasks = "INSERT INTO employees_in_tasks (taskid, employeeId) VALUES (?,?)";
+            PreparedStatement prepInsEmployeesInTasks = _myConnection.prepareStatement(strIntoEmployeesInTasks);
+            prepInsEmployeesInTasks.setInt(1,intTaskId);
+            prepInsEmployeesInTasks.setInt(2,intEmployeeId);
+            prepInsEmployeesInTasks.execute();
         } catch (Exception e){
             e.printStackTrace();
         }
