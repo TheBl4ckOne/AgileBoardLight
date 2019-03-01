@@ -3,6 +3,9 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -12,6 +15,8 @@ import programm.Programm;
 import views.ProjectCreateScreen;
 import views.ProjectScreen;
 import views.TaskScreen;
+
+import java.util.Optional;
 
 import static programm.Programm.mainStage;
 
@@ -49,11 +54,28 @@ public class ProjectScreenController extends ActionEvent {
     }
 
     public void handleDeleteProject(ActionEvent actionEvent){
-        MenuItem miCurrentProject = (MenuItem) actionEvent.getSource();
-        VBox vbCurrentProject = (VBox) miCurrentProject.getUserData();
-        Project currentProject = (Project) vbCurrentProject.getUserData();
-        currentProject.deleteProject();
-        ps.refreshProjectElements();
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Projekt löschen?");
+        alert.setHeaderText("Möchten Sie das Projekt endgültig löschen?");
+        alert.setContentText("Sind Sie damit fortfahren?");
+
+        ButtonType btnJa = new ButtonType("JA");
+        ButtonType btnNein = new ButtonType("NEIN", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        alert.getButtonTypes().setAll(btnJa,btnNein);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == btnJa){
+            MenuItem miCurrentProject = (MenuItem) actionEvent.getSource();
+            VBox vbCurrentProject = (VBox) miCurrentProject.getUserData();
+            Project currentProject = (Project) vbCurrentProject.getUserData();
+            currentProject.deleteProject();
+            ps.refreshProjectElements();
+        }
+
+        else {
+            alert.close();
+        }
     }
 
     public void setPs(ProjectScreen ps) {

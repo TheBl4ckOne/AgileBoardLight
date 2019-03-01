@@ -38,24 +38,9 @@ public class TaskScreenController {
     }
 
     public void handleHome(ActionEvent actionEvent) {
-
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Zurück zur Startseite?");
-        alert.setHeaderText("Wollen Sie wirklich zurück zur Startseite? Alle Änderungen gehen verloren.");
-        alert.setContentText("Sind Sie damit einverstanden?");
-
-        ButtonType btnJa = new ButtonType("JA");
-        ButtonType btnNein = new ButtonType("NEIN", ButtonBar.ButtonData.CANCEL_CLOSE);
-
-        alert.getButtonTypes().setAll(btnJa,btnNein);
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == btnJa){
             ProjectScreen ps = new ProjectScreen(Programm.mainStage);
             ps.initForm();
             ps.showProjectScreen();
-        }
-
     }
 
     public void handleChangeTask(ActionEvent actionEvent){
