@@ -46,9 +46,10 @@
 
     .project-create-center-section-btnAdd{
         -fx-min-width: 2em;
-        -fx-max-width: 2em;
+        -fx-pref-width: 2em;
         -fx-min-height: 2em;
-        -fx-max-height: 2em;
+        -fx-pref-height: 2em;
+        -fx-padding: 0;
     }
     .project-element-section.button{
         -fx-min-width: 1.5em;
@@ -76,7 +77,8 @@
 
 
     .task-element.section.menu-button{
-        -fx-min-height: 1.8em;
+        -fx-min-height: 2.2em;
+        -fx-max-height: 2.2em;
     }
 
     #btnSaveProject,#btnSaveTasks{
@@ -135,8 +137,9 @@
         -fx-background-color: light-primary-color;
         -fx-min-width: 17em;
         -fx-max-width: 17em;
-        -fx-min-height: 1.8em;
-        -fx-padding: 0 0 0 10;
+        -fx-min-height: 2.2em;
+        -fx-max-height: 2.2em;
+        -fx-padding: 0 0 0 0;
     }
 
 /*ListView*/
@@ -151,8 +154,8 @@
         -fx-orientation: horizontal;
         -fx-font-size: 12pt;
         -fx-max-width: 30em;
-        -fx-min-height: 2em;
-        -fx-max-height: 2em;
+        -fx-min-height: 2.5em;
+        -fx-max-height: 2.5em;
     }
 
 /*Textfield*/
